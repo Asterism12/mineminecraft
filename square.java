@@ -3,6 +3,7 @@ package thing;
 public abstract class square {
 	int id;
 	int break_level;
+	boolean wight=false;
 	boolean liquid=false;
 	boolean pile=true;
 	boolean food=false;
