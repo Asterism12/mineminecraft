@@ -1,4 +1,4 @@
-package Game;
+package Thing;
 
 public abstract class Square {
     int id;

@@ -13,6 +13,9 @@ public class MCanvas extends JPanel {
         printPlayer(g);
     }
 
+    private void printWorld(Graphics g){
+
+    }
     private void printPlayer(Graphics g){//在屏幕正中心绘制玩家
         g.setColor(Color.WHITE);
         g.fillRect(this.getWidth()/2-3,this.getWidth()/2-3,6,6);

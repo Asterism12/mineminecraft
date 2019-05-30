@@ -1,5 +1,7 @@
 package Game;
 
+import Thing.Square;
+
 import javax.swing.*;
 
 public class World {
