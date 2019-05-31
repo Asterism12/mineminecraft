@@ -12,6 +12,6 @@ public class Player {
     private Toolbar toolbar;
     public Point.Double location;//玩家脚底中心坐标，决定从何处开始渲染
     Player(){
-        location=new Point.Double(128,2048);
+        location=new Point.Double(2048,128);
     }
 }

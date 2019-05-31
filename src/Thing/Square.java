@@ -3,14 +3,17 @@ package Thing;
 import java.awt.*;
 
 public abstract class Square {
-    static int id;
-    static int break_level;
-    static boolean wight = false;
-    static boolean liquid = false;
-    static boolean pile = true;
-    static boolean food = false;
-    static boolean takeup = true;
-    static boolean through = false;
-    static boolean putdown = true;
-    public static Image material;
+    int id;
+    int break_level;
+    boolean wight = false;
+    boolean liquid = false;
+    boolean pile = true;
+    boolean food = false;
+    boolean takeup = true;
+    boolean through = false;
+    boolean putdown = true;
+    private Image pic;
+    public Image getPic(){
+        return pic;
+    }
 }

@@ -1,53 +1,62 @@
 package Game;
 
-import Thing.*;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MCanvas extends JPanel {
-    private final Point size = new Point(20, 20);//图片默认大小
+    private final int size = 20;//图片默认边长
+    private Image bg;//背景图片
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Color.CYAN);
-        g.fillRect(0, 0, this.getWidth(), this.getHeight());//使用底色清屏
         printBackGround(g);
-        //g.drawImage(TestSquare.material,20, 20, null);
         printWorld(g);
         printPlayer(g);
     }
 
     private void printBackGround(Graphics g) {//渲染背景
-
+        g.drawImage(bg,0,0,null);
     }
 
     private void printWorld(Graphics g) {//渲染需要载入的区块
         Rectangle rectangle;
         Point.Double location;
-        int bias;//人物相对于脚下物块的位置像素偏移量
+        int xbias,ybias;//人物相对于脚下物块的位置像素偏移量
         synchronized (this) {
             rectangle = World.checkBorder();
             location = World.player.location;
         }
-        bias = (int) (location.x - (double) ((int) location.x))*20;
-        //g.drawImage(TestSquare.material,20, 20, null);
+        xbias = (int) (location.x - (double) ((int) location.x)) * 20;
+        ybias = (int) (location.y - (double) ((int) location.y)) * 20;
 
-        for (int i = 0; i < rectangle.x; i++) {
-            for (int j = 0; j < rectangle.y; j++) {
-                g.drawImage(TestSquare.material,
-                        20 * i - bias, 20 * j, null);
+        for (int i = 0; i < rectangle.width; i++) {
+            for (int j = 0; j < rectangle.height; j++) {
+                int x = i + rectangle.x;
+                int y = j + rectangle.y;
+                if (World.worldSquare[x][y] != null)
+                    g.drawImage(World.worldSquare[x][y].getPic(),
+                            size * i - xbias, size * j-ybias, null);
             }
         }
     }
 
     private void printPlayer(Graphics g) {//在屏幕正中心绘制玩家
         g.setColor(Color.WHITE);
-        g.fillRect(this.getWidth() / 2 - 5, this.getWidth() / 2 - 5, 10, 10);
+        g.fillRect(this.getWidth() / 2 -5, this.getHeight() / 2 -5+40, 10, 10);
     }
 
     MCanvas(int width, int height) {
         this.setSize(width, height);
+        try {
+            this.bg= ImageIO.read(new File("image/sky.jpg")).getScaledInstance(width,height,Image.SCALE_DEFAULT);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 }
