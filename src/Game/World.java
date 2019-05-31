@@ -16,6 +16,8 @@ public class World {
 
     static Player player;//玩家类
 
+    public static final int SIZE=20;//图片默认边长;
+
     private static void UIinit(int weith, int height) {//UI初始化
         frame = new JFrame();
         frame.setSize(weith, height);
