@@ -6,8 +6,9 @@ import java.util.TimerTask;
 
 public class Player {
     private final double walkSpeed = ((double) World.SIZE) / World.FPS * 4;//一秒走4格
-    private final double jumpSpeed=10;//初始跳跃速度
-    private double verticalSpeed=0;//实时垂直速度
+    private final double jumpSpeed = 0.5;//初始跳跃速度
+    private final double gravity = 0.1;//重力常数
+    private double verticalSpeed = 0;//实时垂直速度
     private int hp = 10;
     private int vp = 10;
     private Image head;
@@ -17,43 +18,54 @@ public class Player {
     private Toolbar toolbar;
     private Point.Double location;//玩家脚底中心坐标，决定从何处开始渲染
 
-    int walklLeft = 0;//玩家是否在向左侧移动
-    int walkRight=0;//玩家是否在向右侧移动
+    int walkLeft = 0;//玩家是否在向左侧移动
+    int walkRight = 0;//玩家是否在向右侧移动
     boolean isJumping = false;//玩家是否在跳跃
-
-    boolean isOnGround() {
-        if (location.y == (int) location.y)
-            if (!World.worldSquare[(int) location.x][(int) location.y].through)
-                return true;
-        return false;
-    }
 
     synchronized Point.Double getLocation() {
         return location;
     }
 
     Player() {
-        location = new Point.Double(2048, 128);
+        location = new Point.Double(2048, 127);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 //walk
-                int walk=walkRight-walklLeft;
+                int walk = walkRight - walkLeft;
                 if (walk == -1) {
-                    location.x = location.x - walkSpeed;
+                    double targetX = location.x - walkSpeed;
+                    if (World.worldSquare[(int) targetX][(int) location.y] == null)
+                        location.x = targetX;
+                    else {
+                        location.x = Math.ceil(targetX);
+                    }
                 } else if (walk == 1) {
-                    location.x = location.x + walkSpeed;
+                    double targetX = location.x + walkSpeed;
+                    if (World.worldSquare[(int) targetX][(int) location.y] == null)
+                        location.x = targetX;
+                    else {
+                        location.x = (int) targetX;
+                    }
                 }
 
-                /*
                 //jump
-                if (isJumping&&isOnGround())//准备起跳
-                    verticalSpeed=10;
-                else if(!isOnGround()){
-
+                if (isJumping && verticalSpeed == 0)//准备起跳
+                    verticalSpeed = -jumpSpeed;
+                else if (verticalSpeed!=0) {
+                    double targetY = location.y + verticalSpeed;
+                    if (verticalSpeed < 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//磕脑袋
+                        location.y = Math.ceil(targetY);
+                        verticalSpeed = 0;
+                    } else if (verticalSpeed > 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//落地
+                        location.y = (int) targetY;
+                        verticalSpeed = 0;
+                    } else {
+                        location.y = targetY;
+                        verticalSpeed += gravity;
+                    }
                 }
-                 */
             }
         }, 0, World.FPS);
     }

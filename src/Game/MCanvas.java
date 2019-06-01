@@ -51,6 +51,5 @@ public class MCanvas extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

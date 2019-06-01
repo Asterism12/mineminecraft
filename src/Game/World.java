@@ -53,7 +53,7 @@ public class World {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 if (e.getKeyCode() == 65) {
-                    player.walklLeft = 1;
+                    player.walkLeft = 1;
                 } else if (e.getKeyCode() == 68) {
                     player.walkRight = 1;
                 } else if (e.getKeyCode() == 32) {
@@ -65,7 +65,7 @@ public class World {
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
                 if (e.getKeyCode() == 65) {
-                    player.walklLeft = 0;
+                    player.walkLeft = 0;
                 } else if (e.getKeyCode() == 68) {
                     player.walkRight = 0;
                 } else if (e.getKeyCode() == 32) {
