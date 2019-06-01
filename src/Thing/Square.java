@@ -3,15 +3,15 @@ package Thing;
 import java.awt.*;
 
 public abstract class Square {
-    int id;
-    int break_level;
-    boolean wight = false;
-    boolean liquid = false;
-    boolean pile = true;
-    boolean food = false;
-    boolean takeup = true;
-    boolean through = false;
-    boolean putdown = true;
+    public int id;
+    public int break_level;
+    public boolean wight = false;
+    public boolean liquid = false;
+    public boolean pile = true;
+    public boolean food = false;
+    public boolean takeup = true;
+    public boolean through = false;
+    public boolean putdown = true;
     private Image pic;
     public Image getPic(){
         return pic;

@@ -4,19 +4,21 @@ import Thing.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class World {
-    private static byte[] b = new byte[0];//线程缓冲区
     private static int seed = 0;
     static Square[][] worldSquare;//存储世界地形，世界应为256*4096的平面，指向Null的方块视为天空
     private static final int WEDTH = 52;//加载区块的数量
     private static final int HEIGHT = 42;
-    private static JFrame frame;
+    private static JFrame frame;//UI组件
     private static MCanvas mCanvas;
 
     static Player player;//玩家类
 
-    public static final int SIZE=20;//图片默认边长;
+    public static final int SIZE = 20;//图片默认边长;
+    //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
+    public static final int FPS = 1000 / 30;//帧率
 
     private static void UIinit(int weith, int height) {//UI初始化
         frame = new JFrame();
@@ -35,18 +37,49 @@ public class World {
         }
     }
 
-    private static void update() {//更新世界
-        mCanvas.repaint();
+    private static void worldUpdater() {
+        ActionListener update = new ActionListener() {//刷新世界
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mCanvas.repaint();
+            }
+        };
+        new Timer(FPS, update).start();
+    }
+
+    private static void playerUpdater() {
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == 65) {
+                    player.walklLeft = 1;
+                } else if (e.getKeyCode() == 68) {
+                    player.walkRight = 1;
+                } else if (e.getKeyCode() == 32) {
+                    player.isJumping = true;
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (e.getKeyCode() == 65) {
+                    player.walklLeft = 0;
+                } else if (e.getKeyCode() == 68) {
+                    player.walkRight = 0;
+                } else if (e.getKeyCode() == 32) {
+                    player.isJumping = false;
+                }
+            }
+        });
     }
 
     static Rectangle checkBorder() {//判断哪些区块需要载入
-        Point.Double playerLocation;
-        Rectangle rectangle;
-        synchronized (b) {
-            playerLocation = player.location;
-            rectangle = new Rectangle();
-        }
-        rectangle.x = (int) playerLocation.x - WEDTH/ 2;
+        Point.Double playerLocation = player.getLocation();
+        Rectangle rectangle = new Rectangle();
+
+        rectangle.x = (int) playerLocation.x - WEDTH / 2;
         rectangle.y = (int) playerLocation.y - HEIGHT / 2;
         rectangle.height = HEIGHT;
         rectangle.width = WEDTH;
@@ -57,6 +90,8 @@ public class World {
         worldSquareCreator();
         player = new Player();
         UIinit(1000, 800);
+        playerUpdater();
+        worldUpdater();
     }
 
     public static void main(String[] args) {
