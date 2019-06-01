@@ -25,6 +25,7 @@ public class World {
         frame.setSize(weith, height);
         mCanvas = new MCanvas(weith, height);
         frame.add(mCanvas);
+        frame.setCursor(Cursor.CROSSHAIR_CURSOR);
         frame.setVisible(true);
     }
 

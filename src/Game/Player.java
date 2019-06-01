@@ -51,15 +51,16 @@ public class Player {
                 }
 
                 //jump
-                if (isJumping && verticalSpeed == 0)//准备起跳
+                if (isJumping && verticalSpeed == 0){//准备起跳
                     verticalSpeed = -jumpSpeed;
+                }
                 else if (verticalSpeed!=0) {
                     double targetY = location.y + verticalSpeed;
                     if (verticalSpeed < 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//磕脑袋
                         location.y = Math.ceil(targetY);
                         verticalSpeed = 0;
                     } else if (verticalSpeed > 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//落地
-                        location.y = (int) targetY;
+                        location.y = (int) targetY-0.01;//防止陷到地里出不来了
                         verticalSpeed = 0;
                     } else {
                         location.y = targetY;
