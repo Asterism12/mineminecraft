@@ -6,8 +6,8 @@ import java.util.TimerTask;
 
 public class Player {
     private final double walkSpeed = ((double) World.SIZE) / World.FPS * 4;//一秒走4格
-    private final double jumpSpeed = 0.5;//初始跳跃速度
-    private final double gravity = 0.1;//重力常数
+    private final double jumpSpeed = 0.5 ;//初始跳跃速度
+    private final double gravity = 0.075;//重力常数
     private double verticalSpeed = 0;//实时垂直速度
     private int hp = 10;
     private int vp = 10;
@@ -27,7 +27,7 @@ public class Player {
     }
 
     Player() {
-        location = new Point.Double(2048, 127);
+        location = new Point.Double(2048, 127.99);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

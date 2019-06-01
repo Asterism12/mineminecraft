@@ -25,8 +25,9 @@ public class MCanvas extends JPanel {
         Point.Double location = World.player.getLocation();
         int xbias, ybias;//人物相对于脚下物块的位置像素偏移量
 
-        xbias = (int) ((location.x - (int) location.x) * 20);
-        ybias = (int) ((location.y - (int) location.y) * 20);
+        xbias = (int) ((location.x - (int) location.x) * World.SIZE);
+        ybias = (int) ((location.y - (int) location.y) * World.SIZE);
+        //ybias = (int) ((Math.ceil(location.y)-location.y) * World.SIZE);
 
         for (int i = 0; i < rectangle.width; i++) {
             for (int j = 0; j < rectangle.height; j++) {
@@ -41,7 +42,7 @@ public class MCanvas extends JPanel {
 
     private void printPlayer(Graphics g) {//在屏幕正中心绘制玩家
         g.setColor(Color.WHITE);
-        g.fillRect(this.getWidth() / 2 - 5, this.getHeight() / 2 - 5, 10, 10);
+        g.fillRect(this.getWidth() / 2 -10, this.getHeight() / 2 -10, 20, 20);
     }
 
     MCanvas(int width, int height) {
