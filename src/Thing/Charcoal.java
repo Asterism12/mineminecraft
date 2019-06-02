@@ -1,35 +1,35 @@
 package Thing;
 
 import javax.swing.ImageIcon;
-//ľ̿��̿��
+//木炭和炭类
 public class Charcoal extends Square{
 	public Charcoal(){
 		id=41;
-		break_level=1;
+		breakLevel=1;
 		pic=new ImageIcon(realimgpath+"\\Charcoal.jpg").getImage();
 		toolBarPic=new ImageIcon(bagimgpath+"\\Charcoal.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=true;
 		food=false;
-		takeup=true;
+		takeUp=true;
 		through=false;
-		putdown=true;
+		putDown=true;
 	}
 }
-//ú̿
+//煤炭
 class Coal extends Square{
 	public Coal(){
 		id=42;
-		break_level=2;
+		breakLevel=2;
 		pic=new ImageIcon(realimgpath+"\\Coal.jpg").getImage();
 		toolBarPic=new ImageIcon(bagimgpath+"\\Coal.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=true;
 		food=false;
-		takeup=true;
+		takeUp=true;
 		through=false;
-		putdown=true;
+		putDown=true;
 	}
 }
