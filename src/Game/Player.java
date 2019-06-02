@@ -11,6 +11,7 @@ public class Player {
     private double verticalSpeed = 0;//实时垂直速度
     private int hp = 10;
     private int vp = 10;
+    private int dp = 0;//defensive power
     private Image head;
     private Image body;
     private Image arm;
@@ -24,6 +25,18 @@ public class Player {
 
     synchronized Point.Double getLocation() {
         return location;
+    }
+
+    public synchronized void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public synchronized int getHp() {
+        return hp;
+    }
+
+    public synchronized int getDp() {
+        return dp;
     }
 
     Player() {
