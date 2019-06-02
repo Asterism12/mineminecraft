@@ -1,5 +1,6 @@
 package Thing;
 
+import Game.MCanvas;
 import Game.World;
 
 import javax.imageio.ImageIO;
@@ -7,14 +8,19 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class TestSquare extends Square{//为测试渲染模块临时增加的类
+public class TestSquare extends Square {//为测试渲染模块临时增加的类
     private Image pic;
-    static Image material;
+    private Image toolBarPic;
+    private static Image material;
+    private static Image toolBarPicMaterial;
+
     static {
-        try{
-            material= ImageIO.read(new File("image/soil.jpg"))
-                    .getScaledInstance(World.SIZE,World.SIZE, Image.SCALE_DEFAULT);
-        }catch (IOException e){
+        try {
+            material = ImageIO.read(new File("image/soil.jpg"))
+                    .getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
+            toolBarPicMaterial = material.getScaledInstance(
+                    World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -23,7 +29,12 @@ public class TestSquare extends Square{//为测试渲染模块临时增加的类
         return pic;
     }
 
-    public TestSquare(){
-        this.pic=material;
+    public Image getToolBarPic() {
+        return toolBarPic;
+    }
+
+    public TestSquare() {
+        this.pic = material;
+        this.toolBarPic = toolBarPicMaterial;
     }
 }

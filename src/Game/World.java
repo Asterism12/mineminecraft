@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 public class World {
     private static int seed = 0;
+    final static double gravity = 0.08;//重力常数
     static Square[][] worldSquare;//存储世界地形，世界应为4096*256的平面，指向Null的方块视为天空
     private static final int WIDTH = 52;//加载区块的数量
     private static final int HEIGHT = 42;
@@ -16,9 +17,10 @@ public class World {
 
     static Player player;//玩家类
 
-    public static final int SIZE = 20;//图片默认边长;
+    public static final int PICSIZE = 20;//图片默认边长;
+    public static final int TOOLBARSPICIZE=42;//工具栏中的图片默认边长
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
-    public static final int FPS = 1000 / 40;//帧率
+    public static final int FPS = 1000 / 30;//定时器触发间隔
 
     private static void UIinit(int weith, int height) {//UI初始化
         frame = new JFrame();
@@ -36,6 +38,7 @@ public class World {
                 worldSquare[i][j] = new TestSquare();
             }
         }
+        worldSquare[2050][127]=new TestSquare();
     }
 
     private static void worldUpdater() {
@@ -59,6 +62,8 @@ public class World {
                     player.walkRight = 1;
                 } else if (e.getKeyCode() == 32) {
                     player.isJumping = true;
+                }else if(e.getKeyCode()==81){
+                    System.out.println(player.getLocation());
                 }
             }
 
@@ -93,6 +98,7 @@ public class World {
         UIinit(1022, 856);
         playerUpdater();
         worldUpdater();
+        player.getToolbar().pickUp(new TestSquare());
     }
 
     public static void main(String[] args) {
