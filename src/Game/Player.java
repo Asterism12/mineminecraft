@@ -5,9 +5,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Player {
-    private final double walkSpeed = 8/(double)(World.FPS);//一秒走8格
+    private final double walkSpeed = 16/(double)(World.FPS);//一秒16格
     private final double jumpSpeed = 0.5 ;//初始跳跃速度
-    private final double gravity = 0.075;//重力常数
     private double verticalSpeed = 0;//实时垂直速度
     private int hp = 10;
     private int vp = 10;
@@ -64,7 +63,7 @@ public class Player {
                         verticalSpeed = 0;
                     } else {
                         location.y = targetY;
-                        verticalSpeed += gravity;
+                        verticalSpeed += World.gravity;
                     }
                 }
             }
