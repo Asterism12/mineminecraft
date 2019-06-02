@@ -14,7 +14,7 @@ public class Player {
     private Image body;
     private Image arm;
     private Image leg;
-    private Toolbar toolbar;
+    private Toolbar toolbar=new Toolbar();
     private Point.Double location;//玩家脚底中心坐标，决定从何处开始渲染
 
     int walkLeft = 0;//玩家是否在向左侧移动
@@ -23,6 +23,10 @@ public class Player {
 
     synchronized Point.Double getLocation() {
         return location;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     Player() {
@@ -45,7 +49,7 @@ public class Player {
                     if (World.worldSquare[(int) targetX][(int) location.y] == null)
                         location.x = targetX;
                     else {
-                        location.x = (int)targetX-0.01;
+                        location.x = (int)targetX-0.01;//防止被卡在墙里
                     }
                 }
 

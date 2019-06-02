@@ -13,7 +13,12 @@ public abstract class Square {
     public boolean through = false;
     public boolean putdown = true;
     private Image pic;
+    private Image toolBarPic;
     public Image getPic(){
         return pic;
+    }
+
+    public Image getToolBarPic() {
+        return toolBarPic;
     }
 }
