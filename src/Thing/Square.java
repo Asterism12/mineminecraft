@@ -3,24 +3,24 @@ package Thing;
 import java.awt.Image;
 
 public abstract class Square {
-	int id;
-	int break_level;
-	protected Image pic;//ÊÀ½çÉú³ÉÖĞµÄÍ¼Æ¬
-	protected Image toolBarPic;//±³°üÖĞµÄÍ¼Æ¬
+    int id;
+    int break_level;
+    protected Image pic;//ä¸–ç•Œç”Ÿæˆä¸­çš„å›¾ç‰‡
+    protected Image toolBarPic;//èƒŒåŒ…ä¸­çš„å›¾ç‰‡
     public Image getPic(){
         return pic;
     }
     public Image getToolBarPic() {
         return toolBarPic;
     }
-	static String realimgpath="src\\realimages";
-	static String bagimgpath="src\\bagimages";
-	
-	boolean weight=false;//ÊÇ·ñÓĞÖØÁ¦
-	boolean liquid=false;//ÊÇ·ñÊÇÒºÌå
-	boolean pile=true;//ÊÇ·ñÄÜ¶Ñµş
-	boolean food=false;//ÊÇ·ñÊÇÊÂÎï
-	public boolean takeup=true;//ÊÇ·ñÄÜ¼ñÆğ
-	public boolean through=false;//ÊÇ·ñÄÜ´©¹ı
-	boolean putdown=true;//ÊÇ·ñÄÜ·ÅÏÂ
+    static String realimgpath="src\\realimages";
+    static String bagimgpath="src\\bagimages";
+
+    boolean weight=false;//æ˜¯å¦æœ‰é‡åŠ›
+    boolean liquid=false;//æ˜¯å¦æ˜¯æ¶²ä½“
+    boolean pile=true;//æ˜¯å¦èƒ½å †å 
+    boolean food=false;//æ˜¯å¦æ˜¯äº‹ç‰©
+    public boolean takeup=true;//æ˜¯å¦èƒ½æ¡èµ·
+    public boolean through=false;//æ˜¯å¦èƒ½ç©¿è¿‡
+    boolean putdown=true;//æ˜¯å¦èƒ½æ”¾ä¸‹
 }
