@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package Thing;
+=======
+package thing;
+>>>>>>> 5fa8f7312dcf9972cab155fe22ca0370e2f94368
 
 import javax.swing.ImageIcon;
 //牛肉和所有肉类
