@@ -1,4 +1,4 @@
-package Thing;
+package thing;
 
 import javax.swing.ImageIcon;
 //牛肉和所有肉类

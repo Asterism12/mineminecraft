@@ -1,4 +1,4 @@
-package Thing;
+package thing;
 
 import javax.swing.ImageIcon;
 //Ä¾Ì¿ºÍÌ¿Àà

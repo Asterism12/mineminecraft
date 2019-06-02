@@ -1,4 +1,4 @@
-package Thing;
+package thing;
 
 import javax.swing.ImageIcon;
 
@@ -17,12 +17,12 @@ public class Wood extends Square{
 		putdown=true;
 	}
 }
-class Woodpanel extends Square{
-	public Woodpanel(){
+class WoodPanel extends Square{
+	public WoodPanel(){
 		id=6;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Woodpanel.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Woodpanel.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WoodPanel.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WoodPanel.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=true;
@@ -32,12 +32,12 @@ class Woodpanel extends Square{
 		putdown=true;
 	}
 }
-class Woodstick extends Square{
-	public Woodstick(){
+class WoodStick extends Square{
+	public WoodStick(){
 		id=1;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Woodstick.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Woodstick.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WoodStick.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WoodStick.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -47,12 +47,12 @@ class Woodstick extends Square{
 		putdown=false;
 	}
 }
-class Woodaxe extends Square{
-	public Woodaxe(){
+class WoodAxe extends Square{
+	public WoodAxe(){
 		id=2;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Woodaxe.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Woodaxe.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WoodAxe.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WoodAxe.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -62,12 +62,12 @@ class Woodaxe extends Square{
 		putdown=false;
 	}
 }
-class Woodpick extends Square{
-	public Woodpick(){
+class WoodPick extends Square{
+	public WoodPick(){
 		id=3;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Woodpick.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Woodpick.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WoodPick.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WoodPick.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -77,12 +77,12 @@ class Woodpick extends Square{
 		putdown=false;
 	}
 }
-class Woodspade extends Square{
-	public Woodspade(){
+class WoodSpade extends Square{
+	public WoodSpade(){
 		id=4;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Woodspade.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Woodspade.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WoodSpade.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WoodSpade.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -92,12 +92,12 @@ class Woodspade extends Square{
 		putdown=false;
 	}
 }
-class Woodsword extends Square{
-	public Woodsword(){
+class WoodSword extends Square{
+	public WoodSword(){
 		id=5;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Woodsword.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Woodsword.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WoodSword.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WoodSword.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;

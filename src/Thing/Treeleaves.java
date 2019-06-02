@@ -1,13 +1,13 @@
-package Thing;
+package thing;
 
 import javax.swing.ImageIcon;
 //树叶类和其他乱七八糟的类
-public class Treeleaves extends Square{
-	public Treeleaves(){
+public class TreeLeaves extends Square{
+	public TreeLeaves(){
 		id=61;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Treeleaves.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Treeleaves.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\TreeLeaves.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\TreeLeaves.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -18,12 +18,12 @@ public class Treeleaves extends Square{
 	}
 }
 //工作台类
-class Workplatform extends Square{
-	public Workplatform(){
+class WorkPlatform extends Square{
+	public WorkPlatform(){
 		id=62;
 		break_level=1;
-		pic=new ImageIcon(realimgpath+"\\Workplatform.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Workplatform.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\WorkPlatform.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\WorkPlatform.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;

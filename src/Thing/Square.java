@@ -1,4 +1,4 @@
-package Thing;
+package thing;
 
 import java.awt.Image;
 

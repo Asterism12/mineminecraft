@@ -1,13 +1,13 @@
-package Thing;
+package thing;
 
 import javax.swing.ImageIcon;
 
-public class Ironstone extends Square{
-	public Ironstone(){
+public class IronStone extends Square{
+	public IronStone(){
 		id=20;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstone.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstone.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronStone.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronStone.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=true;
@@ -17,12 +17,12 @@ public class Ironstone extends Square{
 		putdown=true;
 	}
 }
-class Ironingot extends Square{
-	public Ironingot(){
+class IronIngot extends Square{
+	public IronIngot(){
 		id=19;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironingot.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironingot.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronIngot.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronIngot.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -32,12 +32,12 @@ class Ironingot extends Square{
 		putdown=true;
 	}
 }
-class Ironstonestick extends Square{
-	public Ironstonestick(){
+class IronstoneStick extends Square{
+	public IronstoneStick(){
 		id=21;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstonestick.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstonestick.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstoneStick.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstoneStick.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -47,12 +47,12 @@ class Ironstonestick extends Square{
 		putdown=false;
 	}
 }
-class Ironstoneaxe extends Square{
-	public Ironstoneaxe(){
+class IronstoneAxe extends Square{
+	public IronstoneAxe(){
 		id=22;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstoneaxe.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstoneaxe.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstoneAxe.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstoneAxe.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -62,12 +62,12 @@ class Ironstoneaxe extends Square{
 		putdown=false;
 	}
 }
-class Ironstonepick extends Square{
-	public Ironstonepick(){
+class IronstonePick extends Square{
+	public IronstonePick(){
 		id=23;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstonepick.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstonepick.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstonePick.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstonePick.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -77,12 +77,12 @@ class Ironstonepick extends Square{
 		putdown=false;
 	}
 }
-class Ironstonespade extends Square{
-	public Ironstonespade(){
+class IronstoneSpade extends Square{
+	public IronstoneSpade(){
 		id=24;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstonespade.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstonespade.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstoneSpade.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstoneSpade.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -92,12 +92,12 @@ class Ironstonespade extends Square{
 		putdown=false;
 	}
 }
-class Ironstonesword extends Square{
-	public Ironstonesword(){
+class IronstoneSword extends Square{
+	public IronstoneSword(){
 		id=25;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstonesword.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstonesword.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstoneSword.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstoneSword.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -107,12 +107,12 @@ class Ironstonesword extends Square{
 		putdown=false;
 	}
 }
-class Ironstonehelmet extends Square{
-	public Ironstonehelmet(){
+class IronstoneHelmet extends Square{
+	public IronstoneHelmet(){
 		id=26;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstonehelmet.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstonehelmet.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstoneHelmet.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstoneHelmet.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -137,12 +137,12 @@ class IronstoneChest extends Square{
 		putdown=false;
 	}
 }
-class Ironstonepants extends Square{
-	public Ironstonepants(){
+class IronstonePants extends Square{
+	public IronstonePants(){
 		id=28;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstonepants.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstonepants.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstonePants.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstonePants.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -152,12 +152,12 @@ class Ironstonepants extends Square{
 		putdown=false;
 	}
 }
-class Ironstoneshoes extends Square{
-	public Ironstoneshoes(){
+class IronstoneShoes extends Square{
+	public IronstoneShoes(){
 		id=29;
 		break_level=3;
-		pic=new ImageIcon(realimgpath+"\\Ironstoneshoes.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Ironstoneshoes.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\IronstoneShoes.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\IronstoneShoes.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;

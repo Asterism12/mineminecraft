@@ -1,4 +1,4 @@
-package Thing;
+package thing;
 
 import javax.swing.ImageIcon;
 
@@ -17,12 +17,12 @@ public class Stone extends Square{
 		putdown=true;
 	}
 }
-class Bedrock extends Square{
-	public Bedrock(){
+class BedRock extends Square{
+	public BedRock(){
 		id=16;
 		break_level=2;
-		pic=new ImageIcon(realimgpath+"\\Bedrock.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Bedrock.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\BedRock.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\BedRock.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=true;
@@ -32,12 +32,12 @@ class Bedrock extends Square{
 		putdown=true;
 	}
 }
-class Stonestick extends Square{
-	public Stonestick(){
+class StoneStick extends Square{
+	public StoneStick(){
 		id=11;
 		break_level=2;
-		pic=new ImageIcon(realimgpath+"\\Stonestick.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Stonestick.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\StoneStick.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\StoneStick.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -47,12 +47,12 @@ class Stonestick extends Square{
 		putdown=false;
 	}
 }
-class Stoneaxe extends Square{
-	public Stoneaxe(){
+class StoneAxe extends Square{
+	public StoneAxe(){
 		id=12;
 		break_level=2;
-		pic=new ImageIcon(realimgpath+"\\Stoneaxe.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Stoneaxe.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\StoneAxe.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\StoneAxe.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -62,12 +62,12 @@ class Stoneaxe extends Square{
 		putdown=false;
 	}
 }
-class Stonepick extends Square{
-	public Stonepick(){
+class StonePick extends Square{
+	public StonePick(){
 		id=13;
 		break_level=2;
-		pic=new ImageIcon(realimgpath+"\\Stonepick.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Stonepick.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\StonePick.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\StonePick.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -77,12 +77,12 @@ class Stonepick extends Square{
 		putdown=false;
 	}
 }
-class Stonespade extends Square{
-	public Stonespade(){
+class StoneSpade extends Square{
+	public StoneSpade(){
 		id=14;
 		break_level=2;
-		pic=new ImageIcon(realimgpath+"\\Stonespade.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Stonespade.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\StoneSpade.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\StoneSpade.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -92,12 +92,12 @@ class Stonespade extends Square{
 		putdown=false;
 	}
 }
-class Stonesword extends Square{
-	public Stonesword(){
+class StoneSword extends Square{
+	public StoneSword(){
 		id=15;
 		break_level=2;
-		pic=new ImageIcon(realimgpath+"\\Stonesword.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Stonesword.jpg").getImage();
+		pic=new ImageIcon(realimgpath+"\\StoneSword.jpg").getImage();
+		toolBarPic=new ImageIcon(bagimgpath+"\\StoneSword.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
