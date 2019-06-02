@@ -18,7 +18,7 @@ public class World {
 
     public static final int SIZE = 20;//图片默认边长;
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
-    public static final int FPS = 1000 / 40;//帧率
+    public static final int FPS = 1000 / 30;//定时器触发间隔
 
     private static void UIinit(int weith, int height) {//UI初始化
         frame = new JFrame();
