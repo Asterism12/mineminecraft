@@ -20,7 +20,7 @@ public abstract class Square {
 	boolean liquid=false;//是否是液体
 	boolean pile=true;//是否能堆叠
 	boolean food=false;//是否是事物
-	boolean takeup=true;//是否能捡起
-	boolean through=false;//是否能穿过
+	public boolean takeup=true;//是否能捡起
+	public boolean through=false;//是否能穿过
 	boolean putdown=true;//是否能放下
 }
