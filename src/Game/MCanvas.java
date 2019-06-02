@@ -42,7 +42,7 @@ public class MCanvas extends JPanel {
 
     private void printPlayer(Graphics g) {//在屏幕正中心绘制玩家
         g.setColor(Color.WHITE);
-        g.fillRect(this.getWidth() / 2 -10, this.getHeight() / 2 -10, 20, 20);
+        g.fillRect(this.getWidth() / 2 -10, this.getHeight() / 2 -20, 20, 20);
     }
 
     MCanvas(int width, int height) {

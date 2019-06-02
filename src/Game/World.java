@@ -36,6 +36,7 @@ public class World {
                 worldSquare[i][j] = new TestSquare();
             }
         }
+        worldSquare[2050][127]=new TestSquare();
     }
 
     private static void worldUpdater() {
@@ -59,6 +60,8 @@ public class World {
                     player.walkRight = 1;
                 } else if (e.getKeyCode() == 32) {
                     player.isJumping = true;
+                }else if(e.getKeyCode()==81){
+                    System.out.println(player.getLocation());
                 }
             }
 

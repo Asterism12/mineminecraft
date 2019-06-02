@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Player {
-    private final double walkSpeed = ((double) World.SIZE) / World.FPS * 4;//一秒走4格
+    private final double walkSpeed = 8/(double)(World.FPS);//一秒走8格
     private final double jumpSpeed = 0.5 ;//初始跳跃速度
     private final double gravity = 0.075;//重力常数
     private double verticalSpeed = 0;//实时垂直速度
@@ -39,14 +39,14 @@ public class Player {
                     if (World.worldSquare[(int) targetX][(int) location.y] == null)
                         location.x = targetX;
                     else {
-                        location.x = Math.ceil(targetX);
+                        location.x =Math.ceil(targetX);
                     }
                 } else if (walk == 1) {
                     double targetX = location.x + walkSpeed;
                     if (World.worldSquare[(int) targetX][(int) location.y] == null)
                         location.x = targetX;
                     else {
-                        location.x = (int) targetX;
+                        location.x = (int)targetX-0.01;
                     }
                 }
 
@@ -54,7 +54,7 @@ public class Player {
                 if (isJumping && verticalSpeed == 0){//准备起跳
                     verticalSpeed = -jumpSpeed;
                 }
-                else if (verticalSpeed!=0) {
+                else if (verticalSpeed!=0||World.worldSquare[(int)location.x][(int)(location.y)]==null) {
                     double targetY = location.y + verticalSpeed;
                     if (verticalSpeed < 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//磕脑袋
                         location.y = Math.ceil(targetY);
