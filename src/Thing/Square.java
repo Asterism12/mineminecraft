@@ -1,24 +1,26 @@
 package Thing;
 
-import java.awt.*;
+import java.awt.Image;
 
 public abstract class Square {
-    public int id;
-    public int break_level;
-    public boolean wight = false;
-    public boolean liquid = false;
-    public boolean pile = true;
-    public boolean food = false;
-    public boolean takeup = true;
-    public boolean through = false;
-    public boolean putdown = true;
-    private Image pic;
-    private Image toolBarPic;
+	int id;
+	int break_level;
+	protected Image pic;//世界生成中的图片
+	protected Image toolBarPic;//背包中的图片
     public Image getPic(){
         return pic;
     }
-
     public Image getToolBarPic() {
         return toolBarPic;
     }
+	static String realimgpath="src\\realimages";
+	static String bagimgpath="src\\bagimages";
+	
+	boolean weight=false;//是否有重力
+	boolean liquid=false;//是否是液体
+	boolean pile=true;//是否能堆叠
+	boolean food=false;//是否是事物
+	boolean takeup=true;//是否能捡起
+	boolean through=false;//是否能穿过
+	boolean putdown=true;//是否能放下
 }
