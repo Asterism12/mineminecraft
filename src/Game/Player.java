@@ -10,7 +10,7 @@ public class Player {
     private double verticalSpeed = 0;//实时垂直速度
     private int hp = 10;
     private int vp = 10;
-    private int dp = 0;//defensive power
+    private int dp = 0;//防御力
     private Image head;
     private Image body;
     private Image arm;
