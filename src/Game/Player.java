@@ -37,6 +37,7 @@ public class Player {
 
     public synchronized int getDp() {
         return dp;
+    }
 
     public Toolbar getToolbar(){
         return toolbar;
