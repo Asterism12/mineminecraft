@@ -13,7 +13,7 @@ public class Wood extends Square{
 		pile=true;
 		food=false;
 		takeUp=true;
-		through=false;
+		through=true;
 		putDown=true;
 	}
 }

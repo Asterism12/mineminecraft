@@ -78,8 +78,8 @@ class DimondSpade extends Square{
 		putDown=false;
 	}
 }
-class Dimondsword extends Square{
-	public Dimondsword(){
+class DimondSword extends Square{
+	public DimondSword(){
 		id=35;
 		breakLevel=4;
 		pic=new ImageIcon(realimgpath+"\\DimondSword.jpg").getImage();

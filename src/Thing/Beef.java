@@ -49,19 +49,3 @@ class Pork extends Square{
 		putDown=false;
 	}
 }
-//腐肉
-class Slough extends Square{
-	public Slough(){
-		id=54;
-		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\Slough.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Slough.jpg").getImage();
-		weight=false;
-		liquid=false;
-		pile=false;
-		food=true;
-		takeUp=true;
-		through=false;
-		putDown=false;
-	}
-}
