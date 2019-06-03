@@ -6,8 +6,6 @@ public class Beef extends Square{
 	public Beef(){
 		id=51;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\Beef.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Beef.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -22,8 +20,6 @@ class Chicken extends Square{
 	public Chicken(){
 		id=52;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\Chicken.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Chicken.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -38,8 +34,6 @@ class Pork extends Square{
 	public Pork(){
 		id=53;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\Pork.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Pork.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;

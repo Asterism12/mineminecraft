@@ -13,8 +13,6 @@ public abstract class Square {
     public Image getToolBarPic() {
         return toolBarPic;
     }
-    public static String realimgpath="src\\realimages";
-    public static String bagimgpath="src\\bagimages";
 
     public boolean weight=false;//是否有重力
     public boolean liquid=false;//是否是液体
