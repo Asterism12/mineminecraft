@@ -18,14 +18,14 @@ public class World {
     static Player player;//玩家类
 
     public static final int PICSIZE = 20;//图片默认边长;
-    public static final int TOOLBARSPICIZE=42;//工具栏中的图片默认边长
+    public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
     public static final int FPS = 1000 / 30;//定时器触发间隔
 
     private static void UIinit(int weith, int height) {//UI初始化
         frame = new JFrame();
         frame.setSize(weith, height);
-        mCanvas = new MCanvas(weith-22, height-56);
+        mCanvas = new MCanvas(weith - 22, height - 56);
         frame.add(mCanvas);
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
         frame.setVisible(true);
@@ -38,7 +38,7 @@ public class World {
                 worldSquare[i][j] = new TestSquare();
             }
         }
-        worldSquare[2050][127]=new TestSquare();
+        worldSquare[2050][127] = new TestSquare();
     }
 
     private static void worldUpdater() {
@@ -63,10 +63,8 @@ public class World {
                     player.walkRight = 1;
                 } else if (e.getKeyCode() == 32) {
                     player.isJumping = true;
-                }else if(e.getKeyCode()==81){//test
-                    System.out.println(player.getLocation());
-                }else if(e.getKeyCode()==69){
-                    player.isOpenBag=!player.isOpenBag;
+                } else if (e.getKeyCode() == 69) {
+                    player.isOpenBag = !player.isOpenBag;
                 }
             }
 
@@ -88,8 +86,8 @@ public class World {
         Point.Double playerLocation = player.getLocation();
         Rectangle rectangle = new Rectangle();
 
-        rectangle.x = (int) playerLocation.x - WIDTH / 2+1;
-        rectangle.y = (int) playerLocation.y - HEIGHT / 2+1;
+        rectangle.x = (int) playerLocation.x - WIDTH / 2 + 1;
+        rectangle.y = (int) playerLocation.y - HEIGHT / 2 + 1;
         rectangle.height = HEIGHT;
         rectangle.width = WIDTH;
         return rectangle;
@@ -101,8 +99,10 @@ public class World {
         UIinit(1022, 856);
         playerUpdater();
         worldUpdater();
+
+        //test
         player.getToolbar().pickUp(new TestSquare());
-        player.getToolbar().testUP(new TestSquare(),10);
+        player.getToolbar().testUP(new TestSquare(), 10);
     }
 
     public static void main(String[] args) {

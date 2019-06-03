@@ -19,6 +19,7 @@ public class MCanvas extends JPanel {
         printToolbar(g);
         if (World.player.isOpenBag)
             printBag(g);
+        printLocation(g);
     }
 
     private void printBackGround(Graphics g) {//渲染背景
@@ -90,6 +91,12 @@ public class MCanvas extends JPanel {
                             margins + j * sideLength + 3, 500 + (i - 1) * sideLength + 3, null);
             }
         }
+    }
+
+    private void printLocation(Graphics g) {
+        String s=String.format("[%.2f,%.2f]",World.player.getLocation().x,World.player.getLocation().y);
+        g.setColor(Color.BLACK);
+        g.drawString(s, 20, 20);
     }
 
     MCanvas(int width, int height) {
