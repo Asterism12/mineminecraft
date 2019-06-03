@@ -14,7 +14,7 @@ public class Beef extends Square{
 		food=true;
 		takeUp=true;
 		through=false;
-		putDown=true;
+		putDown=false;
 	}
 }
 //鸡肉
@@ -30,7 +30,7 @@ class Chicken extends Square{
 		food=true;
 		takeUp=true;
 		through=false;
-		putDown=true;
+		putDown=false;
 	}
 }
 //猪肉
@@ -46,7 +46,7 @@ class Pork extends Square{
 		food=true;
 		takeUp=true;
 		through=false;
-		putDown=true;
+		putDown=false;
 	}
 }
 //腐肉
@@ -62,6 +62,6 @@ class Slough extends Square{
 		food=true;
 		takeUp=true;
 		through=false;
-		putDown=true;
+		putDown=false;
 	}
 }
