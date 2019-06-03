@@ -13,6 +13,7 @@ public class Animal
     private Boolean isOffensive = false;
     private BufferedImage image;
 
+
     public Animal() { }
     //The get and set methods for each attribute
     public String getAnimalName()
@@ -45,9 +46,9 @@ public class Animal
         this.hp = HP;
     }
 
-    public void setImage(String imagePath) throws FileNotFoundException, IOException
-    { this.image = ImageIO.read(new FileInputStream(imagePath)); }
-
+    public void setImage(BufferedImage img) throws FileNotFoundException, IOException
+    { this.image = img;}
+//ImageIO.read(new FileInputStream(imagePath));
 //    public static void main(String args[])
 //    {
 //        System.out.println("test123");

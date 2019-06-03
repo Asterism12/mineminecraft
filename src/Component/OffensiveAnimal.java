@@ -2,6 +2,7 @@ package Component;
 
 import Game.Player;
 
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -12,14 +13,14 @@ public class OffensiveAnimal extends Animal {
         setIsOffensive(true);
     }
 
-    public OffensiveAnimal(String name,int HP,int attackForce,String imagePath) throws FileNotFoundException, IOException
+    public OffensiveAnimal(String name, int HP, int attackForce, BufferedImage img) throws FileNotFoundException, IOException
     {
         super();
         setIsOffensive(true);
         setAnimalName(name);
         setHP(HP);
         this.attackForce = attackForce;
-        setImage(imagePath);
+        setImage(img);
     }
 
     public void setAttackForce(int newAttackForce)

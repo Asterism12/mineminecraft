@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.charset.Charset;
 
-public class Mainmenu {
-    private static JFrame myFrame;
-    private static JPanel myPanel;
+class Mainmenu extends JPanel{
+
+    private JPanel myPanel;
     private JButton myButton1,myButton2,myButton3,myButton4;
     private Image image;
 
@@ -31,15 +31,18 @@ public class Mainmenu {
 
             if(buttonName.equals("Begin"))
                 System.out.println("Begin new game");
-            if(buttonName.equals("Settings"))
-                System.out.println("Settings");
+            if(buttonName.equals("Settings")){
+                Mainframe.mainFrame.setVisible(false);
+                Mainframe.setFrame.setVisible(true);
+            }
             if(buttonName.equals("MoreInfo"))
                 System.out.println("More Info");
             if(buttonName.equals("Exit"))
                 System.out.println("Exit");
         }
     }
-    public void paintPanel(Graphics g) throws IOException,FileNotFoundException //add the components
+
+    void paintPanel(Graphics g) throws IOException,FileNotFoundException //add the components
     {
         new Mainmenu().registerCustomeFont("font/Deeko_Comic.ttf");
 
@@ -56,10 +59,10 @@ public class Mainmenu {
         myPanel.setOpaque(false);
 
         //add buttons on the panel
-        myButton1 = new JButton(new String("Begin"));
-        myButton2 = new JButton(new String("Settings"));
-        myButton3 = new JButton(new String("MoreInfo"));
-        myButton4 = new JButton(new String("Exit"));
+        myButton1 = new JButton("Begin");
+        myButton2 = new JButton("Settings");
+        myButton3 = new JButton("MoreInfo");
+        myButton4 = new JButton("Exit");
         myButton1.setFont(new Font("Deeko Comic Regular",Font.BOLD,30));
         myButton2.setFont(new Font("Deeko Comic Regular",Font.BOLD,30));
         myButton3.setFont(new Font("Deeko Comic Regular",Font.BOLD,30));
@@ -110,22 +113,8 @@ public class Mainmenu {
         }
     }
 
-
-    public static void main(String args[]) throws FileNotFoundException,IOException {
-
-
-        myFrame = new JFrame("Minecraft 2D version");
-
-        Image image = ImageIO.read(new FileInputStream(new String("image/Mainmenu.png")));
-
-        new Mainmenu().paintPanel(image.getGraphics());
-
-        myFrame.add(myPanel);
-
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setSize(1200,800);
-        myFrame.setLocation(200,100);
-        myFrame.setVisible(true);
-        return;
+    public JPanel getMyPanel()
+    {
+        return myPanel;
     }
 }
