@@ -8,7 +8,6 @@ public class Animal
 {
     private String animalName = "";
     private int hp = 0;
-    private Boolean isOffensive = false;
     private BufferedImage image;
 
 
@@ -22,16 +21,6 @@ public class Animal
     public void setAnimalName(String name)
     {
         animalName = name;
-    }
-
-    public Boolean getIsOffensive()
-    {
-        return isOffensive;
-    }
-
-    public void setIsOffensive(Boolean isOffensive)
-    {
-        this.isOffensive = isOffensive;
     }
 
     public int getHP()

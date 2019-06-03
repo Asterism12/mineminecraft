@@ -8,20 +8,7 @@ import java.io.IOException;
 
 public class OffensiveAnimal extends Animal {
     private int attackForce = 0;
-    public  OffensiveAnimal()
-    {
-        setIsOffensive(true);
-    }
-
-    public OffensiveAnimal(String name, int HP, int attackForce, BufferedImage img) throws FileNotFoundException, IOException
-    {
-        super();
-        setIsOffensive(true);
-        setAnimalName(name);
-        setHP(HP);
-        this.attackForce = attackForce;
-        setImage(img);
-    }
+    public  OffensiveAnimal() { }
 
     public void setAttackForce(int newAttackForce)
     {
