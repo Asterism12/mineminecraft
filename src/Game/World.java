@@ -52,6 +52,7 @@ public class World {
     }
 
     private static void playerUpdater() {
+        //按A向左移动，按D向右移动，按空格键跳跃，按E打开背包
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -62,8 +63,10 @@ public class World {
                     player.walkRight = 1;
                 } else if (e.getKeyCode() == 32) {
                     player.isJumping = true;
-                }else if(e.getKeyCode()==81){
+                }else if(e.getKeyCode()==81){//test
                     System.out.println(player.getLocation());
+                }else if(e.getKeyCode()==69){
+                    player.isOpenBag=!player.isOpenBag;
                 }
             }
 
@@ -99,6 +102,7 @@ public class World {
         playerUpdater();
         worldUpdater();
         player.getToolbar().pickUp(new TestSquare());
+        player.getToolbar().testUP(new TestSquare(),10);
     }
 
     public static void main(String[] args) {

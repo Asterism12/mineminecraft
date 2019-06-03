@@ -17,6 +17,8 @@ public class MCanvas extends JPanel {
         printWorld(g);
         printPlayer(g);
         printToolbar(g);
+        if (World.player.isOpenBag)
+            printBag(g);
     }
 
     private void printBackGround(Graphics g) {//渲染背景
@@ -63,6 +65,30 @@ public class MCanvas extends JPanel {
             if (squares[i] != null)
                 g.drawImage(squares[i].getToolBarPic(),
                         margins + i * sideLength + 3, getHeight() - 100 + 3, null);
+        }
+    }
+
+    private void printBag(Graphics g) {
+        int sideLength = (int) (this.getHeight() * 0.06);
+        int margins = (getWidth() - sideLength * 10) / 2;
+        g.setColor(new Color(0, 0, 0, 128));//半透明背包
+        g.fillRect(margins, 500, sideLength * 10, sideLength * 4);
+
+        g.setColor(Color.GRAY);
+        for (int i = 0; i < 4; i++) {//画边
+            for (int j = 0; j < 10; j++) {
+                g.drawRect(margins + j * sideLength,
+                        500 + i * sideLength, sideLength, sideLength);
+            }
+        }
+
+        Square[] squares = World.player.getToolbar().getSquares();
+        for (int i = 1; i < 5; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (squares[i * 10 + j] != null)
+                    g.drawImage(squares[i * 10 + j].getToolBarPic(),
+                            margins + j * sideLength + 3, 500 + (i - 1) * sideLength + 3, null);
+            }
         }
     }
 

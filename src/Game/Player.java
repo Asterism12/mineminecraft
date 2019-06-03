@@ -21,6 +21,7 @@ public class Player {
     int walkLeft = 0;//玩家是否在向左侧移动
     int walkRight = 0;//玩家是否在向右侧移动
     boolean isJumping = false;//玩家是否在跳跃
+    boolean isOpenBag=false;//玩家是否在查看背包
 
     synchronized Point.Double getLocation() {
         return location;
