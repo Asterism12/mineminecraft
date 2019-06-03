@@ -16,7 +16,7 @@ public class TestSquare extends Square {//为测试渲染模块临时增加的�
 
     static {
         try {
-            material = ImageIO.read(new File("image/soil.jpg"))
+            material = ImageIO.read(new File("image/Earth.png"))
                     .getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
             toolBarPicMaterial = material.getScaledInstance(
                     World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);

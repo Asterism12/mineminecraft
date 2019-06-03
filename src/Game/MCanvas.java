@@ -140,7 +140,7 @@ public class MCanvas extends JPanel {
     MCanvas(int width, int height) {
         this.setSize(width, height);
         try {
-            this.bg = ImageIO.read(new File("image/sky.jpg")).getScaledInstance(width, height, Image.SCALE_DEFAULT);
+            this.bg = ImageIO.read(new File("image/sky.png")).getScaledInstance(width, height, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }
