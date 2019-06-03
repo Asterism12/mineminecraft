@@ -24,3 +24,10 @@ public abstract class Square {
     public boolean through=false;//是否能穿过
     public boolean putDown=true;//是否能放下
 }
+class Weapon extends Square{
+    public int animalAtk=1;
+    public int squareAtk=1;
+}
+class Armor extends Square{
+    public int defense=1;
+}

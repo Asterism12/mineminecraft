@@ -32,7 +32,7 @@ class IronIngot extends Square{
 		putDown=true;
 	}
 }
-class IronAxe extends Square{
+class IronAxe extends Weapon{
 	public IronAxe(){
 		id=22;
 		breakLevel=3;
@@ -45,6 +45,8 @@ class IronAxe extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		animalAtk=3;
+		squareAtk=3;
 	}
 }
 class IronPick extends Square{
@@ -92,7 +94,7 @@ class IronSword extends Square{
 		putDown=false;
 	}
 }
-class IronHelmet extends Square{
+class IronHelmet extends Armor{
 	public IronHelmet(){
 		id=26;
 		breakLevel=3;
@@ -105,9 +107,10 @@ class IronHelmet extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=3;
 	}
 }
-class IronChest extends Square{
+class IronChest extends Armor{
 	public IronChest(){
 		id=27;
 		breakLevel=3;
@@ -120,9 +123,10 @@ class IronChest extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=3;
 	}
 }
-class IronPants extends Square{
+class IronPants extends Armor{
 	public IronPants(){
 		id=28;
 		breakLevel=3;
@@ -135,9 +139,10 @@ class IronPants extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=3;
 	}
 }
-class IronShoes extends Square{
+class IronShoes extends Armor{
 	public IronShoes(){
 		id=29;
 		breakLevel=3;
@@ -150,5 +155,6 @@ class IronShoes extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=3;
 	}
 }

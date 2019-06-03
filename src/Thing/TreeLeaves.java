@@ -18,8 +18,8 @@ public class TreeLeaves extends Square{
 	}
 }
 //工作台类
-class WorkPlatform extends Square{
-	public WorkPlatform(){
+class CraftingTable extends Square{
+	public CraftingTable(){
 		id=62;
 		breakLevel=1;
 		pic=new ImageIcon(realimgpath+"\\WorkPlatform.jpg").getImage();
@@ -34,8 +34,8 @@ class WorkPlatform extends Square{
 	}
 }
 //熔炉类
-class Smelter extends Square{
-	public Smelter(){
+class Furnace extends Square{
+	public Furnace(){
 		id=63;
 		breakLevel=1;
 		pic=new ImageIcon(realimgpath+"\\Smelter.jpg").getImage();
