@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class TestSquare extends Square {//为测试渲染模块临时增加的类
-    private Image pic;
-    private Image toolBarPic;
     private static Image material;
     private static Image toolBarPicMaterial;
 
