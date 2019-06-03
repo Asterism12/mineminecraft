@@ -26,7 +26,7 @@ public class Player {
         return location;
     }
 
-<<<<<<< HEAD
+
     public synchronized void setHp(int hp) {
         this.hp = hp;
     }
@@ -37,10 +37,10 @@ public class Player {
 
     public synchronized int getDp() {
         return dp;
-=======
-    public Toolbar getToolbar() {
+
+    public Toolbar getToolbar(){
         return toolbar;
->>>>>>> 0451f80ddf82629caecf24006fffb8baa65ff21a
+
     }
 
     Player() {
