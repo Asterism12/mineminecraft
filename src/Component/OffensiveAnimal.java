@@ -2,25 +2,13 @@ package Component;
 
 import Game.Player;
 
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class OffensiveAnimal extends Animal {
     private int attackForce = 0;
-    public  OffensiveAnimal()
-    {
-        setIsOffensive(true);
-    }
-
-    public OffensiveAnimal(String name,int HP,int attackForce,String imagePath) throws FileNotFoundException, IOException
-    {
-        super();
-        setIsOffensive(true);
-        setAnimalName(name);
-        setHP(HP);
-        this.attackForce = attackForce;
-        setImage(imagePath);
-    }
+    public  OffensiveAnimal() { }
 
     public void setAttackForce(int newAttackForce)
     {

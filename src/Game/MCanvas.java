@@ -4,7 +4,10 @@ import Thing.Square;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.xml.crypto.dsig.Transform;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.io.*;
 
 public class MCanvas extends JPanel {
@@ -45,9 +48,45 @@ public class MCanvas extends JPanel {
         }
     }
 
-    private void printPlayer(Graphics g) {//在屏幕正中心绘制玩家
-        g.setColor(Color.WHITE);
-        g.fillRect(this.getWidth() / 2 - 10, this.getHeight() / 2 - 20, 20, 20);
+    private void printPlayer(Graphics g) {//在屏幕正中心绘制玩家，玩家占2格，碰撞箱只有脚底的点
+        Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+        Point bodyLocation = new Point(getWidth() / 2, getHeight() / 2 - 26);
+        Point legLocation = new Point(getWidth() / 2, getHeight() / 2 - 10);
+        Graphics2D g2d = (Graphics2D) g;
+        double x=mouseLocation.x-bodyLocation.x;
+        double y=mouseLocation.y-bodyLocation.y;
+        double theta;
+        if (y==0)
+            theta = 0;
+        else if(y>0)
+            theta=-Math.asin(x/Math.sqrt(Math.pow(x,2)+Math.pow(y,2)));
+        else
+            theta=-(Math.PI-Math.asin(x/Math.sqrt(Math.pow(x,2)+Math.pow(y,2))));
+
+        g2d.setColor(World.player.head);
+        g2d.fillRect(getWidth() / 2 - 5, getHeight() / 2 - 38, 10, 10);
+
+        g2d.setColor(World.player.body);
+        g2d.fillRect(getWidth() / 2 - 4, getHeight() / 2 - 28, 8, 18);
+
+        g2d.setColor(World.player.arm);
+        AffineTransform affineTransform = new AffineTransform();
+        affineTransform.rotate(theta, bodyLocation.x, bodyLocation.y);
+        g2d.setTransform(affineTransform);
+        g2d.fill(new Rectangle2D.Double(getWidth() / 2 - 3, getHeight() / 2 - 26, 6, 14));
+
+        //The code is sucks, I know.
+        g2d.setColor(World.player.leg);
+        AffineTransform affineTransform1 = new AffineTransform();
+        affineTransform1.rotate(10 * World.player.getLegSwing() * Math.PI / 180, legLocation.x, legLocation.y);
+        g2d.setTransform(affineTransform1);
+        g2d.fill(new Rectangle2D.Double(getWidth() / 2 - 3, getHeight() / 2 - 10, 6, 10));
+        AffineTransform affineTransform2 = new AffineTransform();
+        affineTransform2.rotate(-10 * World.player.getLegSwing() * Math.PI / 180, legLocation.x, legLocation.y);
+        g2d.setTransform(affineTransform2);
+        g2d.fill(new Rectangle2D.Double(getWidth() / 2 - 3, getHeight() / 2 - 10, 6, 10));
+        AffineTransform affineTransform3 = new AffineTransform();
+        g2d.setTransform(affineTransform3);
     }
 
     private void printToolbar(Graphics g) {
@@ -94,7 +133,7 @@ public class MCanvas extends JPanel {
     }
 
     private void printLocation(Graphics g) {
-        String s=String.format("[%.2f,%.2f]",World.player.getLocation().x,World.player.getLocation().y);
+        String s = String.format("[%.2f,%.2f]", World.player.getLocation().x, World.player.getLocation().y);
         g.setColor(Color.BLACK);
         g.drawString(s, 20, 20);
     }
@@ -102,7 +141,7 @@ public class MCanvas extends JPanel {
     MCanvas(int width, int height) {
         this.setSize(width, height);
         try {
-            this.bg = ImageIO.read(new File("image/sky.jpg")).getScaledInstance(width, height, Image.SCALE_DEFAULT);
+            this.bg = ImageIO.read(new File("image/sky.png")).getScaledInstance(width, height, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }

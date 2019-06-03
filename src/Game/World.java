@@ -10,7 +10,7 @@ public class World {
     private static int seed = 0;
     final static double gravity = 0.08;//重力常数
     static Square[][] worldSquare;//存储世界地形，世界应为4096*256的平面，指向Null的方块视为天空
-    private static final int WIDTH = 52;//加载区块的数量
+    private static final int WIDTH = 52;//不触碰地图边界时，加载区块的数量
     private static final int HEIGHT = 42;
     private static JFrame frame;//UI组件
     private static MCanvas mCanvas;
@@ -88,8 +88,18 @@ public class World {
 
         rectangle.x = (int) playerLocation.x - WIDTH / 2 + 1;
         rectangle.y = (int) playerLocation.y - HEIGHT / 2 + 1;
-        rectangle.height = HEIGHT;
-        rectangle.width = WIDTH;
+        if (rectangle.x < 0) rectangle.x = 0;
+        if (rectangle.y < 0) rectangle.y = 0;
+
+        if (rectangle.x + WIDTH < 4096)
+            rectangle.width = WIDTH;
+        else
+            rectangle.width = 2048 - rectangle.x;
+
+        if (rectangle.y + HEIGHT < 256)
+            rectangle.height = HEIGHT;
+        else
+            rectangle.height = 2048 - rectangle.y;
         return rectangle;
     }
 

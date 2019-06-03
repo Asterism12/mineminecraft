@@ -6,8 +6,6 @@ public class TreeLeaves extends Square{
 	public TreeLeaves(){
 		id=61;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\TreeLeaves.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\TreeLeaves.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -22,8 +20,6 @@ class CraftingTable extends Square{
 	public CraftingTable(){
 		id=62;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\WorkPlatform.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\WorkPlatform.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -38,8 +34,6 @@ class Furnace extends Square{
 	public Furnace(){
 		id=63;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\Smelter.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Smelter.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -54,8 +48,6 @@ class Earth extends Square{
 	public Earth(){
 		id=64;
 		breakLevel=1;
-		pic=new ImageIcon(realimgpath+"\\Earth.jpg").getImage();
-		toolBarPic=new ImageIcon(bagimgpath+"\\Earth.jpg").getImage();
 		weight=false;
 		liquid=false;
 		pile=false;
