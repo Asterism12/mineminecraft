@@ -5,8 +5,8 @@ import java.awt.Image;
 public abstract class Square {
     public int id;
     public int breakLevel;
-    protected Image pic;//ÊÀ½çÉú³ÉÖĞµÄÍ¼Æ¬
-    protected Image toolBarPic;//±³°üÖĞµÄÍ¼Æ¬
+    protected Image pic;//ä¸–ç•Œç”Ÿæˆä¸­çš„å›¾ç‰‡
+    protected Image toolBarPic;//èƒŒåŒ…ä¸­çš„å›¾ç‰‡
     public Image getPic(){
         return pic;
     }
@@ -16,11 +16,11 @@ public abstract class Square {
     public static String realimgpath="src\\realimages";
     public static String bagimgpath="src\\bagimages";
 
-    public boolean weight=false;//ÊÇ·ñÓĞÖØÁ¦
-    public boolean liquid=false;//ÊÇ·ñÊÇÒºÌå
-    public boolean pile=true;//ÊÇ·ñÄÜ¶Ñµş
-    public boolean food=false;//ÊÇ·ñÊÇÊÂÎï
-    public boolean takeUp=true;//ÊÇ·ñÄÜ¼ñÆğ
-    public boolean through=false;//ÊÇ·ñÄÜ´©¹ı
-    public boolean putDown=true;//ÊÇ·ñÄÜ·ÅÏÂ
+    public boolean weight=false;//æ˜¯å¦æœ‰é‡åŠ›
+    public boolean liquid=false;//æ˜¯å¦æ˜¯æ¶²ä½“
+    public boolean pile=true;//æ˜¯å¦èƒ½å †å 
+    public boolean food=false;//æ˜¯å¦æ˜¯äº‹ç‰©
+    public boolean takeUp=true;//æ˜¯å¦èƒ½æ¡èµ·
+    public boolean through=false;//æ˜¯å¦èƒ½ç©¿è¿‡
+    public boolean putDown=true;//æ˜¯å¦èƒ½æ”¾ä¸‹
 }

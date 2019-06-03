@@ -10,7 +10,7 @@ public class Player {
     private double verticalSpeed = 0;//实时垂直速度
     private int hp = 10;
     private int vp = 10;
-    private int dp = 0;//defensive power
+    private int dp = 0;//防御力
     private Image head;
     private Image body;
     private Image arm;
@@ -21,6 +21,7 @@ public class Player {
     int walkLeft = 0;//玩家是否在向左侧移动
     int walkRight = 0;//玩家是否在向右侧移动
     boolean isJumping = false;//玩家是否在跳跃
+    boolean isOpenBag=false;//玩家是否在查看背包
 
     synchronized Point.Double getLocation() {
         return location;
