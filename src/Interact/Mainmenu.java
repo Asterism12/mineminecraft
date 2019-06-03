@@ -1,21 +1,12 @@
 package Interact;
 
-
-import sun.applet.Main;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.Buffer;
-import java.nio.charset.Charset;
+
 
 class Mainmenu extends JPanel{
 

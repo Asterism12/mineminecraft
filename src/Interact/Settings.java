@@ -1,13 +1,9 @@
 package Interact;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Hashtable;
 
 class Settings {
@@ -72,30 +68,4 @@ class Settings {
     JPanel getSetPanel() {
         return setPanel;
     }
-//    public static void main(String args[])
-//    {
-//        setFrame = new JFrame("Settings");
-//        Image image = null;
-//        try {
-//            image = ImageIO.read(new FileInputStream(new String("image/Mainmenu.png")));
-//        }
-//        catch (FileNotFoundException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        new Settings().paintPanel();
-//
-//        setFrame.add(setPanel);
-//
-//        setFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setFrame.setSize(1200,800);
-//        setFrame.setLocation(200,100);
-//        setFrame.setVisible(true);
-//        return;
-//    }
 }
