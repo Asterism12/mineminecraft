@@ -52,23 +52,33 @@ public class World {
     }
 
     private static void playerUpdater() {
-        //按A向左移动，按D向右移动，按空格键跳跃，按E打开背包
+        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块
         frame.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
-                if (e.getKeyCode() == 65) {
-                    player.walkLeft = 1;
-                } else if (e.getKeyCode() == 68) {
-                    player.walkRight = 1;
-                } else if (e.getKeyCode() == 32) {
-                    player.isJumping = true;
-                } else if (e.getKeyCode() == 69) {
-                    player.isOpenBag = !player.isOpenBag;
-                }else if(e.getKeyCode()>=49&&e.getKeyCode()<=57){
-                    player.setHandSquare(e.getKeyCode()-49);
-                }else if(e.getKeyCode()==48){
-                    player.setHandSquare(9);
+                switch (e.getKeyCode()) {
+                    case 65:
+                        player.walkLeft = 1;
+                        break;
+                    case 68:
+                        player.walkRight = 1;
+                        break;
+                    case 32:
+                        player.isJumping = true;
+                        break;
+                    case 69:
+                        player.isOpenBag = !player.isOpenBag;
+                        break;
+                    case 48:
+                        player.setHandSquare(9);
+                        break;
+                    case 81:
+                        player.throwOutSquare();
+                        break;
+                    default:
+                        if (e.getKeyCode() >= 49 && e.getKeyCode() <= 58)
+                            player.setHandSquare(e.getKeyCode() - 49);
                 }
             }
 

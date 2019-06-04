@@ -30,15 +30,19 @@ public class Player {
     boolean isJumping = false;//玩家是否在跳跃
     boolean isOpenBag = false;//玩家是否在查看背包
 
-    public int  getHandSquareNO(){
+    public synchronized void throwOutSquare(){
+        toolbar.getSquares()[handSquareNO]=null;
+    }
+
+    public synchronized int  getHandSquareNO(){
         return handSquareNO;
     }
 
-    public Square getHandSquare() {
+    public synchronized Square getHandSquare() {
         return handSquare;
     }
 
-    public void setHandSquare(int i) {
+    public synchronized void setHandSquare(int i) {
         this.handSquare=toolbar.getSquares()[i];
         handSquareNO=i;
     }
