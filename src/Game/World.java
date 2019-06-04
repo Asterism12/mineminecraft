@@ -65,6 +65,10 @@ public class World {
                     player.isJumping = true;
                 } else if (e.getKeyCode() == 69) {
                     player.isOpenBag = !player.isOpenBag;
+                }else if(e.getKeyCode()>=49&&e.getKeyCode()<=57){
+                    player.setHandSquare(e.getKeyCode()-49);
+                }else if(e.getKeyCode()==48){
+                    player.setHandSquare(9);
                 }
             }
 
