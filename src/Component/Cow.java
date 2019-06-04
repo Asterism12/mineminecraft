@@ -6,12 +6,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Sheep extends Animal{
+public class Cow extends Animal{
     private static BufferedImage image;
 
     static{
         try {
-            image = ImageIO.read(new FileInputStream("image/sheep.png"));
+            image = ImageIO.read(new FileInputStream("image/cow.png"));
         }
         catch (FileNotFoundException e)
         {
@@ -23,10 +23,10 @@ public class Sheep extends Animal{
         }
     }
 
-    public Sheep()
+    public Cow()
     {
-        this.setAnimalName("Sheep");
-        this.setHP(20);
+        this.setAnimalName("Cow");
+        this.setHP(25);
         try {
             this.setImage(image);
         }
