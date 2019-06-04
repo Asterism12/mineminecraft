@@ -29,7 +29,7 @@ class Dimond extends Square{
 	}
 }
 
-class DimondAxe extends Square{
+class DimondAxe extends Weapon{
 	public DimondAxe(){
 		id=32;
 		breakLevel=4;
@@ -40,9 +40,11 @@ class DimondAxe extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		animalAtk=4;
+		squareAtk=4;
 	}
 }
-class DimondPick extends Square{
+class DimondPick extends Weapon{
 	public DimondPick(){
 		id=33;
 		breakLevel=4;
@@ -53,9 +55,11 @@ class DimondPick extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		animalAtk=4;
+		squareAtk=4;
 	}
 }
-class DimondSpade extends Square{
+class DimondSpade extends Weapon{
 	public DimondSpade(){
 		id=34;
 		breakLevel=4;
@@ -66,9 +70,11 @@ class DimondSpade extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		animalAtk=4;
+		squareAtk=4;
 	}
 }
-class DimondSword extends Square{
+class DimondSword extends Weapon{
 	public DimondSword(){
 		id=35;
 		breakLevel=4;
@@ -79,9 +85,11 @@ class DimondSword extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		animalAtk=5;
+		squareAtk=3;
 	}
 }
-class DimondHelmet extends Square{
+class DimondHelmet extends Armor{
 	public DimondHelmet(){
 		id=36;
 		breakLevel=4;
@@ -92,9 +100,10 @@ class DimondHelmet extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=4;
 	}
 }
-class DimondChest extends Square{
+class DimondChest extends Armor{
 	public DimondChest(){
 		id=37;
 		breakLevel=4;
@@ -105,9 +114,10 @@ class DimondChest extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=4;
 	}
 }
-class DimondPants extends Square{
+class DimondPants extends Armor{
 	public DimondPants(){
 		id=38;
 		breakLevel=4;
@@ -118,9 +128,10 @@ class DimondPants extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=4;
 	}
 }
-class DimondShoes extends Square{
+class DimondShoes extends Armor{
 	public DimondShoes(){
 		id=39;
 		breakLevel=4;
@@ -131,5 +142,6 @@ class DimondShoes extends Square{
 		takeUp=true;
 		through=false;
 		putDown=false;
+		defense=4;
 	}
 }

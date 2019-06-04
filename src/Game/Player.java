@@ -1,5 +1,7 @@
 package Game;
 
+import Thing.Square;
+
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,6 +14,8 @@ public class Player {
     private int vp = 10;
     private int dp = 0;//防御力
     private Toolbar toolbar = new Toolbar();
+    private Square handSquare;
+    private int handSquareNO=0;
     private Point.Double location;//玩家脚底中心坐标，决定从何处开始渲染
     private boolean isLegSwing = true;
 
@@ -26,7 +30,24 @@ public class Player {
     boolean isJumping = false;//玩家是否在跳跃
     boolean isOpenBag = false;//玩家是否在查看背包
 
-    synchronized Point.Double getLocation() {
+    public synchronized void throwOutSquare(){
+        toolbar.getSquares()[handSquareNO]=null;
+    }
+
+    public synchronized int  getHandSquareNO(){
+        return handSquareNO;
+    }
+
+    public synchronized Square getHandSquare() {
+        return handSquare;
+    }
+
+    public synchronized void setHandSquare(int i) {
+        this.handSquare=toolbar.getSquares()[i];
+        handSquareNO=i;
+    }
+
+    public synchronized Point.Double getLocation() {
         return location;
     }
 

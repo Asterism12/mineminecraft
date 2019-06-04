@@ -53,15 +53,15 @@ public class MCanvas extends JPanel {
         Point bodyLocation = new Point(getWidth() / 2, getHeight() / 2 - 26);
         Point legLocation = new Point(getWidth() / 2, getHeight() / 2 - 10);
         Graphics2D g2d = (Graphics2D) g;
-        double x=mouseLocation.x-bodyLocation.x;
-        double y=mouseLocation.y-bodyLocation.y;
+        double x = mouseLocation.x - bodyLocation.x;
+        double y = mouseLocation.y - bodyLocation.y;
         double theta;
-        if (y==0)
+        if (y == 0)
             theta = 0;
-        else if(y>0)
-            theta=-Math.asin(x/Math.sqrt(Math.pow(x,2)+Math.pow(y,2)));
+        else if (y > 0)
+            theta = -Math.asin(x / Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
         else
-            theta=-(Math.PI-Math.asin(x/Math.sqrt(Math.pow(x,2)+Math.pow(y,2))));
+            theta = -(Math.PI - Math.asin(x / Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))));
 
         g2d.setColor(World.player.head);
         g2d.fillRect(getWidth() / 2 - 5, getHeight() / 2 - 38, 10, 10);
@@ -99,6 +99,11 @@ public class MCanvas extends JPanel {
         for (int i = 0; i < 10; i++) {//画边
             g.drawRect(margins + i * sideLength, getHeight() - 100, sideLength, sideLength);
         }
+
+        int NO = World.player.getHandSquareNO();
+        g.setColor(Color.CYAN);
+        g.drawRect(margins + NO * sideLength + 1, getHeight() - 100 + 1,
+                sideLength - 2, sideLength - 2);
 
         Square[] squares = World.player.getToolbar().getSquares();
         for (int i = 0; i < 10; i++) {//绘制工具
