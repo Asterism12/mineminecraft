@@ -1,8 +1,12 @@
 package Game;
 
 import Thing.*;
+
+import Thing.Otherthing.BedRock;
 import Thing.Otherthing.Earth;
+import Thing.Otherthing.Ground;
 import Thing.Otherthing.TreeLeaves;
+import Thing.ore.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,11 +56,13 @@ public class World {
             if(earthChange==4){ stoneLine++;groundLine++; }
             else if(earthChange==3){ stoneLine--;groundLine--;}
             if(i==hillPoint){
-                int length=(int)(Math.random()*5)+8;
-                createHill(i,groundLine,treePoint,length,worldSquare);
-                i+=length;
+                int length=(int)(Math.random()*16)+8;
+                createHill(i,groundLine,treePoint,minePoint,length,worldSquare);
+                i+=length-1;
                 treePoint=i+6;
+                minePoint=i+12;
                 hillPoint+=(int)(Math.random()*16)+40;
+                continue;
             }
             else if(i==treePoint){
                 createTree(i,groundLine,(int)(Math.random()*3)+3,worldSquare);
@@ -69,20 +75,19 @@ public class World {
                 else worldSquare[i][j]=new Earth();
             }
             if(i==minePoint){
-                int mineLength=stoneLine+3;
+                int mineLength=stoneLine+8;
                 for(j=stoneLine;j<=240;j++){
                     if(mineLength==j) {
                         int mineSort=(int)(Math.random()*5);
-                        int mineDepth = (int) (Math.random() * 12) + 6;
-                        if (mineSort == 0)
-                            createDimondMine(i - 1 - mineDepth, j,mineDepth,worldSquare );
+                        int mineDepth = (int) (Math.random() * 6) + 6;
+                        if (mineSort == 0) createDimondMine(i - 1 - mineDepth, j,mineDepth,worldSquare );
                         else createMine(i - 1 - mineDepth, j,mineDepth,worldSquare );
                         mineLength+=mineDepth;
-                        mineLength+=(int)(Math.random()*12+20);
+                        mineLength+=(int)(Math.random()*12)+20;
                     }
                     worldSquare[i][j]=new Stone();
                 }
-                minePoint+=(int)(Math.random()*12+12);
+                minePoint+=(int)(Math.random()*12)+12;
             }
             else for(j=stoneLine;j<=240;j++)worldSquare[i][j]=new Stone();
         }
@@ -99,13 +104,13 @@ public class World {
         }
         if(width>3&&j==high+width)for(i=-halfLength+1;i<=halfLength-1;i++)worldSquare[x+i][y-j]=new TreeLeaves();
     }
-    private static void createHill(int x,int y,int treePoint,int length,Square[][] worldSquare){//生成山
+    private static void createHill(int x,int y,int treePoint,int minePoint,int length,Square[][] worldSquare){//生成山
         int high=length/2,groundLine=y,stoneLine=y+8;
         int i,j;
-        for(i=0;i<length;i++) {
-            if (i<length/4) groundLine++;
-            else if (i>length*3/4) groundLine--;
-            if(i==treePoint){
+        for(i=0;i<=length;i++) {
+            if (i<length/4) groundLine--;
+            else if (i>length*3/4) groundLine++;
+            if(i+x==treePoint){
                 World.createTree(i+x,groundLine,(int)(Math.random()*3)+3,worldSquare);
                 treePoint+=(int)(Math.random()*8)+8;
             }
@@ -115,7 +120,22 @@ public class World {
                 if(j>changeStone)worldSquare[i+x][j]=new Stone();
                 else worldSquare[i+x][j]=new Earth();
             }
-            for(j=stoneLine;j<=240;j++)worldSquare[i+x][j]=new Stone();
+            if(i+x==minePoint){
+                int mineLength=stoneLine+12;
+                for(j=stoneLine;j<=240;j++){
+                    if(mineLength==j) {
+                        int mineSort=(int)(Math.random()*5);
+                        int mineDepth = (int) (Math.random() * 6) + 6;
+                        if (mineSort == 0) createDimondMine(i+x - 1 - mineDepth, j,mineDepth,worldSquare );
+                        else createMine(i+x - 1 - mineDepth, j,mineDepth,worldSquare );
+                        mineLength+=mineDepth;
+                        mineLength+=(int)(Math.random()*12)+20;
+                    }
+                    worldSquare[i+x][j]=new Stone();
+                }
+                minePoint+=(int)(Math.random()*12)+12;
+            }
+            else for(j=stoneLine;j<=240;j++)worldSquare[i+x][j]=new Stone();
         }
 
     }
@@ -123,7 +143,7 @@ public class World {
         int i,j;
         for(j=0;j<high;j++){
             for(i=0;i<high;i++){
-                int judge=(int)(Math.random()*3);
+                int judge=(int)(Math.random()*2);
                 if(judge==0)worldSquare[x+i][y-j]=new Stone();
                 else worldSquare[x+i][y-j]=new IronStone();
             }

@@ -1,13 +1,14 @@
-package Thing;
+package Thing.Otherthing;
 
 import Game.World;
+import Thing.Square;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Ground extends Square{
+public class Ground extends Square {
     private static Image material;
     private static Image toolBarPicMaterial;
     static {
