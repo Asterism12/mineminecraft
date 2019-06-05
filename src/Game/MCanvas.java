@@ -143,10 +143,29 @@ public class MCanvas extends JPanel {
         g.drawString(s, 20, 20);
     }
 
+    int getGrid(Point p) {
+        int sideLength = (int) (this.getHeight() * 0.06);
+        int margins = (getWidth() - sideLength * 10) / 2;
+        if (p.x < margins || p.x > getWidth() - margins)
+            return -1;
+        int x = (p.x - margins) / sideLength;
+        if (p.y > getHeight() - 100 + sideLength)
+            return -1;
+        if (p.y > getHeight() - 100) {
+            return x;
+        }
+        if (p.y > 500 && p.y < 500 + 4 * sideLength) {
+            int y = (p.y - 500) / sideLength;
+            return x + 10 * (y + 1);
+        }
+        return -1;
+    }
+
     MCanvas(int width, int height) {
         this.setSize(width, height);
         try {
-            this.bg = ImageIO.read(new File("image/sky.png")).getScaledInstance(width, height, Image.SCALE_DEFAULT);
+            this.bg = ImageIO.read(new File
+                    ("image/sky.png")).getScaledInstance(width + 22, height, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }

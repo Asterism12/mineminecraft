@@ -1,18 +1,19 @@
-package Thing;
+package Thing.Weapon;
 
 import Game.World;
+import Thing.Square;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class BedRock extends Square{
+public class StoneSpade extends Square {
 	private static Image material;
 	private static Image toolBarPicMaterial;
 	static {
 		try {
-			material = ImageIO.read(new File("image/BedRock.png"))
+			material = ImageIO.read(new File("image/StoneSpade.png"))
 					.getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
 			toolBarPicMaterial = material.getScaledInstance(
 					World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -20,16 +21,16 @@ public class BedRock extends Square{
 			e.printStackTrace();
 		}
 	}
-	public BedRock(){
-		id=11;
-		breakLevel=10;
+	public StoneSpade(){
+		id=14;
+		breakLevel=2;
 		weight=false;
 		liquid=false;
-		pile=true;
+		pile=false;
 		food=false;
 		takeUp=true;
 		through=false;
-		putDown=true;
+		putDown=false;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
 	}

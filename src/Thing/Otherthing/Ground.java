@@ -1,13 +1,14 @@
-package Thing;
+package Thing.Otherthing;
 
 import Game.World;
+import Thing.Square;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Ground extends Square{
+public class Ground extends Square {
     private static Image material;
     private static Image toolBarPicMaterial;
     static {
@@ -28,7 +29,7 @@ public class Ground extends Square{
         pile=true;
         food=false;
         takeUp=true;
-        through=true;
+        through=false;
         putDown=true;
         this.pic = material;
         this.toolBarPic = toolBarPicMaterial;
