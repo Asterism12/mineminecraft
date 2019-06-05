@@ -16,6 +16,7 @@ public class World {
     private static MCanvas mCanvas;
 
     static Player player;//玩家类
+    static Point.Double startLocation=new Point.Double(2048, 127.99);
 
     public static final int PICSIZE = 20;//图片默认边长;
     public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
