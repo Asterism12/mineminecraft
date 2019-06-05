@@ -142,7 +142,8 @@ public class Player {
                         verticalSpeed = 0;
                     } else {
                         location.y = targetY;
-                        verticalSpeed += World.gravity;
+                        if (verticalSpeed <= 1)
+                            verticalSpeed += World.gravity;
                     }
                 }
             }
