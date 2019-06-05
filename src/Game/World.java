@@ -1,6 +1,8 @@
 package Game;
 
 import Thing.*;
+import Thing.Otherthing.Earth;
+import Thing.Otherthing.TreeLeaves;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,17 +32,66 @@ public class World {
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
         frame.setVisible(true);
     }
-
-    private static void worldSquareCreator() {//用种子生成一个世界地形，种子默认为0
+    //用种子生成一个世界地形，种子默认为0
+    private static void worldSquareCreator() {
         worldSquare = new Square[4096][256];
-        for (int i = 0; i < 4096; i++) {
-            for (int j = 128; j < 256; j++) {
-                worldSquare[i][j] = new TestSquare();
+        int i=0,j=0;
+        while(i<4096)worldSquare[i++][0]=new BedRock();
+        while(j<256)worldSquare[0][j++]=new BedRock();
+        while(i>0)worldSquare[--i][255]=new BedRock();
+        while(j>0)worldSquare[4095][--j]=new BedRock();
+        //出不去的屏障
+
+        int groundLine=128,stoneLine=136;
+        for(i=0;i<4095;i++){
+            int earthChange=(int)(Math.random()*81)+1;
+            if(earthChange==9){ stoneLine++;groundLine++; }
+            else if(earthChange==81){ stoneLine--;groundLine--;}
+
+            worldSquare[i][groundLine]=new Ground();
+            for(j=groundLine+1;j<stoneLine;j++){
+                int changeStone=(int)(Math.random()*5);
+                if(changeStone==1)worldSquare[i][j]=new Stone();
+                else worldSquare[i][j]=new Earth();
+            }
+            for(j=stoneLine;j<256;j++)worldSquare[i][j]=new Stone();
+        }
+        World.createTree(2050,128,4,worldSquare);
+        World.createMine(2050,136,4,worldSquare);
+        World.createDimondMine(2066,136,4,worldSquare);
+        //worldSquare[2050][127] = new TestSquare();
+    }
+    private static void createTree(int x,int y,int high,Square[][] worldSquare){//生成树
+        int halfLength=high/2,width=high-1;//树叶的半长和高
+        int i,j;
+        worldSquare[x][y]=new Earth();
+        for(i=1;i<=high;i++)worldSquare[x][y-i]=new Wood();
+        for(j=high+1;j<high+width;j++){
+            for(i=-halfLength;i<=halfLength;i++)worldSquare[x+i][y-j]=new TreeLeaves();
+        }
+        if(j==high+width)for(i=-halfLength+1;i<=halfLength-1;i++)worldSquare[x+i][y-j]=new TreeLeaves();
+    }
+    private static void createMine(int x,int y,int high,Square[][] worldSquare){//生成铁矿，夹杂石头
+        int i,j;
+        for(j=0;j<high;j++){
+            for(i=0;i<high;i++){
+                int judge=(int)(Math.random()*3);
+                if(judge==0)worldSquare[x+i][y-j]=new Stone();
+                else worldSquare[x+i][y-j]=new IronStone();
             }
         }
-        worldSquare[2050][127] = new TestSquare();
     }
-
+    private static void createDimondMine(int x,int y,int high,Square[][] worldSquare){//生成钻石矿，夹杂铁矿、石头
+        int i,j;
+        for(j=0;j<high;j++){
+            for(i=0;i<high;i++){
+                int judge=(int)(Math.random()*5);
+                if(judge==0)worldSquare[x+i][y-j]=new Stone();
+                else if(judge<=2)worldSquare[x+i][y-j]=new IronStone();
+                else worldSquare[x+i][y-j]=new DimondStone();
+            }
+        }
+    }
     private static void worldUpdater() {
         ActionListener update = new ActionListener() {//刷新世界
             @Override

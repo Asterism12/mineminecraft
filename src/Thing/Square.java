@@ -29,3 +29,6 @@ class Weapon extends Square{
 class Armor extends Square{
     public int defense=1;
 }
+class ore extends Square{
+    public int oreLevel=1;
+}
