@@ -29,12 +29,13 @@ public class World {
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
     public static final int FPS = 1000 / 30;//定时器触发间隔
 
-    private static void UIinit(int width, int height) {//UI初始化
+    private static void UIinit() {//UI初始化
         frame = new JFrame();
-        frame.setSize(width, height);
-        mCanvas = new MCanvas(width - 22, height - 56);
+        frame.setSize(1022,856);
+        mCanvas = new MCanvas(1000, 800);
         frame.add(mCanvas);
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 
@@ -271,7 +272,7 @@ public class World {
     public static void worldCreator() {//世界创造器
         worldSquareCreator();
         player = new Player();
-        UIinit(1022, 856);
+        UIinit();
         playerUpdater();
         worldUpdater();
 
