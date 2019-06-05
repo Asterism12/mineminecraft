@@ -92,7 +92,27 @@ public class Player {
         }
     }
 
-    Player() {
+    public void setHeadColor(Color color)
+    {
+        head = color;
+    }
+
+    public void setBodyColor(Color color)
+    {
+        body = color;
+    }
+
+    public void setArmColor(Color color)
+    {
+        arm = color;
+    }
+
+    public void setLegColor(Color color)
+    {
+        leg = color;
+    }
+
+    public Player() {
         location = World.startLocation;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
