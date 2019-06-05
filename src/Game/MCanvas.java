@@ -157,6 +157,31 @@ public class MCanvas extends JPanel {
 
         Point p = new Point(margins + 120, 470);
         drawPlayer(g, p, 4);
+
+        //工作台
+        g.setColor(new Color(0, 0, 0, 128));
+        g.fillRect(margins + 230, 300, getWidth() - 2 * margins - 230, sideLength * 4);
+
+        g.setColor(Color.GRAY);
+        for (int i = 0; i < 3; i++) {//画边
+            for (int j = 0; j < 3; j++) {
+                g.drawRect(margins + 250 + j * sideLength,
+                        325 + i * sideLength, sideLength, sideLength);
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (squares[54 + 3 * i + j] != null)
+                    g.drawImage(squares[54 + 3 * i + j].getToolBarPic(),
+                            margins + 250 + j * sideLength + 3, 325 + i * sideLength + 3, null);
+            }
+        }
+        g.drawRect(margins + 410, 325 + sideLength, sideLength, sideLength);
+        if (squares[63] != null)
+            g.drawImage(squares[63].getToolBarPic(),
+                    margins + 410 + 3, 325 + sideLength + 3, null);
+        g.drawString("Input", margins + 235, 310);
+        g.drawString("Output", margins + 410, 310 + sideLength);
     }
 
     private void printLocation(Graphics g) {
@@ -170,16 +195,35 @@ public class MCanvas extends JPanel {
         int margins = (getWidth() - sideLength * 10) / 2;
         if (p.x < margins || p.x > getWidth() - margins)
             return -1;
+
+        //工作台
+        if (p.x > margins + 250 && p.x < margins + 250 + 3 * sideLength) {
+            if (p.y > 325 && p.y < 325 + 3 * sideLength) {
+                int x = (p.x - margins - 250) / sideLength;
+                int y = (p.y - 325) / sideLength;
+                return 54 + x + 3 * y;
+            }
+        }
+        if (p.x > margins + 410 && p.x < margins + 410 + sideLength) {
+            if (p.y > 325 + sideLength && p.y < 325 + 2 * sideLength)
+                return 63;
+        }
+
+        //背包
         int x = (p.x - margins) / sideLength;
         if (p.y > getHeight() - 100 + sideLength)
             return -1;
         if (p.y > getHeight() - 100) {
             return x;
         }
+
+        //工具栏
         if (p.y > 500 && p.y < 500 + 4 * sideLength) {
             int y = (p.y - 500) / sideLength;
             return x + 10 * (y + 1);
         }
+
+        //护具
         if (p.y > 300 && p.y < 300 + 4 * sideLength) {
             int y = (p.y - 300) / sideLength;
             return 50 + y;

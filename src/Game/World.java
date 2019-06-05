@@ -243,9 +243,9 @@ public class World {
                             frame.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
                                     square.getPic(), new Point(0, 0), "myCursor"));
                     } else {
-                        if (grid >= 50 &&!(player.getChosenSquare() instanceof Armor))
+                        if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
-
+                        if (grid == 63) return;
                         player.getToolbar().getSquares()[grid] = player.getChosenSquare();
                         if (square != null)
                             player.getToolbar().pickUp(square);
