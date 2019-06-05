@@ -31,7 +31,7 @@ public class TreeLeaves extends Square {
 		pile=false;
 		food=false;
 		takeUp=false;
-		through=false;
+		through=true;
 		putDown=false;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
