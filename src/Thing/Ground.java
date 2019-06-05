@@ -28,7 +28,7 @@ public class Ground extends Square{
         pile=true;
         food=false;
         takeUp=true;
-        through=true;
+        through=false;
         putDown=true;
         this.pic = material;
         this.toolBarPic = toolBarPicMaterial;
