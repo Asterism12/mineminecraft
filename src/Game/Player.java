@@ -15,7 +15,7 @@ public class Player {
     private int dp = 0;//防御力
     private Toolbar toolbar = new Toolbar();
     private Square handSquare;
-    private int handSquareNO=0;
+    private int handSquareNO = 0;
     private Point.Double location;//玩家脚底中心坐标，决定从何处开始渲染
     private boolean isLegSwing = true;
 
@@ -30,11 +30,11 @@ public class Player {
     boolean isJumping = false;//玩家是否在跳跃
     boolean isOpenBag = false;//玩家是否在查看背包
 
-    public synchronized void throwOutSquare(){
-        toolbar.getSquares()[handSquareNO]=null;
+    public synchronized void throwOutSquare() {
+        toolbar.getSquares()[handSquareNO] = null;
     }
 
-    public synchronized int  getHandSquareNO(){
+    public synchronized int getHandSquareNO() {
         return handSquareNO;
     }
 
@@ -43,8 +43,8 @@ public class Player {
     }
 
     public synchronized void setHandSquare(int i) {
-        this.handSquare=toolbar.getSquares()[i];
-        handSquareNO=i;
+        this.handSquare = toolbar.getSquares()[i];
+        handSquareNO = i;
     }
 
     public synchronized Point.Double getLocation() {
@@ -63,7 +63,9 @@ public class Player {
         return dp;
     }
 
-    public synchronized int getLegSwing(){return  legSwing;}
+    public synchronized int getLegSwing() {
+        return legSwing;
+    }
 
     Toolbar getToolbar() {
         return toolbar;
@@ -82,7 +84,7 @@ public class Player {
     }
 
     Player() {
-        location = new Point.Double(2048, 127.99);
+        location = World.startLocation;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -91,20 +93,28 @@ public class Player {
                 int walk = walkRight - walkLeft;
                 if (walk == -1) {
                     double targetX = location.x - walkSpeed;
-                    if (World.worldSquare[(int) targetX][(int) location.y] == null)
+                    Square square = World.worldSquare[(int) targetX][(int) location.y];
+                    if (square == null)
                         location.x = targetX;
                     else {
-                        location.x = Math.ceil(targetX);
+                        if (!square.through)
+                            location.x = Math.ceil(targetX);
+                        else
+                            location.x = targetX;
                     }
                 } else if (walk == 1) {
                     double targetX = location.x + walkSpeed;
-                    if (World.worldSquare[(int) targetX][(int) location.y] == null)
+                    Square square = World.worldSquare[(int) targetX][(int) location.y];
+                    if (square == null)
                         location.x = targetX;
                     else {
-                        location.x = (int) targetX - 0.01;//防止被卡在墙里
+                        if (!square.through)
+                            location.x = (int) targetX - 0.01;//防止被卡在墙里
+                        else
+                            location.x = targetX;
                     }
                 }
-                if (walk != 0 || getLegSwing() !=0){
+                if (walk != 0 || getLegSwing() != 0) {
                     setLegSwing();
                 }
 
@@ -114,10 +124,11 @@ public class Player {
                     verticalSpeed = -jumpSpeed;
                 } else if (verticalSpeed != 0 || World.worldSquare[(int) location.x][(int) (location.y)] == null) {
                     double targetY = location.y + verticalSpeed;
-                    if (verticalSpeed < 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//磕脑袋
+                    Square square = World.worldSquare[(int) location.x][(int) (targetY)];
+                    if (verticalSpeed < 0 && square != null && !square.through) {//磕脑袋
                         location.y = Math.ceil(targetY);
                         verticalSpeed = 0;
-                    } else if (verticalSpeed > 0 && World.worldSquare[(int) location.x][(int) targetY] != null) {//落地
+                    } else if (verticalSpeed > 0 && square != null && !square.through) {//落地
                         location.y = (int) targetY - 0.01;//防止陷到地里出不来了
                         verticalSpeed = 0;
                     } else {
