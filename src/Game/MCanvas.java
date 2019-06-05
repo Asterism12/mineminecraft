@@ -49,9 +49,14 @@ public class MCanvas extends JPanel {
     }
 
     private void printPlayer(Graphics g) {//在屏幕正中心绘制玩家，玩家占2格，碰撞箱只有脚底的点
+        Point p = new Point(getWidth() / 2, getHeight() / 2);
+        drawPlayer(g, p, 1);
+    }
+
+    private void drawPlayer(Graphics g, Point p, double size) {//地图中的玩家size为1
         Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-        Point bodyLocation = new Point(getWidth() / 2, getHeight() / 2 - 26);
-        Point legLocation = new Point(getWidth() / 2, getHeight() / 2 - 10);
+        Point bodyLocation = new Point(p.x, p.y - (int) (26 * size));//在屏幕正中心绘制玩家，玩家占2格，碰撞箱只有脚底的点
+        Point legLocation = new Point(p.x, p.y - (int) (10 * size));
         Graphics2D g2d = (Graphics2D) g;
         double x = mouseLocation.x - bodyLocation.x;
         double y = mouseLocation.y - bodyLocation.y;
@@ -64,27 +69,27 @@ public class MCanvas extends JPanel {
             theta = -(Math.PI - Math.asin(x / Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2))));
 
         g2d.setColor(World.player.head);
-        g2d.fillRect(getWidth() / 2 - 5, getHeight() / 2 - 38, 10, 10);
+        g2d.fillRect(p.x - (int) (5 * size), p.y - (int) (38 * size), (int) (10 * size), (int) (10 * size));
 
         g2d.setColor(World.player.body);
-        g2d.fillRect(getWidth() / 2 - 4, getHeight() / 2 - 28, 8, 18);
+        g2d.fillRect(p.x - (int) (4 * size), p.y - (int) (28 * size), (int) (8 * size), (int) (18 * size));
 
         g2d.setColor(World.player.arm);
         AffineTransform affineTransform = new AffineTransform();
         affineTransform.rotate(theta, bodyLocation.x, bodyLocation.y);
         g2d.setTransform(affineTransform);
-        g2d.fill(new Rectangle2D.Double(getWidth() / 2 - 3, getHeight() / 2 - 26, 6, 14));
+        g2d.fill(new Rectangle2D.Double(p.x - (int) (3 * size), p.y - (int) (26 * size), (int) (6 * size), (int) (14 * size)));
 
         //The code is sucks, I know.
         g2d.setColor(World.player.leg);
         AffineTransform affineTransform1 = new AffineTransform();
         affineTransform1.rotate(10 * World.player.getLegSwing() * Math.PI / 180, legLocation.x, legLocation.y);
         g2d.setTransform(affineTransform1);
-        g2d.fill(new Rectangle2D.Double(getWidth() / 2 - 3, getHeight() / 2 - 10, 6, 10));
+        g2d.fill(new Rectangle2D.Double(p.x - (int) (3 * size), p.y - (int) (10 * size), (int) (6 * size), (int) (10 * size)));
         AffineTransform affineTransform2 = new AffineTransform();
         affineTransform2.rotate(-10 * World.player.getLegSwing() * Math.PI / 180, legLocation.x, legLocation.y);
         g2d.setTransform(affineTransform2);
-        g2d.fill(new Rectangle2D.Double(getWidth() / 2 - 3, getHeight() / 2 - 10, 6, 10));
+        g2d.fill(new Rectangle2D.Double(p.x - (int) (3 * size), p.y - (int) (10 * size), (int) (6 * size), (int) (10 * size)));
         AffineTransform affineTransform3 = new AffineTransform();
         g2d.setTransform(affineTransform3);
     }
@@ -135,6 +140,23 @@ public class MCanvas extends JPanel {
                             margins + j * sideLength + 3, 500 + (i - 1) * sideLength + 3, null);
             }
         }
+
+        //人物信息栏
+        g.setColor(new Color(0, 0, 0, 128));
+        g.fillRect(margins, 300, 200, sideLength * 4);
+
+        g.setColor(Color.GRAY);
+        for (int i = 0; i < 4; i++) {//画边
+            g.drawRect(margins, 300 + i * sideLength, sideLength, sideLength);
+        }
+        for (int i = 0; i < 4; i++) {
+            if (squares[50 + i] != null)
+                g.drawImage(squares[50 + i].getToolBarPic(),
+                        margins + 3, 300 + i * sideLength + 3, null);
+        }
+
+        Point p = new Point(margins + 120, 470);
+        drawPlayer(g, p, 4);
     }
 
     private void printLocation(Graphics g) {
@@ -158,6 +180,11 @@ public class MCanvas extends JPanel {
             int y = (p.y - 500) / sideLength;
             return x + 10 * (y + 1);
         }
+        if (p.y > 300 && p.y < 300 + 4 * sideLength) {
+            int y = (p.y - 300) / sideLength;
+            return 50 + y;
+        }
+
         return -1;
     }
 
@@ -165,7 +192,7 @@ public class MCanvas extends JPanel {
         this.setSize(width, height);
         try {
             this.bg = ImageIO.read(new File
-                    ("image/sky.png")).getScaledInstance(width + 22, height, Image.SCALE_DEFAULT);
+                    ("image/sky.png")).getScaledInstance(width, height, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }

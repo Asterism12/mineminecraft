@@ -3,7 +3,7 @@ package Game;
 import Thing.Square;
 
 public class Toolbar {
-    private Square[] squares = new Square[50];//前10个是工具栏内的物品，后40个是背包内的物品
+    private Square[] squares = new Square[54];//前10个是工具栏内的物品，后40个是背包内的物品,最后4个是头盔胸甲裤子鞋子
 
     public synchronized void pickUp(Square square) {//捡起方块
         if (square.takeUp) {
