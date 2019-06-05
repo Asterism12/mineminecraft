@@ -84,7 +84,7 @@ public class Player {
     }
 
     Player() {
-        location = new Point.Double(2048, 127.99);
+        location = World.startLocation;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -124,7 +124,7 @@ public class Player {
                     verticalSpeed = -jumpSpeed;
                 } else if (verticalSpeed != 0 || World.worldSquare[(int) location.x][(int) (location.y)] == null) {
                     double targetY = location.y + verticalSpeed;
-                    Square square = World.worldSquare[(int) location.x][(int) (location.y)];
+                    Square square = World.worldSquare[(int) location.x][(int) (targetY)];
                     if (verticalSpeed < 0 && square != null && !square.through) {//磕脑袋
                         location.y = Math.ceil(targetY);
                         verticalSpeed = 0;
