@@ -159,12 +159,12 @@ public class World {
         if (rectangle.x + WIDTH < 4096)
             rectangle.width = WIDTH;
         else
-            rectangle.width = 2048 - rectangle.x;
+            rectangle.width = 4096 - rectangle.x;
 
         if (rectangle.y + HEIGHT < 256)
             rectangle.height = HEIGHT;
         else
-            rectangle.height = 2048 - rectangle.y;
+            rectangle.height = 256 - rectangle.y;
         return rectangle;
     }
 
