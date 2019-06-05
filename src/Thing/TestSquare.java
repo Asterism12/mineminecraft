@@ -22,7 +22,10 @@ public class TestSquare extends Square {//为测试渲染模块临时增加的�
             e.printStackTrace();
         }
     }
-
+    public TestSquare() {
+        this.pic = material;
+        this.toolBarPic = toolBarPicMaterial;
+    }
     public Image getPic() {
         return pic;
     }
@@ -31,8 +34,5 @@ public class TestSquare extends Square {//为测试渲染模块临时增加的�
         return toolBarPic;
     }
 
-    public TestSquare() {
-        this.pic = material;
-        this.toolBarPic = toolBarPicMaterial;
-    }
+
 }

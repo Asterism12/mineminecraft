@@ -4,7 +4,7 @@ import java.awt.Image;
 
 public abstract class Square {
     public int id;
-    public int breakLevel;
+    public int breakLevel=0;
     protected Image pic;//世界生成中的图片
     protected Image toolBarPic;//背包中的图片
     public Image getPic(){
