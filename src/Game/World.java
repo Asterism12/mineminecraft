@@ -26,7 +26,7 @@ public class World {
     static Player player;//玩家类
     static Point.Double startLocation = new Point.Double(2048, 127.99);
     static MThreadExecutor mThreadExecutor;
-    static Point canvasLocation=new Point(0,0);
+    static Point canvasLocation = new Point(0, 0);
 
     public static final int PICSIZE = 20;//图片默认边长;
     public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
@@ -236,7 +236,7 @@ public class World {
                 super.keyPressed(e);
                 switch (e.getKeyCode()) {
                     case 82:
-                        player.isShowBorder=!player.isShowBorder;
+                        player.isShowBorder = !player.isShowBorder;
                         break;
                     case 65:
                         player.walkLeft = 1;
@@ -265,7 +265,7 @@ public class World {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
-                switch (e.getKeyCode()){
+                switch (e.getKeyCode()) {
                     case 65:
                         player.walkLeft = 0;
                         break;
@@ -309,7 +309,8 @@ public class World {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
                         if (grid == 63) return;
-                        if (grid >= 54 && grid <= 62 && player.getChosenNumber() > 1)
+                        if (grid >= 54 && grid <= 62 &&
+                                player.getChosenNumber() + player.getToolbar().getNumber()[grid] > 1)
                             return;
 
                         player.getToolbar().addSquare(player.getChosenSquare(), grid, player.getChosenNumber());
@@ -328,7 +329,7 @@ public class World {
                         }
                     } else if (e.getButton() == MouseEvent.BUTTON3) {
                         if (worldSquare[squareLocation.x][squareLocation.y] == null &&
-                                player.getHandSquare()!=null&&player.getHandSquare().putDown) {
+                                player.getHandSquare() != null && player.getHandSquare().putDown) {
                             worldSquare[squareLocation.x][squareLocation.y] = player.getHandSquare();
                             player.throwOutSquare();
                         }
@@ -381,10 +382,10 @@ public class World {
         player.getToolbar().pickUp(new DimondShoes());
     }
 
-    private static void calibrator(Point p){//用于校准组件和屏幕的相对位置
-        Point mouseOnScreen=MouseInfo.getPointerInfo().getLocation();
-        canvasLocation.x=p.x-mouseOnScreen.x;
-        canvasLocation.y=p.y-mouseOnScreen.y;
+    private static void calibrator(Point p) {//用于校准组件和屏幕的相对位置
+        Point mouseOnScreen = MouseInfo.getPointerInfo().getLocation();
+        canvasLocation.x = p.x - mouseOnScreen.x;
+        canvasLocation.y = p.y - mouseOnScreen.y;
     }
 
     public static void main(String[] args) {
