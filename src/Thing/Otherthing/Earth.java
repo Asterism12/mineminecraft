@@ -30,7 +30,7 @@ public class Earth extends Square {
 		food=false;
 		takeUp=true;
 		through=false;
-		putDown=false;
+		putDown=true;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
 	}

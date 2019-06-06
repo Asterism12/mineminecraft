@@ -319,11 +319,11 @@ public class World {
                             mThreadExecutor.destroyThread(worldSquare[squareLocation.x][squareLocation.y],
                                     squareLocation);
                         }
-                    } else if (e.getButton() == MouseEvent.BUTTON2) {
-                        if (worldSquare[squareLocation.x][squareLocation.y] == null && player.getHandSquare().putDown) {
+                    } else if (e.getButton() == MouseEvent.BUTTON3) {
+                        if (worldSquare[squareLocation.x][squareLocation.y] == null &&
+                                player.getHandSquare()!=null&&player.getHandSquare().putDown) {
                             worldSquare[squareLocation.x][squareLocation.y] = player.getHandSquare();
                             player.throwOutSquare();
-                            System.out.println("though");
                         }
                     }
                 }
