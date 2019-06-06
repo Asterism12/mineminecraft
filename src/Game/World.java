@@ -6,7 +6,7 @@ import Thing.Otherthing.BedRock;
 import Thing.Otherthing.Earth;
 import Thing.Otherthing.Ground;
 import Thing.Otherthing.TreeLeaves;
-import Thing.ore.*;
+import Thing.Ore.*;
 
 import javax.swing.*;
 import java.awt.*;

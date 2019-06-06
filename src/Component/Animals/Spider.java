@@ -1,4 +1,6 @@
-package Component;
+package Component.Animals;
+
+import Component.Animals.OffensiveAnimal;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -6,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Spider extends OffensiveAnimal{
+public class Spider extends OffensiveAnimal {
     private static BufferedImage image;
     static{
         try {
