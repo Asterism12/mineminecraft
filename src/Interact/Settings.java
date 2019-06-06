@@ -1,6 +1,7 @@
 package Interact;
 
 import Game.Player;
+import Game.World;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -13,10 +14,49 @@ import java.util.Hashtable;
 class Settings {
     private static JFrame setFrame;
     private static JPanel setPanel;
+
     private ChangeListener listener;
-    private static Color color;
+    private static Color color = new Color(0,0,0);
 
     Settings() { }
+
+    class SimpleListener implements ActionListener{ //get the action
+        @Override
+        public synchronized void actionPerformed(ActionEvent e){
+            if(e == null)
+                return;
+            String buttonName = e.getActionCommand();
+            if(buttonName == null)
+                return;
+            else if (buttonName.equals("BACK")) {
+                Mainframe.setFrame.setVisible(false);
+                Mainframe.mainFrame.setVisible(true);
+            }
+            else {
+
+                JColorChooser colorChooser = new JColorChooser();
+                JDialog dialog = JColorChooser.createDialog(setPanel, "选择颜色", false,
+                        colorChooser, new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                color = colorChooser.getColor();
+                            }
+                        }, null);
+                dialog.setVisible(true);
+                if (color == null) {
+                    return;
+                }
+                if (buttonName.equals("HEAD"))
+                    World.player.setHeadColor(color);
+                if (buttonName.equals("ARM"))
+                    World.player.setArmColor(color);
+                if (buttonName.equals("BODY"))
+                    World.player.setBodyColor(color);
+                if (buttonName.equals("LEG"))
+                    World.player.setLegColor(color);
+            }
+        }
+    }
 
     public void paintPanel(Graphics g)
     {
@@ -33,7 +73,7 @@ class Settings {
 
         setTitle();
         setVolume();
-        setColor(new Player());
+        setColor(World.player);
 
         setPanel.setBackground(new Color(11,180,227));
         setPanel.setVisible(true);
@@ -91,41 +131,8 @@ class Settings {
     public void setColor(Player player)
     {
 
-        ActionListener listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                String buttonName = e.getActionCommand();
 
-                if (buttonName.equals("BACK")) {
-                    Mainframe.setFrame.setVisible(false);
-                    Mainframe.mainFrame.setVisible(true);
-                }
-                else {
-                    JColorChooser colorChooser = new JColorChooser();
-                    JDialog dialog = JColorChooser.createDialog(setPanel, "选择颜色", false,
-                            colorChooser, new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    color = colorChooser.getColor();
-                                }
-                            }, null);
-                    dialog.setVisible(true);
-                    if (color == null) {
-                        return;
-                    }
-
-                    if (buttonName.equals("HEAD"))
-                        player.setHeadColor(color);
-                    if (buttonName.equals("ARM"))
-                        player.setArmColor(color);
-                    if (buttonName.equals("BODY"))
-                        player.setBodyColor(color);
-                    if (buttonName.equals("LEG"))
-                        player.setLegColor(color);
-                }
-            }
-        };
-
+        SimpleListener listener = new SimpleListener();
         addButton(listener,510,400,"HEAD",new Color(11,180,227));
         addButton(listener,750,400,"ARM",new Color(11,180,227));
         addButton(listener,510,490,"BODY",new Color(11,180,227));
@@ -133,11 +140,11 @@ class Settings {
         addButton(listener,500,650,"BACK",null);
     }
 
-    public void addButton(ActionListener listener,int x,int y,String title,Color color)
+    public void addButton(SimpleListener listener,int x,int y,String title,Color color)
     {
         JButton button = new JButton(title);
-        button.setFont(new Font("Deeko Comic Regular",Font.BOLD,20));
         button.addActionListener(listener);
+        button.setFont(new Font("Deeko Comic Regular",Font.BOLD,20));
         setPanel.add(button);
         button.setBounds(x,y,200,50);
         button.setBackground(color);
@@ -147,3 +154,4 @@ class Settings {
         return setPanel;
     }
 }
+
