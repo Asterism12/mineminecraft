@@ -16,6 +16,8 @@ public class Player {
     private Toolbar toolbar = new Toolbar();
     private Square handSquare;
     private int handSquareNO = 0;
+    private Square chosenSquare;
+    private int chosenNumber;
     private Point.Double location;//玩家脚底中心坐标，决定从何处开始渲染
     private boolean isLegSwing = true;
 
@@ -29,6 +31,22 @@ public class Player {
     int walkRight = 0;//玩家是否在向右侧移动
     boolean isJumping = false;//玩家是否在跳跃
     boolean isOpenBag = false;//玩家是否在查看背包
+
+    public int getChosenNumber() {
+        return chosenNumber;
+    }
+
+    public void setChosenNumber(int chosenNumber) {
+        this.chosenNumber = chosenNumber;
+    }
+
+    public synchronized Square getChosenSquare() {
+        return chosenSquare;
+    }
+
+    public synchronized void setChosenSquare(Square chosenSquare) {
+        this.chosenSquare = chosenSquare;
+    }
 
     public synchronized void throwOutSquare() {
         toolbar.getSquares()[handSquareNO] = null;
@@ -83,7 +101,27 @@ public class Player {
         }
     }
 
-    Player() {
+    public void setHeadColor(Color color)
+    {
+        head = color;
+    }
+
+    public void setBodyColor(Color color)
+    {
+        body = color;
+    }
+
+    public void setArmColor(Color color)
+    {
+        arm = color;
+    }
+
+    public void setLegColor(Color color)
+    {
+        leg = color;
+    }
+
+    public Player() {
         location = World.startLocation;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -133,7 +171,8 @@ public class Player {
                         verticalSpeed = 0;
                     } else {
                         location.y = targetY;
-                        verticalSpeed += World.gravity;
+                        if (verticalSpeed <= 1)
+                            verticalSpeed += World.gravity;
                     }
                 }
             }

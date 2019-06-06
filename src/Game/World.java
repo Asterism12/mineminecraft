@@ -285,7 +285,7 @@ public class World {
 
         //test
         player.getToolbar().pickUp(new TestSquare());
-        player.getToolbar().testUP(new TestSquare(), 10);
+        //player.getToolbar().testUP(new TestSquare(), 10);
     }
 
     public static void main(String[] args) {
