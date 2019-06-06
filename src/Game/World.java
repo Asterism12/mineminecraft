@@ -66,8 +66,7 @@ public class World {
             }
             if (i == changePoint) {
                 int change = (int) (Math.random() * 11);
-                if (change == 0) ;
-                else if (change <= 4) {
+                if (change <= 4) {
                     int length = (int) (Math.random() * 8) + 8;
                     createSand(i, groundLine, minePoint, length, worldSquare);
                     i += length - 1;
