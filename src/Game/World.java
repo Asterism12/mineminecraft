@@ -17,7 +17,7 @@ import java.awt.event.*;
 public class World {
     private static int seed = 0;
     final static double gravity = 0.08;//重力常数
-    static Square[][] worldSquare;//存储世界地形，世界应为4096*256的平面，指向Null的方块视为天空
+    public static Square[][] worldSquare;//存储世界地形，世界应为4096*256的平面，指向Null的方块视为天空
     private static final int WIDTH = 52;//不触碰地图边界时，加载区块的数量
     private static final int HEIGHT = 42;
     private static JFrame frame;//UI组件

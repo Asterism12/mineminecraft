@@ -1,5 +1,8 @@
 package Interact;
 
+import Game.MCanvas;
+import Game.World;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -20,8 +23,10 @@ class Mainmenu extends JPanel{
 
             String buttonName = actionEvent.getActionCommand();
 
-            if(buttonName.equals("Begin"))
-                System.out.println("Begin new game");
+            if(buttonName.equals("Begin")){
+                Mainframe.mainFrame.setVisible(false);
+                World.main(null);
+            }
             if(buttonName.equals("Settings")){
                 Mainframe.mainFrame.setVisible(false);
                 Mainframe.setFrame.setVisible(true);
