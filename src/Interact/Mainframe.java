@@ -1,5 +1,8 @@
 package Interact;
 
+import Game.Player;
+import Game.World;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +17,7 @@ public class Mainframe {
     static private JPanel setPanel;
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
+        World.worldCreator();
         mainFrame = new JFrame("Minecraft 2D version");
         setFrame = new JFrame("Minecraft 2D version");
         mainPanel = new JPanel();

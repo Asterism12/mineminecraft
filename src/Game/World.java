@@ -23,7 +23,7 @@ public class World {
     private static JFrame frame;//UI组件
     private static MCanvas mCanvas;
 
-    static Player player;//玩家类
+    public static Player player;//玩家类
     static Point.Double startLocation = new Point.Double(2048, 127.99);
     static MThreadExecutor mThreadExecutor;
     static Point canvasLocation=new Point(0,0);
@@ -33,6 +33,10 @@ public class World {
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
     public static final int FPS = 1000 / 30;//定时器触发间隔
 
+    public static void setFrame()
+    {
+        frame.setVisible(true);
+    }
     private static void UIinit() {//UI初始化
         frame = new JFrame();
         //frame.setSize(1300,1000);
@@ -42,7 +46,7 @@ public class World {
         mCanvas.setFocusable(true);
         frame.add(mCanvas);
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
-        frame.setVisible(true);
+        frame.setVisible(false);
     }
 
     //用种子生成一个世界地形，种子默认为0
