@@ -26,7 +26,7 @@ public class World {
     public static Player player;//玩家类
     static Point.Double startLocation = new Point.Double(2048, 127.99);
     static MThreadExecutor mThreadExecutor;
-    static Point canvasLocation=new Point(0,0);
+    static Point canvasLocation = new Point(0, 0);
 
     public static final int PICSIZE = 20;//图片默认边长;
     public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
@@ -58,8 +58,8 @@ public class World {
         //生成土壤同时随机生成树，山
         int groundLine = 136;
         int stoneLine = groundLine + 8, treePoint = 6, changePoint = 16, minePoint = 32;
+        double judgex=2048,judgey=127.99;
         for (i = 0; i <= 4000; i++) {
-
             int earthChange = (int) (Math.random() * 81) + 1;
             if (earthChange == 4) {
                 stoneLine++;
@@ -70,8 +70,7 @@ public class World {
             }
             if (i == changePoint) {
                 int change = (int) (Math.random() * 11);
-                if (change == 0) ;
-                else if (change <= 4) {
+                if (change <= 4) {
                     int length = (int) (Math.random() * 8) + 8;
                     createSand(i, groundLine, minePoint, length, worldSquare);
                     i += length - 1;
@@ -136,8 +135,8 @@ public class World {
         int high = length / 2, groundLine = y, stoneLine = y + 8;
         int i, j;
         for (i = 0; i <= length; i++) {
-            if (i < length / 4) groundLine -= highAdd;
-            else if (i > length * 3 / 4) groundLine += highAdd;
+            if (i < length / 4) {groundLine -= highAdd; stoneLine -= highAdd;}
+            else if (i > length * 3 / 4) {groundLine += highAdd; stoneLine += highAdd;}
             if (i + x == treePoint) {
                 World.createTree(i + x, groundLine, (int) (Math.random() * 3) + 3, worldSquare);
                 treePoint += (int) (Math.random() * 8) + 8;
@@ -240,7 +239,7 @@ public class World {
                 super.keyPressed(e);
                 switch (e.getKeyCode()) {
                     case 82:
-                        player.isShowBorder=!player.isShowBorder;
+                        player.isShowBorder = !player.isShowBorder;
                         break;
                     case 65:
                         player.walkLeft = 1;
@@ -269,7 +268,7 @@ public class World {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
-                switch (e.getKeyCode()){
+                switch (e.getKeyCode()) {
                     case 65:
                         player.walkLeft = 0;
                         break;
@@ -313,7 +312,8 @@ public class World {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
                         if (grid == 63) return;
-                        if (grid >= 54 && grid <= 62 && player.getChosenNumber() > 1)
+                        if (grid >= 54 && grid <= 62 &&
+                                player.getChosenNumber() + player.getToolbar().getNumber()[grid] > 1)
                             return;
 
                         player.getToolbar().addSquare(player.getChosenSquare(), grid, player.getChosenNumber());
@@ -332,7 +332,7 @@ public class World {
                         }
                     } else if (e.getButton() == MouseEvent.BUTTON3) {
                         if (worldSquare[squareLocation.x][squareLocation.y] == null &&
-                                player.getHandSquare()!=null&&player.getHandSquare().putDown) {
+                                player.getHandSquare() != null && player.getHandSquare().putDown) {
                             worldSquare[squareLocation.x][squareLocation.y] = player.getHandSquare();
                             player.throwOutSquare();
                         }
@@ -373,6 +373,9 @@ public class World {
 
     public static void worldCreator() {//世界创造器
         worldSquareCreator();
+        int judgex=2048,judgey=150;
+        while(worldSquare[judgex][judgey]!=null)judgey--;
+        startLocation = new Point.Double(judgex, judgey);
         player = new Player();
         mThreadExecutor = new MThreadExecutor();
         UIinit();
@@ -382,14 +385,13 @@ public class World {
         //test
         player.getToolbar().pickUp(new Earth(), 32);
         player.getToolbar().pickUp(new Earth(), 52);
-        player.getToolbar().addSquare(new TestSquare(), 10, 10);
         player.getToolbar().pickUp(new DimondShoes());
     }
 
-    private static void calibrator(Point p){//用于校准组件和屏幕的相对位置
-        Point mouseOnScreen=MouseInfo.getPointerInfo().getLocation();
-        canvasLocation.x=p.x-mouseOnScreen.x;
-        canvasLocation.y=p.y-mouseOnScreen.y;
+    private static void calibrator(Point p) {//用于校准组件和屏幕的相对位置
+        Point mouseOnScreen = MouseInfo.getPointerInfo().getLocation();
+        canvasLocation.x = p.x - mouseOnScreen.x;
+        canvasLocation.y = p.y - mouseOnScreen.y;
     }
 
     public static void main(String[] args) {
