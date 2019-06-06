@@ -236,9 +236,18 @@ public class World {
                     if (grid == -1)
                         return;
                     Square square = player.getToolbar().getSquares()[grid];
+                    int number = player.getToolbar().getNumber()[grid];
                     if (player.getChosenSquare() == null) {
                         player.setChosenSquare(square);
-                        player.getToolbar().getSquares()[grid] = null;
+                        player.setChosenNumber(number);
+                        if (number > 1 && e.isControlDown()) {
+                            player.getToolbar().getNumber()[grid] -= 1;
+                            player.setChosenNumber(1);
+                        } else {
+                            player.getToolbar().getSquares()[grid] = null;
+                            player.getToolbar().getNumber()[grid] = 0;
+                        }
+
                         if (square != null)
                             frame.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
                                     square.getPic(), new Point(0, 0), "myCursor"));
@@ -246,10 +255,12 @@ public class World {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
                         if (grid == 63) return;
-                        player.getToolbar().getSquares()[grid] = player.getChosenSquare();
-                        if (square != null)
-                            player.getToolbar().pickUp(square);
+                        if (grid >= 54 && grid <= 62 && player.getChosenNumber() > 1)
+                            return;
+
+                        player.getToolbar().addSquare(player.getChosenSquare(),grid,player.getChosenNumber());
                         player.setChosenSquare(null);
+                        player.setChosenNumber(0);
                         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
                     }
                 }
@@ -286,8 +297,9 @@ public class World {
         worldUpdater();
 
         //test
-        player.getToolbar().pickUp(new TestSquare());
-        player.getToolbar().testUP(new TestSquare(), 10);
+        player.getToolbar().pickUp(new TestSquare(), 32);
+        player.getToolbar().pickUp(new TestSquare(), 52);
+        player.getToolbar().addSquare(new TestSquare(), 10,10);
         player.getToolbar().pickUp(new DimondShoes());
     }
 

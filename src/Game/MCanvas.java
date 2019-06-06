@@ -110,11 +110,18 @@ public class MCanvas extends JPanel {
         g.drawRect(margins + NO * sideLength + 1, getHeight() - 100 + 1,
                 sideLength - 2, sideLength - 2);
 
+        g.setColor(Color.WHITE);
         Square[] squares = World.player.getToolbar().getSquares();
+        int[] number = World.player.getToolbar().getNumber();
         for (int i = 0; i < 10; i++) {//绘制工具
-            if (squares[i] != null)
+            if (squares[i] != null) {
                 g.drawImage(squares[i].getToolBarPic(),
                         margins + i * sideLength + 3, getHeight() - 100 + 3, null);
+                if (number[i] > 1) {
+                    g.drawString(String.valueOf(number[i]),
+                            margins + i * sideLength, getHeight() - 100 - 3 + sideLength);
+                }
+            }
         }
     }
 
@@ -132,12 +139,19 @@ public class MCanvas extends JPanel {
             }
         }
 
+        g.setColor(Color.WHITE);
+        int[] number = World.player.getToolbar().getNumber();
         Square[] squares = World.player.getToolbar().getSquares();
         for (int i = 1; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
-                if (squares[i * 10 + j] != null)
+                if (squares[i * 10 + j] != null) {
                     g.drawImage(squares[i * 10 + j].getToolBarPic(),
                             margins + j * sideLength + 3, 500 + (i - 1) * sideLength + 3, null);
+                    if (number[i * 10 + j] > 1)
+                        g.drawString(String.valueOf(number[i * 10 + j]),
+                                margins + j * sideLength, 500 + i * sideLength - 3);
+                }
+
             }
         }
 
