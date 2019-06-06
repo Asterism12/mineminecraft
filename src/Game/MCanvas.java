@@ -25,6 +25,11 @@ public class MCanvas extends JPanel {
             printBag(g);
         printLocation(g);
         g.setColor(Color.CYAN);
+        if (World.player.isShowBorder)
+            printPlayerBorder(g);
+    }
+
+    private void printPlayerBorder(Graphics g){
         g.drawRect(getWidth() / 2 - 50, getHeight() / 2 - 70, 100, 100);
     }
 

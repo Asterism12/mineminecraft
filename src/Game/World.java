@@ -229,12 +229,15 @@ public class World {
     }
 
     private static void playerUpdater() {
-        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块
+        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围
         mCanvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 switch (e.getKeyCode()) {
+                    case 82:
+                        player.isShowBorder=!player.isShowBorder;
+                        break;
                     case 65:
                         player.walkLeft = 1;
                         break;
@@ -262,12 +265,16 @@ public class World {
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
-                if (e.getKeyCode() == 65) {
-                    player.walkLeft = 0;
-                } else if (e.getKeyCode() == 68) {
-                    player.walkRight = 0;
-                } else if (e.getKeyCode() == 32) {
-                    player.isJumping = false;
+                switch (e.getKeyCode()){
+                    case 65:
+                        player.walkLeft = 0;
+                        break;
+                    case 68:
+                        player.walkRight = 0;
+                        break;
+                    case 32:
+                        player.isJumping = false;
+                        break;
                 }
             }
         });
