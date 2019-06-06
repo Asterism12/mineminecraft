@@ -15,7 +15,6 @@ public class Player {
     private int vp = 10;
     private int dp = 0;//防御力
     private Toolbar toolbar = new Toolbar();
-    private Square handSquare;
     private int handSquareNO = 0;
     private Square chosenSquare;
     private int chosenNumber;
@@ -32,6 +31,7 @@ public class Player {
     int walkRight = 0;//玩家是否在向右侧移动
     boolean isJumping = false;//玩家是否在跳跃
     boolean isOpenBag = false;//玩家是否在查看背包
+    boolean isShowBorder=false;//显示放置范围
 
     public int getChosenNumber() {
         return chosenNumber;
@@ -64,11 +64,10 @@ public class Player {
     }
 
     public synchronized Square getHandSquare() {
-        return handSquare;
+        return toolbar.getSquares()[handSquareNO];
     }
 
     public synchronized void setHandSquare(int i) {
-        this.handSquare = toolbar.getSquares()[i];
         handSquareNO = i;
     }
 

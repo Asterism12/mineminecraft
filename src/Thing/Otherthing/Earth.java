@@ -26,11 +26,11 @@ public class Earth extends Square {
 		id=64;
 		weight=false;
 		liquid=false;
-		pile=false;
+		pile=true;
 		food=false;
-		takeUp=false;
+		takeUp=true;
 		through=false;
-		putDown=false;
+		putDown=true;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
 	}
