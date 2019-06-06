@@ -10,7 +10,6 @@ public class MThreadExecutor {
     private ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
     private ScheduledFuture<?> oldFuture;
     private Point squareLocation;
-    private int signal = 0;
 
     synchronized void destroyThread(Square square, Point location) {
         int squareAtk = 1;
@@ -24,27 +23,21 @@ public class MThreadExecutor {
         }
         if (squareAtk >= square.breakLevel) {
             squareLocation = location;
-            long delay = 1000 - (int) ((double) (squareAtk - square.breakLevel) / square.breakLevel) * 1000;
+            long delay = 500 - (int) ((double) (squareAtk - square.breakLevel) / square.breakLevel) * 500;
             oldFuture = executorService.schedule(new Destroy(), delay, TimeUnit.MILLISECONDS);
-            this.notifyAll();
-            signal = 0;
         }
     }
 
     synchronized void cancelDestroy() {
         if (oldFuture != null) {
-            signal = 1;
             oldFuture.cancel(true);
             oldFuture = null;
-        } else {
         }
     }
 
     void destroy() {
-        if(signal==0) {
-            World.worldSquare[squareLocation.x][squareLocation.y] = null;
-            oldFuture = null;
-        }
+        World.worldSquare[squareLocation.x][squareLocation.y] = null;
+        oldFuture = null;
     }
 }
 
