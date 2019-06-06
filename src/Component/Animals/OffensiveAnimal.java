@@ -1,10 +1,7 @@
-package Component;
+package Component.Animals;
 
+import Component.Animals.Animal;
 import Game.Player;
-
-import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class OffensiveAnimal extends Animal {
     private int attackForce = 0;

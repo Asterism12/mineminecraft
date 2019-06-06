@@ -1,4 +1,4 @@
-package Thing.ore;
+package Thing.Ore;
 
 import Game.World;
 import Thing.Square;
@@ -8,12 +8,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class IronStone extends Square {
+public class Stone extends Square{
 	private static Image material;
 	private static Image toolBarPicMaterial;
 	static {
 		try {
-			material = ImageIO.read(new File("image/IronStone.png"))
+			material = ImageIO.read(new File("image/Stone.png"))
 					.getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
 			toolBarPicMaterial = material.getScaledInstance(
 					World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -21,9 +21,9 @@ public class IronStone extends Square {
 			e.printStackTrace();
 		}
 	}
-	public IronStone(){
-		id=20;
-		breakLevel=3;
+	public Stone(){
+		id=10;
+		breakLevel=2;
 		weight=false;
 		liquid=false;
 		pile=true;
@@ -35,3 +35,4 @@ public class IronStone extends Square {
 		this.toolBarPic = toolBarPicMaterial;
 	}
 }
+

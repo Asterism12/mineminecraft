@@ -44,7 +44,6 @@ public class MThreadExecutor {
         if(signal==0) {
             World.worldSquare[squareLocation.x][squareLocation.y] = null;
             oldFuture = null;
-            //System.out.println("des");
         }
     }
 }

@@ -1,4 +1,4 @@
-package Component;
+package Component.Animals;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;

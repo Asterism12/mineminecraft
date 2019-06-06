@@ -1,4 +1,4 @@
-package Thing.ore;
+package Thing.Ore;
 
 import Game.World;
 import Thing.Square;
