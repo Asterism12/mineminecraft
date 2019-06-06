@@ -265,6 +265,7 @@ public class World {
                     }
                 }else{
                     Point squareLocation=mCanvas.getClickSquare(p);
+                    if(squareLocation==null) return;
                     if(e.getButton()==MouseEvent.BUTTON1){
                         worldSquare[squareLocation.x][squareLocation.y]=null;
                     }
