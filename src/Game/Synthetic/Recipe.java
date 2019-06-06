@@ -18,7 +18,11 @@ public class Recipe {
     Recipe(Square[][] curTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                table[3 * i + j] = curTable[j][i].id;
+                if (curTable[j][i] == null) {
+                    table[i] = 0;
+                } else {
+                    table[3 * i + j] = curTable[j][i].id;
+                }
             }
         }
     }
