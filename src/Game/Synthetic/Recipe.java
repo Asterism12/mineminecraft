@@ -7,7 +7,11 @@ public class Recipe {
 
     Recipe(Square[] curTable) {
         for (int i = 0; i < 9; i++) {
-            table[i] = curTable[i].id;
+            if (curTable[i] == null) {
+                table[i] = 0;
+            } else {
+                table[i] = curTable[i].id;
+            }
         }
     }
 

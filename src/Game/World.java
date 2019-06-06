@@ -305,6 +305,10 @@ public class World {
                         if (square != null)
                             frame.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
                                     square.getPic(), new Point(0, 0), "myCursor"));
+                        
+                        if (grid == 63) {
+                            player.getToolbar().tableClear();
+                        }
                     } else {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
@@ -317,6 +321,10 @@ public class World {
                         player.setChosenSquare(null);
                         player.setChosenNumber(0);
                         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
+
+                    }
+                    if (grid < 63 && grid >= 53) {
+                        player.getToolbar().checkRecipe();
                     }
                 } else {
                     Point squareLocation = mCanvas.getClickSquare(p);
