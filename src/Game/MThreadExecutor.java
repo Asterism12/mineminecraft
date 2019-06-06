@@ -37,6 +37,7 @@ public class MThreadExecutor {
     }
 
     void destroy() {
+        World.player.getToolbar().pickUp(World.worldSquare[squareLocation.x][squareLocation.y]);
         World.worldSquare[squareLocation.x][squareLocation.y] = null;
         oldFuture = null;
     }

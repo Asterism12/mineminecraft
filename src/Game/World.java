@@ -323,6 +323,7 @@ public class World {
                         if (worldSquare[squareLocation.x][squareLocation.y] == null && player.getHandSquare().putDown) {
                             worldSquare[squareLocation.x][squareLocation.y] = player.getHandSquare();
                             player.throwOutSquare();
+                            System.out.println("though");
                         }
                     }
                 }
@@ -368,8 +369,8 @@ public class World {
         worldUpdater();
 
         //test
-        player.getToolbar().pickUp(new TestSquare(), 32);
-        player.getToolbar().pickUp(new TestSquare(), 52);
+        player.getToolbar().pickUp(new Earth(), 32);
+        player.getToolbar().pickUp(new Earth(), 52);
         player.getToolbar().addSquare(new TestSquare(), 10, 10);
         player.getToolbar().pickUp(new DimondShoes());
     }
