@@ -25,7 +25,7 @@ class Mainmenu extends JPanel{
 
             if(buttonName.equals("Begin")){
                 Mainframe.mainFrame.setVisible(false);
-                World.main(null);
+                World.setFrame();
             }
             if(buttonName.equals("Settings")){
                 Mainframe.mainFrame.setVisible(false);
