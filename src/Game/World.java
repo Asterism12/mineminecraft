@@ -378,7 +378,6 @@ public class World {
         //test
         player.getToolbar().pickUp(new Earth(), 32);
         player.getToolbar().pickUp(new Earth(), 52);
-        player.getToolbar().addSquare(new TestSquare(), 10, 10);
         player.getToolbar().pickUp(new DimondShoes());
     }
 
