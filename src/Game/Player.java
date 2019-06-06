@@ -3,6 +3,7 @@ package Game;
 import Thing.Square;
 
 import java.awt.*;
+import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,7 +50,13 @@ public class Player {
     }
 
     public synchronized void throwOutSquare() {
-        toolbar.getSquares()[handSquareNO] = null;
+        if (toolbar.getNumber()[handSquareNO] > 1)
+            toolbar.getNumber()[handSquareNO] -= 1;
+        else {
+            toolbar.getSquares()[handSquareNO] = null;
+            toolbar.getNumber()[handSquareNO] = 0;
+        }
+
     }
 
     public synchronized int getHandSquareNO() {
@@ -101,23 +108,19 @@ public class Player {
         }
     }
 
-    public void setHeadColor(Color color)
-    {
+    public void setHeadColor(Color color) {
         head = color;
     }
 
-    public void setBodyColor(Color color)
-    {
+    public void setBodyColor(Color color) {
         body = color;
     }
 
-    public void setArmColor(Color color)
-    {
+    public void setArmColor(Color color) {
         arm = color;
     }
 
-    public void setLegColor(Color color)
-    {
+    public void setLegColor(Color color) {
         leg = color;
     }
 

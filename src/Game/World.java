@@ -8,11 +8,14 @@ import Thing.Otherthing.BedRock;
 import Thing.Otherthing.Earth;
 import Thing.Otherthing.Ground;
 import Thing.Otherthing.TreeLeaves;
+import Thing.Weapon.Weapon;
 import Thing.ore.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class World {
     private static int seed = 0;
@@ -25,6 +28,7 @@ public class World {
 
     static Player player;//玩家类
     static Point.Double startLocation = new Point.Double(2048, 127.99);
+    static MThreadExecutor mThreadExecutor;
 
     public static final int PICSIZE = 20;//图片默认边长;
     public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
@@ -226,7 +230,7 @@ public class World {
 
         frame.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
                 Point p = e.getPoint();
                 p.x = p.x - 12;
@@ -258,19 +262,35 @@ public class World {
                         if (grid >= 54 && grid <= 62 && player.getChosenNumber() > 1)
                             return;
 
-                        player.getToolbar().addSquare(player.getChosenSquare(),grid,player.getChosenNumber());
+                        player.getToolbar().addSquare(player.getChosenSquare(), grid, player.getChosenNumber());
                         player.setChosenSquare(null);
                         player.setChosenNumber(0);
                         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
                     }
-                }else{
-                    Point squareLocation=mCanvas.getClickSquare(p);
-                    if(squareLocation==null) return;
-                    if(e.getButton()==MouseEvent.BUTTON1){
-                        worldSquare[squareLocation.x][squareLocation.y]=null;
+                } else {
+                    Point squareLocation = mCanvas.getClickSquare(p);
+                    if (squareLocation == null)
+                        return;
+                    if (e.getButton() == MouseEvent.BUTTON1) {
+                        if (worldSquare[squareLocation.x][squareLocation.y] != null) {
+                            mThreadExecutor.destroyThread(worldSquare[squareLocation.x][squareLocation.y],
+                                    squareLocation);
+                        }
+                    } else if (e.getButton() == MouseEvent.BUTTON2) {
+                        if (worldSquare[squareLocation.x][squareLocation.y] == null && player.getHandSquare().putDown) {
+                            worldSquare[squareLocation.x][squareLocation.y] = player.getHandSquare();
+                            player.throwOutSquare();
+                        }
                     }
                 }
             }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                if (e.getButton() == MouseEvent.BUTTON1)
+                    mThreadExecutor.cancelDestroy();
+            }
+
         });
     }
 
@@ -298,6 +318,7 @@ public class World {
     public static void worldCreator() {//世界创造器
         worldSquareCreator();
         player = new Player();
+        mThreadExecutor = new MThreadExecutor();
         UIinit();
         playerUpdater();
         worldUpdater();
@@ -305,7 +326,7 @@ public class World {
         //test
         player.getToolbar().pickUp(new TestSquare(), 32);
         player.getToolbar().pickUp(new TestSquare(), 52);
-        player.getToolbar().addSquare(new TestSquare(), 10,10);
+        player.getToolbar().addSquare(new TestSquare(), 10, 10);
         player.getToolbar().pickUp(new DimondShoes());
     }
 
