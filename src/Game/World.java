@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Synthetic.SyntheticTable;
 import Thing.*;
 
 import Thing.Armor.Armor;
@@ -389,6 +390,7 @@ public class World {
         UIinit();
         playerUpdater();
         worldUpdater();
+        SyntheticTable.initSyntheticTable();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);
