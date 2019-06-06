@@ -263,6 +263,11 @@ public class World {
                         player.setChosenNumber(0);
                         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
                     }
+                }else{
+                    Point squareLocation=mCanvas.getClickSquare(p);
+                    if(e.getButton()==MouseEvent.BUTTON1){
+                        worldSquare[squareLocation.x][squareLocation.y]=null;
+                    }
                 }
             }
         });

@@ -23,6 +23,8 @@ public class MCanvas extends JPanel {
         if (World.player.isOpenBag)
             printBag(g);
         printLocation(g);
+        g.setColor(Color.CYAN);
+        g.drawRect(getWidth() / 2 - 50, getHeight() / 2 - 70, 100, 100);
     }
 
     private void printBackGround(Graphics g) {//渲染背景
@@ -204,6 +206,13 @@ public class MCanvas extends JPanel {
         g.drawString(s, 20, 20);
     }
 
+    private boolean checkClikcBorder(Point p) {//在可触碰范围内
+        if (p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&
+                p.y > getHeight() / 2 - 70 && p.y < getHeight() / 2 + 30)
+            return true;
+        return false;
+    }
+
     int getGrid(Point p) {
         int sideLength = (int) (this.getHeight() * 0.06);
         int margins = (getWidth() - sideLength * 10) / 2;
@@ -244,6 +253,22 @@ public class MCanvas extends JPanel {
         }
 
         return -1;
+    }
+
+    Point getClickSquare(Point p) {
+        if (!checkClikcBorder(p))
+            return null;
+
+        Rectangle rectangle = World.checkBorder();
+        Point.Double location = World.player.getLocation();
+        int xbias, ybias;//人物相对于脚下物块的位置像素偏移量
+        xbias = (int) ((location.x - (int) location.x) * World.PICSIZE);
+        ybias = (int) ((location.y - (int) location.y) * World.PICSIZE);
+
+        int x=(p.x+xbias)/World.PICSIZE+rectangle.x;
+        int y=(p.y+ybias)/World.PICSIZE+rectangle.y;
+
+        return new Point(x,y);
     }
 
     MCanvas(int width, int height) {
