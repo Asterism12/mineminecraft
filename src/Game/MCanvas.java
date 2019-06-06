@@ -29,7 +29,7 @@ public class MCanvas extends JPanel {
             printPlayerBorder(g);
     }
 
-    private void printPlayerBorder(Graphics g){
+    private void printPlayerBorder(Graphics g) {
         g.drawRect(getWidth() / 2 - 50, getHeight() / 2 - 70, 100, 100);
     }
 
@@ -201,9 +201,13 @@ public class MCanvas extends JPanel {
             }
         }
         g.drawRect(margins + 410, 325 + sideLength, sideLength, sideLength);
-        if (squares[63] != null)
+        if (squares[63] != null) {
             g.drawImage(squares[63].getToolBarPic(),
                     margins + 410 + 3, 325 + sideLength + 3, null);
+            if (number[63] > 1)
+                g.drawString(String.valueOf(number[63]),
+                        margins + 410, 325 + 2 * sideLength - 3);
+        }
         g.drawString("Input", margins + 235, 310);
         g.drawString("Output", margins + 410, 310 + sideLength);
     }
