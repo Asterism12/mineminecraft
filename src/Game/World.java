@@ -26,6 +26,7 @@ public class World {
     static Player player;//玩家类
     static Point.Double startLocation = new Point.Double(2048, 127.99);
     static MThreadExecutor mThreadExecutor;
+    static Point canvasLocation=new Point(0,0);
 
     public static final int PICSIZE = 20;//图片默认边长;
     public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
@@ -34,174 +35,185 @@ public class World {
 
     private static void UIinit() {//UI初始化
         frame = new JFrame();
-        frame.setSize(1022, 856);
+        //frame.setSize(1300,1000);
+        frame.setSize(1006, 840);
+        frame.setResizable(false);
         mCanvas = new MCanvas(1000, 800);
+        mCanvas.setFocusable(true);
         frame.add(mCanvas);
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
-        //frame.setResizable(false);
         frame.setVisible(true);
     }
 
     //用种子生成一个世界地形，种子默认为0
     private static void worldSquareCreator() {
         worldSquare = new Square[4096][256];
-        int i=0,j=0;
+        int i = 0, j = 0;
 
 
         //生成土壤同时随机生成树，山
-        int groundLine=136;
-        int stoneLine=groundLine+8,treePoint=6,changePoint=16,minePoint=32;
-        for(i=0;i<=4000;i++){
+        int groundLine = 136;
+        int stoneLine = groundLine + 8, treePoint = 6, changePoint = 16, minePoint = 32;
+        for (i = 0; i <= 4000; i++) {
 
-            int earthChange=(int)(Math.random()*81)+1;
-            if(earthChange==4){ stoneLine++;groundLine++; }
-            else if(earthChange==3){ stoneLine--;groundLine--;}
-            if(i==changePoint){
-                int change=(int)(Math.random()*11);
-                if(change==0);
-                else if(change<=4){
-                    int length=(int)(Math.random()*8)+8;
-                    createSand(i,groundLine,minePoint,length,worldSquare);
+            int earthChange = (int) (Math.random() * 81) + 1;
+            if (earthChange == 4) {
+                stoneLine++;
+                groundLine++;
+            } else if (earthChange == 3) {
+                stoneLine--;
+                groundLine--;
+            }
+            if (i == changePoint) {
+                int change = (int) (Math.random() * 11);
+                if (change == 0) ;
+                else if (change <= 4) {
+                    int length = (int) (Math.random() * 8) + 8;
+                    createSand(i, groundLine, minePoint, length, worldSquare);
                     i += length - 1;
-                }
-                else {
-                    int length=(int)(Math.random()*36)+6;
+                } else {
+                    int length = (int) (Math.random() * 36) + 6;
                     createHill(i, groundLine, treePoint, minePoint, length, worldSquare);
                     i += length - 1;
                 }
-                treePoint=i+6;
-                minePoint=i+12;
-                changePoint=i+(int)(Math.random()*16)+20;
+                treePoint = i + 6;
+                minePoint = i + 12;
+                changePoint = i + (int) (Math.random() * 16) + 20;
                 continue;
+            } else if (i == treePoint) {
+                createTree(i, groundLine, (int) (Math.random() * 3) + 3, worldSquare);
+                treePoint += (int) (Math.random() * 8) + 8;
+            } else worldSquare[i][groundLine] = new Ground();
+            for (j = groundLine + 1; j < stoneLine; j++) {
+                int changeStone = (int) (Math.random() * 8) + groundLine;
+                if (j > changeStone) worldSquare[i][j] = new Stone();
+                else worldSquare[i][j] = new Earth();
             }
-            else if(i==treePoint){
-                createTree(i,groundLine,(int)(Math.random()*3)+3,worldSquare);
-                treePoint+=(int)(Math.random()*8)+8;
-            }
-            else worldSquare[i][groundLine]=new Ground();
-            for(j=groundLine+1;j<stoneLine;j++){
-                int changeStone=(int)(Math.random()*8)+groundLine;
-                if(j>changeStone)worldSquare[i][j]=new Stone();
-                else worldSquare[i][j]=new Earth();
-            }
-            if(i==minePoint){
-                int mineLength=stoneLine+8;
-                for(j=stoneLine;j<=240;j++){
-                    if(mineLength==j) {
-                        int mineSort=(int)(Math.random()*5);
+            if (i == minePoint) {
+                int mineLength = stoneLine + 8;
+                for (j = stoneLine; j <= 240; j++) {
+                    if (mineLength == j) {
+                        int mineSort = (int) (Math.random() * 5);
                         int mineDepth = (int) (Math.random() * 6) + 6;
-                        if (mineSort == 0) createDimondMine(i - 1 - mineDepth, j,mineDepth,worldSquare );
-                        else createMine(i - 1 - mineDepth, j,mineDepth,worldSquare );
-                        mineLength+=mineDepth;
-                        mineLength+=(int)(Math.random()*12)+20;
+                        if (mineSort == 0) createDimondMine(i - 1 - mineDepth, j, mineDepth, worldSquare);
+                        else createMine(i - 1 - mineDepth, j, mineDepth, worldSquare);
+                        mineLength += mineDepth;
+                        mineLength += (int) (Math.random() * 12) + 20;
                     }
-                    worldSquare[i][j]=new Stone();
+                    worldSquare[i][j] = new Stone();
                 }
-                minePoint+=(int)(Math.random()*12)+12;
-            }
-            else for(j=stoneLine;j<=240;j++)worldSquare[i][j]=new Stone();
+                minePoint += (int) (Math.random() * 12) + 12;
+            } else for (j = stoneLine; j <= 240; j++) worldSquare[i][j] = new Stone();
         }
         //出不去的屏障，边界设置为4080,240
-        i=0;
-        j=0;
-        while(i<=4000)worldSquare[i++][0]=new BedRock();
-        while(j<=240)worldSquare[0][j++]=new BedRock();
-        while(i>0)worldSquare[--i][240]=new BedRock();
-        while(j>0)worldSquare[4000][--j]=new BedRock();
+        i = 0;
+        j = 0;
+        while (i <= 4000) worldSquare[i++][0] = new BedRock();
+        while (j <= 240) worldSquare[0][j++] = new BedRock();
+        while (i > 0) worldSquare[--i][240] = new BedRock();
+        while (j > 0) worldSquare[4000][--j] = new BedRock();
     }
-    private static void createTree(int x,int y,int high,Square[][] worldSquare){//生成树
-        int halfLength=high/2,width=high;//树叶的半长和高
-        int i,j;
-        worldSquare[x][y]=new Earth();
-        for(i=1;i<=high;i++)worldSquare[x][y-i]=new Wood();
-        for(j=high+1;j<high+width;j++){
-            for(i=-halfLength;i<=halfLength;i++)worldSquare[x+i][y-j]=new TreeLeaves();
+
+    private static void createTree(int x, int y, int high, Square[][] worldSquare) {//生成树
+        int halfLength = high / 2, width = high;//树叶的半长和高
+        int i, j;
+        worldSquare[x][y] = new Earth();
+        for (i = 1; i <= high; i++) worldSquare[x][y - i] = new Wood();
+        for (j = high + 1; j < high + width; j++) {
+            for (i = -halfLength; i <= halfLength; i++) worldSquare[x + i][y - j] = new TreeLeaves();
         }
-        if(width>3&&j==high+width)for(i=-halfLength+1;i<=halfLength-1;i++)worldSquare[x+i][y-j]=new TreeLeaves();
+        if (width > 3 && j == high + width)
+            for (i = -halfLength + 1; i <= halfLength - 1; i++) worldSquare[x + i][y - j] = new TreeLeaves();
     }
-    private static void createHill(int x,int y,int treePoint,int minePoint,int length,Square[][] worldSquare){//生成山
-        int highAdd=1;
-        if(length>=30)highAdd=2;
-        int high=length/2,groundLine=y,stoneLine=y+8;
-        int i,j;
-        for(i=0;i<=length;i++) {
-            if (i<length/4) groundLine-=highAdd;
-            else if (i>length*3/4) groundLine+=highAdd;
-            if(i+x==treePoint){
-                World.createTree(i+x,groundLine,(int)(Math.random()*3)+3,worldSquare);
-                treePoint+=(int)(Math.random()*8)+8;
+
+    private static void createHill(int x, int y, int treePoint, int minePoint, int length, Square[][] worldSquare) {//生成山
+        int highAdd = 1;
+        if (length >= 30) highAdd = 2;
+        int high = length / 2, groundLine = y, stoneLine = y + 8;
+        int i, j;
+        for (i = 0; i <= length; i++) {
+            if (i < length / 4) groundLine -= highAdd;
+            else if (i > length * 3 / 4) groundLine += highAdd;
+            if (i + x == treePoint) {
+                World.createTree(i + x, groundLine, (int) (Math.random() * 3) + 3, worldSquare);
+                treePoint += (int) (Math.random() * 8) + 8;
+            } else worldSquare[i + x][groundLine] = new Ground();
+            for (j = groundLine + 1; j < stoneLine; j++) {
+                int changeStone = (int) (Math.random() * 8) + groundLine;
+                if (j > changeStone) worldSquare[i + x][j] = new Stone();
+                else worldSquare[i + x][j] = new Earth();
             }
-            else worldSquare[i+x][groundLine]=new Ground();
-            for(j=groundLine+1;j<stoneLine;j++){
-                int changeStone=(int)(Math.random()*8)+groundLine;
-                if(j>changeStone)worldSquare[i+x][j]=new Stone();
-                else worldSquare[i+x][j]=new Earth();
-            }
-            if(i+x==minePoint){
-                int mineLength=stoneLine+12;
-                for(j=stoneLine;j<=240;j++){
-                    if(mineLength==j) {
-                        int mineSort=(int)(Math.random()*5);
+            if (i + x == minePoint) {
+                int mineLength = stoneLine + 12;
+                for (j = stoneLine; j <= 240; j++) {
+                    if (mineLength == j) {
+                        int mineSort = (int) (Math.random() * 5);
                         int mineDepth = (int) (Math.random() * 6) + 6;
-                        if (mineSort == 0) createDimondMine(i+x - 1 - mineDepth, j,mineDepth,worldSquare );
-                        else createMine(i+x - 1 - mineDepth, j,mineDepth,worldSquare );
-                        mineLength+=mineDepth;
-                        mineLength+=(int)(Math.random()*12)+20;
+                        if (mineSort == 0) createDimondMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
+                        else createMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
+                        mineLength += mineDepth;
+                        mineLength += (int) (Math.random() * 12) + 20;
                     }
-                    worldSquare[i+x][j]=new Stone();
+                    worldSquare[i + x][j] = new Stone();
                 }
-                minePoint+=(int)(Math.random()*12)+12;
-            }
-            else for(j=stoneLine;j<=240;j++)worldSquare[i+x][j]=new Stone();
+                minePoint += (int) (Math.random() * 12) + 12;
+            } else for (j = stoneLine; j <= 240; j++) worldSquare[i + x][j] = new Stone();
         }
     }
-    private static void createSand(int x,int y,int minePoint,int length,Square[][] worldSquare){//生成沙堆
-        int i,j,sandLine=y,stoneLine=y+8;
-        int earthChange=(int)(Math.random()*10)+1;
-        if(earthChange==4){ stoneLine++;sandLine++; }
-        else if(earthChange==3){ stoneLine--;sandLine--;}
-        for(i=0;i<length;i++){
-            for(j=sandLine;j<stoneLine;j++){
-                int changeStone=(int)(Math.random()*8)+sandLine;
-                if(j>changeStone)worldSquare[i+x][j]=new Stone();
-                else worldSquare[i+x][j]=new Sand();
+
+    private static void createSand(int x, int y, int minePoint, int length, Square[][] worldSquare) {//生成沙堆
+        int i, j, sandLine = y, stoneLine = y + 8;
+        int earthChange = (int) (Math.random() * 10) + 1;
+        if (earthChange == 4) {
+            stoneLine++;
+            sandLine++;
+        } else if (earthChange == 3) {
+            stoneLine--;
+            sandLine--;
+        }
+        for (i = 0; i < length; i++) {
+            for (j = sandLine; j < stoneLine; j++) {
+                int changeStone = (int) (Math.random() * 8) + sandLine;
+                if (j > changeStone) worldSquare[i + x][j] = new Stone();
+                else worldSquare[i + x][j] = new Sand();
             }
-            if(i+x==minePoint){
-                int mineLength=stoneLine+12;
-                for(j=stoneLine;j<=240;j++){
-                    if(mineLength==j) {
-                        int mineSort=(int)(Math.random()*5);
+            if (i + x == minePoint) {
+                int mineLength = stoneLine + 12;
+                for (j = stoneLine; j <= 240; j++) {
+                    if (mineLength == j) {
+                        int mineSort = (int) (Math.random() * 5);
                         int mineDepth = (int) (Math.random() * 6) + 6;
-                        if (mineSort == 0) createDimondMine(i+x - 1 - mineDepth, j,mineDepth,worldSquare );
-                        else createMine(i+x - 1 - mineDepth, j,mineDepth,worldSquare );
-                        mineLength+=mineDepth;
-                        mineLength+=(int)(Math.random()*12)+20;
+                        if (mineSort == 0) createDimondMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
+                        else createMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
+                        mineLength += mineDepth;
+                        mineLength += (int) (Math.random() * 12) + 20;
                     }
-                    worldSquare[i+x][j]=new Stone();
+                    worldSquare[i + x][j] = new Stone();
                 }
-                minePoint+=(int)(Math.random()*12)+12;
-            }
-            else for(j=stoneLine;j<=240;j++)worldSquare[i+x][j]=new Stone();
+                minePoint += (int) (Math.random() * 12) + 12;
+            } else for (j = stoneLine; j <= 240; j++) worldSquare[i + x][j] = new Stone();
         }
     }
-    private static void createMine(int x,int y,int high,Square[][] worldSquare){//生成铁矿，夹杂石头
-        int i,j;
-        for(j=0;j<high;j++){
-            for(i=0;i<high;i++){
-                int judge=(int)(Math.random()*2);
-                if(judge==0)worldSquare[x+i][y-j]=new Stone();
-                else worldSquare[x+i][y-j]=new IronStone();
+
+    private static void createMine(int x, int y, int high, Square[][] worldSquare) {//生成铁矿，夹杂石头
+        int i, j;
+        for (j = 0; j < high; j++) {
+            for (i = 0; i < high; i++) {
+                int judge = (int) (Math.random() * 2);
+                if (judge == 0) worldSquare[x + i][y - j] = new Stone();
+                else worldSquare[x + i][y - j] = new IronStone();
             }
         }
     }
-    private static void createDimondMine(int x,int y,int high,Square[][] worldSquare){//生成钻石矿，夹杂铁矿、石头
-        int i,j;
-        for(j=0;j<high;j++){
-            for(i=0;i<high;i++){
-                int judge=(int)(Math.random()*5);
-                if(judge==0)worldSquare[x+i][y-j]=new Stone();
-                else if(judge<=2)worldSquare[x+i][y-j]=new IronStone();
-                else worldSquare[x+i][y-j]=new DimondStone();
+
+    private static void createDimondMine(int x, int y, int high, Square[][] worldSquare) {//生成钻石矿，夹杂铁矿、石头
+        int i, j;
+        for (j = 0; j < high; j++) {
+            for (i = 0; i < high; i++) {
+                int judge = (int) (Math.random() * 5);
+                if (judge == 0) worldSquare[x + i][y - j] = new Stone();
+                else if (judge <= 2) worldSquare[x + i][y - j] = new IronStone();
+                else worldSquare[x + i][y - j] = new DimondStone();
             }
         }
     }
@@ -218,7 +230,7 @@ public class World {
 
     private static void playerUpdater() {
         //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块
-        frame.addKeyListener(new KeyAdapter() {
+        mCanvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
@@ -260,13 +272,12 @@ public class World {
             }
         });
 
-        frame.addMouseListener(new MouseAdapter() {
+        mCanvas.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mouseClicked(e);
+                calibrator(e.getPoint());
                 Point p = e.getPoint();
-                p.x = p.x - 12;
-                p.y = p.y - 44;
                 if (player.isOpenBag) {
                     int grid = mCanvas.getGrid(p);
                     if (grid == -1)
@@ -316,6 +327,7 @@ public class World {
                     }
                 }
             }
+
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
@@ -360,6 +372,12 @@ public class World {
         player.getToolbar().pickUp(new TestSquare(), 52);
         player.getToolbar().addSquare(new TestSquare(), 10, 10);
         player.getToolbar().pickUp(new DimondShoes());
+    }
+
+    private static void calibrator(Point p){//用于校准组件和屏幕的相对位置
+        Point mouseOnScreen=MouseInfo.getPointerInfo().getLocation();
+        canvasLocation.x=p.x-mouseOnScreen.x;
+        canvasLocation.y=p.y-mouseOnScreen.y;
     }
 
     public static void main(String[] args) {

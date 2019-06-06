@@ -23,7 +23,8 @@ public class MThreadExecutor {
         }
         if (squareAtk >= square.breakLevel) {
             squareLocation = location;
-            long delay = 500 - (int) ((double) (squareAtk - square.breakLevel) / square.breakLevel) * 500;
+            int breakLevel = square.breakLevel > 0 ? square.breakLevel : 1;
+            long delay = 500 - (int) ((double) (squareAtk - breakLevel) / squareAtk) * 500;
             oldFuture = executorService.schedule(new Destroy(), delay, TimeUnit.MILLISECONDS);
         }
     }

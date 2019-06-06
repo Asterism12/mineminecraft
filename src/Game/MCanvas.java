@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.xml.crypto.dsig.Transform;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
@@ -57,7 +58,9 @@ public class MCanvas extends JPanel {
 
     private void drawPlayer(Graphics g, Point p, double size) {//地图中的玩家size为1
         Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-        Point bodyLocation = new Point(p.x, p.y - (int) (26 * size));//在屏幕正中心绘制玩家，玩家占2格，碰撞箱只有脚底的点
+        mouseLocation.x = mouseLocation.x + World.canvasLocation.x;
+        mouseLocation.y = mouseLocation.y + World.canvasLocation.y;
+        Point bodyLocation = new Point(p.x, p.y - (int) (26 * size));
         Point legLocation = new Point(p.x, p.y - (int) (10 * size));
         Graphics2D g2d = (Graphics2D) g;
         double x = mouseLocation.x - bodyLocation.x;
@@ -265,10 +268,10 @@ public class MCanvas extends JPanel {
         xbias = (int) ((location.x - (int) location.x) * World.PICSIZE);
         ybias = (int) ((location.y - (int) location.y) * World.PICSIZE);
 
-        int x=(p.x+xbias)/World.PICSIZE+rectangle.x;
-        int y=(p.y+ybias)/World.PICSIZE+rectangle.y;
+        int x = (p.x + xbias) / World.PICSIZE + rectangle.x;
+        int y = (p.y + ybias) / World.PICSIZE + rectangle.y;
 
-        return new Point(x,y);
+        return new Point(x, y);
     }
 
     MCanvas(int width, int height) {
