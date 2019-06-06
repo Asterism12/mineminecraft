@@ -54,8 +54,8 @@ public class World {
         //生成土壤同时随机生成树，山
         int groundLine = 136;
         int stoneLine = groundLine + 8, treePoint = 6, changePoint = 16, minePoint = 32;
+        double judgex=2048,judgey=127.99;
         for (i = 0; i <= 4000; i++) {
-
             int earthChange = (int) (Math.random() * 81) + 1;
             if (earthChange == 4) {
                 stoneLine++;
@@ -132,8 +132,8 @@ public class World {
         int high = length / 2, groundLine = y, stoneLine = y + 8;
         int i, j;
         for (i = 0; i <= length; i++) {
-            if (i < length / 4) groundLine -= highAdd;
-            else if (i > length * 3 / 4) groundLine += highAdd;
+            if (i < length / 4) {groundLine -= highAdd; stoneLine -= highAdd;}
+            else if (i > length * 3 / 4) {groundLine += highAdd; stoneLine += highAdd;}
             if (i + x == treePoint) {
                 World.createTree(i + x, groundLine, (int) (Math.random() * 3) + 3, worldSquare);
                 treePoint += (int) (Math.random() * 8) + 8;
@@ -370,6 +370,9 @@ public class World {
 
     public static void worldCreator() {//世界创造器
         worldSquareCreator();
+        int judgex=2048,judgey=150;
+        while(worldSquare[judgex][judgey]!=null)judgey--;
+        startLocation = new Point.Double(judgex, judgey);
         player = new Player();
         mThreadExecutor = new MThreadExecutor();
         UIinit();
