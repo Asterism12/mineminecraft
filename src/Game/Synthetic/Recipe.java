@@ -1,6 +1,7 @@
 package Game.Synthetic;
 
 import Thing.Square;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 public class Recipe {
     private int[] table = new int[9];
@@ -8,9 +9,11 @@ public class Recipe {
     Recipe(Square[] curTable) {
         for (int i = 0; i < 9; i++) {
             if (curTable[i] == null) {
-                table[i] = 0;
+                table[i] = -1;
+                System.out.println("empty!");
             } else {
                 table[i] = curTable[i].id;
+                System.out.println("not empty!" + curTable[i].id);
             }
         }
     }
@@ -18,7 +21,11 @@ public class Recipe {
     Recipe(Square[][] curTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                table[3 * i + j] = curTable[j][i].id;
+                if (curTable[j][i] == null) {
+                    table[3 * i + j] = -1;
+                } else {
+                    table[3 * i + j] = curTable[j][i].id;
+                }
             }
         }
     }
@@ -27,8 +34,10 @@ public class Recipe {
     public int hashCode() {
         int sum = 0;
         for (int i = 0; i < 9; i++) {
-            sum += table[i] * table[i] * i;
+            sum += table[i] * table[i] * (i + 13);
+            System.out.println(sum);
         }
+        System.out.println(sum);
         return sum;
     }
 
@@ -42,6 +51,7 @@ public class Recipe {
                 return false;
             }
         }
-        return false;
+
+        return true;
     }
 }
