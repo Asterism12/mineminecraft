@@ -398,6 +398,7 @@ public class World {
         UIinit();
         playerUpdater();
         worldUpdater();
+        SyntheticTable.initSyntheticTable();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);
