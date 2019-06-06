@@ -3,25 +3,86 @@ package Game;
 import Thing.Square;
 
 public class Toolbar {
-    private Square[] squares = new Square[50];//前10个是工具栏内的物品，后40个是背包内的物品
+    //前10个是工具栏内的物品，然后40个是背包内的物品,然后4个是护具，最后10个是工作台
+    private Square[] squares = new Square[64];
+    private int[] number = new int[64];
 
     public synchronized void pickUp(Square square) {//捡起方块
+        if (square == null) return;
         if (square.takeUp) {
             for (int i = 0; i < 50; i++) {
                 if (squares[i] == null) {
                     squares[i] = square;
+                    number[i] = 1;
+                    break;
+                }
+                if (squares[i].getClass().equals(square.getClass()) && square.pile && number[i] <= 64) {
+                    number[i]++;
                     break;
                 }
             }
         }
     }
 
-    public synchronized Square[] getSquares() {
+    public synchronized void pickUp(Square square, int number) {
+        if (square == null || (!square.pile&&number>1)) return;
+        if (square.takeUp) {
+            for (int i = 0; i < 50; i++) {
+                if (squares[i] == null) {
+                    squares[i] = square;
+                    this.number[i] = number;
+                    break;
+                }
+                if (squares[i].getClass().equals(square.getClass()) && this.number[i] <= 64 - number) {
+                    this.number[i] += number;
+                    break;
+                }
+            }
+        }
+    }
+
+    public int[] getNumber() {
+        return number;
+    }
+
+    public void setNumber(int[] number) {
+        this.number = number;
+    }
+
+    synchronized Square[] getSquares() {
         return squares;
     }
 
-    public synchronized void testUP(Square square,int i){//测试函数，向第i个位置放置一个square
-        if(i>=0&&i<40)
-            squares[i]=square;
+    synchronized void addSquare(Square square, int i, int number) {//向第i个位置放置square
+        if (i >= 0 && i < 64) {
+            if (squares[i] == null) {
+                squares[i] = square;
+                this.number[i] = number;
+                return;
+            }
+            if (square.getClass().equals(squares[i].getClass()) && square.pile) {
+                if (number + this.number[i] <= 64)
+                    this.number[i] = this.number[i] + number;
+                else {
+                    int tmp = this.number[i];
+                    this.number[i] = 64;
+                    pickUp(square, number + tmp - 64);
+                }
+            } else {//exchange
+                Square square1 = squares[i];
+                int square1number = this.number[i];
+                squares[i] = square;
+                this.number[i] = number;
+                System.out.println(squares[0]+" "+this.number[0]);
+                pickUp(square1, square1number);;
+                System.out.println(squares[0]+" "+this.number[0]);
+            }
+        }
+    }
+
+    Toolbar() {
+        for (int i = 0; i < 64; i++) {
+            number[i] = 0;
+        }
     }
 }
