@@ -95,7 +95,6 @@ public class Toolbar {
     //将Table中内容清空
     synchronized void tableClear() {
         for (int i = 54; i <= 62; i++) {
-            System.out.println("Cleared!");
             squares[i] = null;
             number[i] = 0;
         }
