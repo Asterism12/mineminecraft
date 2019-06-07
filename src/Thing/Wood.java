@@ -22,7 +22,7 @@ public class Wood extends Square{
 		}
 	}
 	public Wood(){
-		id=0;
+		id=7;
 		breakLevel=1;
 		weight=false;
 		liquid=false;
