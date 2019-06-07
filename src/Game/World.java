@@ -12,12 +12,8 @@ import Thing.Otherthing.TreeLeaves;
 import Thing.Ore.*;
 
 import javax.swing.*;
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.net.MalformedURLException;
 
 public class World {
     private static int seed = 0;
@@ -243,7 +239,7 @@ public class World {
     }
 
     private static void playerUpdater() {
-        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围
+        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围,M切换音乐
         mCanvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -269,6 +265,9 @@ public class World {
                         break;
                     case 81:
                         player.throwOutSquare();
+                        break;
+                    case 77:
+                        MusicThreadExecutor.musicController();
                         break;
                     default:
                         if (e.getKeyCode() >= 49 && e.getKeyCode() <= 58)
@@ -392,6 +391,8 @@ public class World {
     }
 
     public static void worldCreator() {//世界创造器
+        SyntheticTable.initSyntheticTable();
+        MusicThreadExecutor.initMusicController();
         worldSquareCreator();
         int judgex = 2048, judgey = 150;
         while (worldSquare[judgex][judgey] != null) judgey--;
@@ -401,8 +402,6 @@ public class World {
         UIinit();
         playerUpdater();
         worldUpdater();
-        SyntheticTable.initSyntheticTable();
-        MusicThreadExecutor.initMusiccontroller();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);

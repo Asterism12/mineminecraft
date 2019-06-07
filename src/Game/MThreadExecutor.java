@@ -22,21 +22,24 @@ public class MThreadExecutor {
             oldFuture = null;
         }
         if (squareAtk >= square.breakLevel) {
+            MusicThreadExecutor.loopStoneSound();
             squareLocation = location;
             int breakLevel = square.breakLevel > 0 ? square.breakLevel : 1;
-            long delay = 500 - (int) ((double) (squareAtk - breakLevel) / squareAtk) * 500;
+            long delay = 600 - (int) ((double) (squareAtk - breakLevel) / squareAtk) * 500;
             oldFuture = executorService.schedule(new Destroy(), delay, TimeUnit.MILLISECONDS);
         }
     }
 
     synchronized void cancelDestroy() {
         if (oldFuture != null) {
+            MusicThreadExecutor.stopStoneSound();
             oldFuture.cancel(true);
             oldFuture = null;
         }
     }
 
     void destroy() {
+        MusicThreadExecutor.stopStoneSound();
         World.player.getToolbar().pickUp(World.worldSquare[squareLocation.x][squareLocation.y]);
         World.worldSquare[squareLocation.x][squareLocation.y] = null;
         oldFuture = null;
