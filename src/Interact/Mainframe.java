@@ -15,7 +15,7 @@ public class Mainframe {
     static JFrame setFrame;
     static private JPanel mainPanel;
     static private JPanel setPanel;
-    public static void main(String[] args) throws FileNotFoundException, IOException
+    public static void main(String[] args) throws IOException
     {
         World.worldCreator();
         mainFrame = new JFrame("Minecraft 2D version");

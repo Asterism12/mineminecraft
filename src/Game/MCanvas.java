@@ -221,10 +221,8 @@ public class MCanvas extends JPanel {
     }
 
     private boolean checkClikcBorder(Point p) {//在可触碰范围内
-        if (p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&
-                p.y > getHeight() / 2 - 70 && p.y < getHeight() / 2 + 30)
-            return true;
-        return false;
+        return p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&
+                p.y > getHeight() / 2 - 70 && p.y < getHeight() / 2 + 30;
     }
 
     int getGrid(Point p) {

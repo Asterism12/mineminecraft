@@ -13,15 +13,6 @@ import java.util.HashMap;
 public class SyntheticTable {
     private static HashMap<Recipe, TableOutput> map = new HashMap<>();
 
-    private static void getEmptySquares(Square[][] squares) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                squares[i][j] = null;
-            }
-        }
-        return;
-    }
-
     public static boolean isRecipe(Square[] table) {
         Recipe r = new Recipe(table);
         return map.keySet().contains(r);

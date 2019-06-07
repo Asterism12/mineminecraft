@@ -38,7 +38,7 @@ class Mainmenu extends JPanel{
         }
     }
 
-    void paintPanel(Graphics g) throws IOException,FileNotFoundException //add the components
+    void paintPanel(Graphics g) throws IOException //add the components
     {
         new Mainmenu().registerCustomeFont("font/Deeko_Comic.ttf");
 
