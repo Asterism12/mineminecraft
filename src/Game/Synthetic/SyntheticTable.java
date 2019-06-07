@@ -45,6 +45,11 @@ public class SyntheticTable {
         map.put(new Recipe(new int[]{0, 6, 0, 0, 1, 0, 0, 1, 0}), new TableOutput(new WoodSpade(), 1));//5
         map.put(new Recipe(new int[]{0, 6, 0, 0, 6, 0, 0, 1, 0}), new TableOutput(new WoodSword(), 1));//6
 
+        map.put(new Recipe(new int[]{10, 10, 0, 10, 1, 0, 0, 1, 0}), new TableOutput(new StoneAxe(), 1));//3-s
+        map.put(new Recipe(new int[]{10, 10, 10, 0, 1, 0, 0, 1, 0}), new TableOutput(new StonePick(), 1));//4-s
+        map.put(new Recipe(new int[]{0, 10, 0, 0, 1, 0, 0, 1, 0}), new TableOutput(new StoneSpade(), 1));//5-s
+        map.put(new Recipe(new int[]{0, 10, 0, 0, 10, 0, 0, 1, 0}), new TableOutput(new StoneSword(), 1));//6-s
+
         map.put(new Recipe(new int[]{21, 21, 0, 21, 1, 0, 0, 1, 0}), new TableOutput(new IronAxe(), 1));//3-i
         map.put(new Recipe(new int[]{21, 21, 21, 0, 1, 0, 0, 1, 0}), new TableOutput(new IronPick(), 1));//4-i
         map.put(new Recipe(new int[]{0, 21, 0, 0, 1, 0, 0, 1, 0}), new TableOutput(new IronSpade(), 1));//5-i
