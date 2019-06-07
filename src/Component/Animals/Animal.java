@@ -34,10 +34,7 @@ public class Animal
         dirTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if((random.nextInt(10)+1)%2 == 1)
-                    dir = true;
-                else
-                    dir = false;
+                dir = (random.nextInt(10) + 1) % 2 == 1;
             }
         },0, 5*World.FPS);
 

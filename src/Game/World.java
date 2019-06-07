@@ -1,5 +1,6 @@
 package Game;
 
+import Component.AnimalState.AnimalState;
 import Game.Synthetic.SyntheticTable;
 import Thing.*;
 
@@ -24,10 +25,14 @@ public class World {
     private static JFrame frame;//UI组件
     static MCanvas mCanvas;
 
-    public static Player player;//玩家类
-    public static Point.Double startLocation = new Point.Double(2048, 127.99);
     static MThreadExecutor mThreadExecutor;
     static Point canvasLocation = new Point(0, 0);
+
+    public static java.util.Timer timer=new java.util.Timer();//物块更新Timer
+    public static java.util.Timer slowTimer=new java.util.Timer();//慢的Timer，用于更新动物行走方向等
+    public static Player player;//玩家类
+    public static AnimalState animalState=new AnimalState();//动物类
+    public static Point.Double startLocation = new Point.Double(2048, 127.99);
 
     public static final int PICSIZE = 20;//图片默认边长;
     public static final int TOOLBARSPICIZE = 42;//工具栏中的图片默认边长
@@ -229,6 +234,20 @@ public class World {
     }
 
     private static void worldUpdater() {
+        timer.schedule(new java.util.TimerTask(){
+            @Override
+            public void run() {
+                player.updatePlayer();
+            }
+        },0,World.FPS);
+
+        slowTimer.schedule(new java.util.TimerTask(){
+            @Override
+            public void run() {
+                //do some thing
+            }
+        },0,5000);
+
         ActionListener update = new ActionListener() {//刷新世界
             @Override
             public void actionPerformed(ActionEvent e) {

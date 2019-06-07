@@ -17,7 +17,7 @@ public class Mainframe {
     static JFrame setFrame;
     static private JPanel mainPanel;
     static private JPanel setPanel;
-    public static void main(String[] args) throws FileNotFoundException, IOException
+    public static void main(String[] args) throws IOException
     {
         AnimalState.getAnimalList().add(new Cow());
         World.main(null);
