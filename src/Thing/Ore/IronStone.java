@@ -23,7 +23,7 @@ public class IronStone extends Square {
 	}
 	public IronStone(){
 		id=20;
-		breakLevel=3;
+		breakLevel=2;
 		weight=false;
 		liquid=false;
 		pile=true;
@@ -31,6 +31,7 @@ public class IronStone extends Square {
 		takeUp=true;
 		through=false;
 		putDown=true;
+		digType = 1;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
 	}

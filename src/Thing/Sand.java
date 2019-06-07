@@ -29,6 +29,7 @@ public class Sand extends Square{
         takeUp=true;
         through=false;
         putDown=true;
+        digType = 3;
         this.pic = material;
         this.toolBarPic = toolBarPicMaterial;
     }

@@ -1,20 +1,21 @@
-package Thing;
+package Thing.Ore;
 
 import Game.World;
+import Thing.Square;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Wood extends Square {
+//钻石矿类
+public class DiamondOre extends Square {
     private static Image material;
     private static Image toolBarPicMaterial;
 
     static {
         try {
-            material = ImageIO.read(new File("image/Wood.png"))
+            material = ImageIO.read(new File("image/DiamondStone.png"))
                     .getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
             toolBarPicMaterial = material.getScaledInstance(
                     World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -23,19 +24,18 @@ public class Wood extends Square {
         }
     }
 
-    public Wood() {
-        id = 7;
-        breakLevel = 0;
+    public DiamondOre() {
+        id = 30;
+        breakLevel = 2;
         weight = false;
         liquid = false;
         pile = true;
         food = false;
         takeUp = true;
-        through = true;
+        through = false;
         putDown = true;
-        digType = 2;
-        this.pic = material;
-        this.toolBarPic = toolBarPicMaterial;
+        digType = 1;
+        pic = material;
+        toolBarPic = toolBarPicMaterial;
     }
 }
-
