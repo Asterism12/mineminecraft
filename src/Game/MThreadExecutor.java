@@ -28,10 +28,13 @@ public class MThreadExecutor {
             //old version
             //long delay = 1000 - (int) ((double) (squareAtk - breakLevel) / squareAtk) * 200;
             long delay;
-            if (tool != null&&tool.digKind==square.digType) {
+            if (tool != null && tool.digKind == square.digType) {
                 delay = 1000 - tool.digSpeed * 200;
             } else {
                 delay = 1000 + square.breakLevel * 200;
+            }
+            if (delay < 0) {
+                delay = 0;
             }
             //System.out.println("delay:"+delay);
             oldFuture = executorService.schedule(new Destroy(), delay, TimeUnit.MILLISECONDS);
