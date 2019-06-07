@@ -239,7 +239,7 @@ public class World {
     }
 
     private static void playerUpdater() {
-        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围
+        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围,M切换音乐
         mCanvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -265,6 +265,9 @@ public class World {
                         break;
                     case 81:
                         player.throwOutSquare();
+                        break;
+                    case 77:
+                        MusicThreadExecutor.musicController();
                         break;
                     default:
                         if (e.getKeyCode() >= 49 && e.getKeyCode() <= 58)
@@ -318,7 +321,9 @@ public class World {
 
                         if (grid == 63 && square != null) {
                             player.getToolbar().tableClear();
-                            System.out.println("cleared!");
+                        }
+                        if (grid < 63 && grid >= 53) {
+                            player.getToolbar().checkRecipe();
                         }
                     } else {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
@@ -335,7 +340,6 @@ public class World {
 
                     }
                     if (grid < 63 && grid >= 53) {
-                        System.out.println("checked!");
                         player.getToolbar().checkRecipe();
                     }
                 } else {
@@ -366,7 +370,6 @@ public class World {
 
         });
     }
-
     static Rectangle checkBorder() {//判断哪些区块需要载入
         Point.Double playerLocation = player.getLocation();
         Rectangle rectangle = new Rectangle();
@@ -389,6 +392,8 @@ public class World {
     }
 
     public static void worldCreator() {//世界创造器
+        SyntheticTable.initSyntheticTable();
+        MusicThreadExecutor.initMusicController();
         worldSquareCreator();
         int judgex = 2048, judgey = 150;
         while (worldSquare[judgex][judgey] != null) judgey--;
@@ -398,13 +403,12 @@ public class World {
         UIinit();
         playerUpdater();
         worldUpdater();
-        SyntheticTable.initSyntheticTable();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);
         player.getToolbar().pickUp(new Earth(), 52);
         player.getToolbar().pickUp(new DimondShoes());
-        player.getToolbar().pickUp(new Dimond(),30);
+        player.getToolbar().pickUp(new Dimond(), 30);
     }
 
     private static void calibrator(Point p) {//用于校准组件和屏幕的相对位置

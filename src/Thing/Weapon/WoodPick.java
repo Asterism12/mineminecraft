@@ -8,7 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class WoodPick extends Square {
+public class WoodPick extends Weapon{
 	private static Image material;
 	private static Image toolBarPicMaterial;
 	static {
@@ -31,6 +31,7 @@ public class WoodPick extends Square {
 		takeUp=true;
 		through=false;
 		putDown=false;
+		squareAtk=3;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
 	}
