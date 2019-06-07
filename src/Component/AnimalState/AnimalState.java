@@ -11,7 +11,6 @@ import java.util.Timer;
 
 public class AnimalState {
     private static ArrayList<Animal> animals = new ArrayList<>();
-    private static Timer timer = new Timer();
     private static Random random = new Random(System.currentTimeMillis());
 
     static{

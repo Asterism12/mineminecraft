@@ -9,11 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MCanvas extends JPanel {
     private Image bg;//背景图片
@@ -224,9 +221,23 @@ public class MCanvas extends JPanel {
         g.drawString(s, 20, 20);
     }
 
+    private void printAnimal(Graphics g) {
+        Rectangle rectangle = World.checkBorder();
+        Point.Double location = World.player.getLocation();
+        int xbias = (int) ((location.x - (int) location.x) * World.PICSIZE);
+        int ybias = (int) ((location.y - (int) location.y) * World.PICSIZE);
+        ArrayList<Animal> animals = AnimalState.getAnimalList();
+        for (Animal animal : animals) {
+            if (rectangle.contains(animal.getLocation())) {
+                double i = animal.getLocation().x - location.x;
+                double j = animal.getLocation().y - location.y;
+                g.drawImage(animal.getImage(),
+                        (int)i * World.PICSIZE - xbias, (int)j * World.PICSIZE - ybias, null);
+            }
+        }
+    }
 
-
-    private boolean checkClikcBorder(Point p) {//在可触碰范围内
+    private boolean checkClickBorder(Point p) {//在可触碰范围内
         return p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&
                 p.y > getHeight() / 2 - 70 && p.y < getHeight() / 2 + 30;
     }
@@ -274,7 +285,7 @@ public class MCanvas extends JPanel {
     }
 
     Point getClickSquare(Point p) {
-        if (!checkClikcBorder(p))
+        if (!checkClickBorder(p))
             return null;
 
         Rectangle rectangle = World.checkBorder();
