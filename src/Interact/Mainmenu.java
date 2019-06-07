@@ -34,8 +34,9 @@ class Mainmenu extends JPanel{
             }
             if(buttonName.equals("MoreInfo"))
                 System.out.println("More Info");
-            if(buttonName.equals("Exit"))
-                System.out.println("Exit");
+            if(buttonName.equals("Exit")) {
+                System.exit(0);
+            }
         }
     }
 

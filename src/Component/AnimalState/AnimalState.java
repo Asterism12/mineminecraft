@@ -5,7 +5,6 @@ import Component.Animals.Cow;
 import Game.World;
 import Thing.Square;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
