@@ -199,14 +199,13 @@ public class MCanvas extends JPanel {
         g.setColor(Color.WHITE);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (squares[54 + 3 * i + j] != null){
+                if (squares[54 + 3 * i + j] != null) {
                     g.drawImage(squares[54 + 3 * i + j].getToolBarPic(),
                             margins + 250 + j * sideLength + 3, 325 + i * sideLength + 3, null);
-                    if(number[54+3*i+j]>1){
-                        g.drawString(String.valueOf(number[54+3*i+j]),margins + 250 + j * sideLength + 3,325 + (i+1) * sideLength - 3);
+                    if (number[54 + 3 * i + j] > 1) {
+                        g.drawString(String.valueOf(number[54 + 3 * i + j]), margins + 250 + j * sideLength + 3, 325 + (i + 1) * sideLength - 3);
                     }
                 }
-
             }
         }
 
@@ -242,7 +241,7 @@ public class MCanvas extends JPanel {
                 //System.out.println(animal.getLocation());
                 //System.out.println(i+" "+j+" "+ rectangle.y);
                 g.drawImage(animal.getImage(),
-                        (int)i * World.PICSIZE - xbias, (int)j * World.PICSIZE - ybias, null);
+                        (int) i * World.PICSIZE - xbias, (int) j * World.PICSIZE - ybias, null);
             }
         }
     }
