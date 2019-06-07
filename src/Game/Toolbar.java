@@ -75,10 +75,7 @@ public class Toolbar {
                 int square1number = this.number[i];
                 squares[i] = square;
                 this.number[i] = number;
-                System.out.println(squares[0] + " " + this.number[0]);
                 pickUp(square1, square1number);
-
-                System.out.println(squares[0] + " " + this.number[0]);
             }
         }
     }
