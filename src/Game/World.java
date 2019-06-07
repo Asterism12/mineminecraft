@@ -245,6 +245,7 @@ public class World {
             @Override
             public void run() {
                 //do some thing
+                AnimalState.updateAnimalList();
             }
         },0,5000);
 
