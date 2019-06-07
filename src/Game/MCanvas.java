@@ -19,9 +19,6 @@ import java.util.TimerTask;
 
 public class MCanvas extends JPanel {
     private Image bg;//背景图片
-    private Timer imgTimer = new Timer();
-    private BufferedImage image;
-    private boolean standing;
 
     @Override
     public void paint(Graphics g) {
@@ -30,7 +27,6 @@ public class MCanvas extends JPanel {
         printWorld(g);
         printPlayer(g);
         printToolbar(g);
-        printAnimal(g);
         if (World.player.isOpenBag)
             printBag(g);
         printLocation(g);
@@ -230,39 +226,7 @@ public class MCanvas extends JPanel {
         g.drawString(s, 20, 20);
     }
 
-    private void printAnimal(Graphics g)
-    {
-        ArrayList<Animal> animals = AnimalState.getAnimalList();
-        for(int i = 0;i < animals.size();i++)
-        {
-            Animal animal = animals.get(i);
-            standing = true;
-            Point.Double location = animal.getLocation();
 
-            imgTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    int xbias, ybias;//人物相对于脚下物块的位置像素偏移量
-                    xbias = (int) ((location.x - (int) World.player.getLocation().x));
-                    ybias = (int) ((location.y - (int) World.player.getLocation().y));
-
-                    if(Math.abs(xbias) <= 500 && Math.abs(ybias) <= 400) {
-                        if(standing) {
-                            g.drawImage(animal.getImage1(),xbias,ybias,null);
-                            standing = false;
-                        }
-                        else
-                        {
-                            g.drawImage(animal.getImage2(),xbias,ybias,null);
-                            standing = true;
-                        }
-                    }
-                }
-            },0,5*World.FPS);
-
-
-        }
-    }
 
     private boolean checkClikcBorder(Point p) {//在可触碰范围内
         if (p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&

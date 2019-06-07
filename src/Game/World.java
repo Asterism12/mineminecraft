@@ -22,7 +22,7 @@ public class World {
     private static final int WIDTH = 52;//不触碰地图边界时，加载区块的数量
     private static final int HEIGHT = 42;
     private static JFrame frame;//UI组件
-    private static MCanvas mCanvas;
+    static MCanvas mCanvas;
 
     public static Player player;//玩家类
     public static Point.Double startLocation = new Point.Double(2048, 127.99);
