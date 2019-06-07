@@ -28,16 +28,6 @@ public class Pig extends Animal {
     {
         this.setHP(24);
         this.setAnimalName("Pig");
-        try {
-            this.setImage(image);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        this.setImage1(image);
     }
 }
