@@ -239,7 +239,7 @@ public class World {
     }
 
     private static void playerUpdater() {
-        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围
+        //按空格键跳跃，按E打开背包,按Q扔（摧）出（毁）手中的方块，R显示范围,M切换音乐
         mCanvas.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

@@ -34,7 +34,7 @@ public class MusicThreadExecutor {
         int i= (int)(4*Math.random());
         currentMusic=i;
         clips[i].play();
-        executorService.schedule(new switchSong(),musicTime[i], TimeUnit.SECONDS);
+        executorService.schedule(new SwitchSong(),musicTime[i], TimeUnit.SECONDS);
     }
 
     static void initMusicController(){
@@ -60,7 +60,7 @@ public class MusicThreadExecutor {
         }
     }
 }
-class switchSong implements Runnable{
+class SwitchSong implements Runnable{
     @Override
     public void run() {
         MusicThreadExecutor.musicController();
