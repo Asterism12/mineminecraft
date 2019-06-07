@@ -1,20 +1,19 @@
-package Thing;
+package Thing.Tool;
 
 import Game.World;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Wood extends Square {
+public class DiamondPick extends Pick {
     private static Image material;
     private static Image toolBarPicMaterial;
 
     static {
         try {
-            material = ImageIO.read(new File("image/Wood.png"))
+            material = ImageIO.read(new File("image/DiamondPick.png"))
                     .getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
             toolBarPicMaterial = material.getScaledInstance(
                     World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -23,19 +22,14 @@ public class Wood extends Square {
         }
     }
 
-    public Wood() {
-        id = 7;
-        breakLevel = 0;
-        weight = false;
-        liquid = false;
-        pile = true;
-        food = false;
-        takeUp = true;
-        through = true;
-        putDown = true;
-        digType = 2;
-        this.pic = material;
-        this.toolBarPic = toolBarPicMaterial;
+    public DiamondPick() {
+        super();
+        id = 33;
+        durability = 4;
+        animalAtk = 4;
+        digLevel = 3;
+        digSpeed = 5;
+        pic = material;
+        toolBarPic = toolBarPicMaterial;
     }
 }
-

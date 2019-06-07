@@ -1,4 +1,4 @@
-package Thing.Weapon;
+package Thing.Armor;
 
 import Game.World;
 
@@ -7,12 +7,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class DimondSword extends Weapon{
+public class DiamondHelmet extends Armor {
 	private static Image material;
 	private static Image toolBarPicMaterial;
 	static {
 		try {
-			material = ImageIO.read(new File("image/DimondSpade.png"))
+			material = ImageIO.read(new File("image/DiamondHelmet.png"))
 					.getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
 			toolBarPicMaterial = material.getScaledInstance(
 					World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -20,8 +20,8 @@ public class DimondSword extends Weapon{
 			e.printStackTrace();
 		}
 	}
-	public DimondSword(){
-		id=35;
+	public DiamondHelmet(){
+		id=36;
 		breakLevel=4;
 		weight=false;
 		liquid=false;
@@ -30,8 +30,7 @@ public class DimondSword extends Weapon{
 		takeUp=true;
 		through=false;
 		putDown=false;
-		animalAtk=5;
-		squareAtk=3;
+		defense=4;
 		pic = material;
 		toolBarPic = toolBarPicMaterial;
 	}

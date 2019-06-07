@@ -1,19 +1,18 @@
-package Thing.Weapon;
+package Thing.Armor;
 
 import Game.World;
-import Thing.Square;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class WoodStick extends Square {
+public class DiamondPants extends Armor {
 	private static Image material;
 	private static Image toolBarPicMaterial;
 	static {
 		try {
-			material = ImageIO.read(new File("image/WoodStick.png"))
+			material = ImageIO.read(new File("image/DiamondPants.png"))
 					.getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
 			toolBarPicMaterial = material.getScaledInstance(
 					World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -21,9 +20,9 @@ public class WoodStick extends Square {
 			e.printStackTrace();
 		}
 	}
-	public WoodStick(){
-		id=1;
-		breakLevel=1;
+	public DiamondPants(){
+		id=38;
+		breakLevel=4;
 		weight=false;
 		liquid=false;
 		pile=false;
@@ -31,7 +30,8 @@ public class WoodStick extends Square {
 		takeUp=true;
 		through=false;
 		putDown=false;
-		this.pic = material;
-		this.toolBarPic = toolBarPicMaterial;
+		defense=4;
+		pic = material;
+		toolBarPic = toolBarPicMaterial;
 	}
 }

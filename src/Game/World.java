@@ -5,7 +5,7 @@ import Game.Synthetic.SyntheticTable;
 import Thing.*;
 
 import Thing.Armor.Armor;
-import Thing.Armor.DimondShoes;
+import Thing.Armor.DiamondShoes;
 import Thing.Otherthing.BedRock;
 import Thing.Otherthing.Earth;
 import Thing.Otherthing.Ground;
@@ -104,7 +104,7 @@ public class World {
                     if (mineLength == j) {
                         int mineSort = (int) (Math.random() * 5);
                         int mineDepth = (int) (Math.random() * 6) + 6;
-                        if (mineSort == 0) createDimondMine(i - 1 - mineDepth, j, mineDepth, worldSquare);
+                        if (mineSort == 0) createDiamondMine(i - 1 - mineDepth, j, mineDepth, worldSquare);
                         else createMine(i - 1 - mineDepth, j, mineDepth, worldSquare);
                         mineLength += mineDepth;
                         mineLength += (int) (Math.random() * 12) + 20;
@@ -164,7 +164,7 @@ public class World {
                     if (mineLength == j) {
                         int mineSort = (int) (Math.random() * 5);
                         int mineDepth = (int) (Math.random() * 6) + 6;
-                        if (mineSort == 0) createDimondMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
+                        if (mineSort == 0) createDiamondMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
                         else createMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
                         mineLength += mineDepth;
                         mineLength += (int) (Math.random() * 12) + 20;
@@ -198,7 +198,7 @@ public class World {
                     if (mineLength == j) {
                         int mineSort = (int) (Math.random() * 5);
                         int mineDepth = (int) (Math.random() * 6) + 6;
-                        if (mineSort == 0) createDimondMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
+                        if (mineSort == 0) createDiamondMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
                         else createMine(i + x - 1 - mineDepth, j, mineDepth, worldSquare);
                         mineLength += mineDepth;
                         mineLength += (int) (Math.random() * 12) + 20;
@@ -221,14 +221,14 @@ public class World {
         }
     }
 
-    private static void createDimondMine(int x, int y, int high, Square[][] worldSquare) {//生成钻石矿，夹杂铁矿、石头
+    private static void createDiamondMine(int x, int y, int high, Square[][] worldSquare) {//生成钻石矿，夹杂铁矿、石头
         int i, j;
         for (j = 0; j < high; j++) {
             for (i = 0; i < high; i++) {
                 int judge = (int) (Math.random() * 5);
                 if (judge == 0) worldSquare[x + i][y - j] = new Stone();
                 else if (judge <= 2) worldSquare[x + i][y - j] = new IronStone();
-                else worldSquare[x + i][y - j] = new DimondStone();
+                else worldSquare[x + i][y - j] = new DiamondOre();
             }
         }
     }
@@ -342,6 +342,7 @@ public class World {
 
                         if (grid == 63 && square != null) {
                             player.getToolbar().tableClear();
+                            //System.out.println("cleared");
                         }
                         if (grid < 63 && grid >= 53) {
                             player.getToolbar().checkRecipe();
@@ -350,9 +351,9 @@ public class World {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
                         if (grid == 63) return;
-                        if (grid >= 54 && grid <= 62 &&
-                                player.getChosenNumber() + player.getToolbar().getNumber()[grid] > 1)
-                            return;
+//                        if (grid >= 54 && grid <= 62 &&
+//                                player.getChosenNumber() + player.getToolbar().getNumber()[grid] > 1)
+//                            return;
 
                         player.getToolbar().addSquare(player.getChosenSquare(), grid, player.getChosenNumber());
                         player.setChosenSquare(null);
@@ -428,8 +429,8 @@ public class World {
         //test
         player.getToolbar().pickUp(new Earth(), 32);
         player.getToolbar().pickUp(new Earth(), 52);
-        player.getToolbar().pickUp(new DimondShoes());
-        player.getToolbar().pickUp(new Dimond(), 30);
+        player.getToolbar().pickUp(new DiamondShoes());
+        player.getToolbar().pickUp(new Diamond(), 30);
     }
 
     private static void calibrator(Point p) {//用于校准组件和屏幕的相对位置
