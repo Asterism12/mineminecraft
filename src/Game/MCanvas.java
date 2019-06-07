@@ -20,6 +20,7 @@ public class MCanvas extends JPanel {
         super.paint(g);
         printBackGround(g);
         printWorld(g);
+        printAnimal(g);
         printPlayer(g);
         printToolbar(g);
         if (World.player.isOpenBag)
@@ -229,8 +230,10 @@ public class MCanvas extends JPanel {
         ArrayList<Animal> animals = AnimalState.getAnimalList();
         for (Animal animal : animals) {
             if (rectangle.contains(animal.getLocation())) {
-                double i = animal.getLocation().x - location.x;
-                double j = animal.getLocation().y - location.y;
+                double i = animal.getLocation().x - rectangle.x;
+                double j = animal.getLocation().y - rectangle.y;
+                //System.out.println(animal.getLocation());
+                //System.out.println(i+" "+j+" "+ rectangle.y);
                 g.drawImage(animal.getImage(),
                         (int)i * World.PICSIZE - xbias, (int)j * World.PICSIZE - ybias, null);
             }
