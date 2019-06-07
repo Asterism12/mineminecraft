@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 
 public class World {
     private static int seed = 0;
-    final static double gravity = 0.08;//重力常数
+    public final static double gravity = 0.08;//重力常数
     public static Square[][] worldSquare;//存储世界地形，世界应为4096*256的平面，指向Null的方块视为天空
     private static final int WIDTH = 52;//不触碰地图边界时，加载区块的数量
     private static final int HEIGHT = 42;
@@ -29,7 +29,7 @@ public class World {
     private static MCanvas mCanvas;
 
     public static Player player;//玩家类
-    static Point.Double startLocation = new Point.Double(2048, 127.99);
+    public static Point.Double startLocation = new Point.Double(2048, 127.99);
     static MThreadExecutor mThreadExecutor;
     static Point canvasLocation = new Point(0, 0);
 

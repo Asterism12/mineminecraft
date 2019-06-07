@@ -90,7 +90,7 @@ public class MCanvas extends JPanel {
         g2d.setTransform(affineTransform);
         g2d.fill(new Rectangle2D.Double(p.x - (int) (3 * size), p.y - (int) (26 * size), (int) (6 * size), (int) (14 * size)));
 
-        //The code is sucks, I know.
+        //The code sucks, I know.
         g2d.setColor(World.player.leg);
         AffineTransform affineTransform1 = new AffineTransform();
         affineTransform1.rotate(10 * World.player.getLegSwing() * Math.PI / 180, legLocation.x, legLocation.y);
