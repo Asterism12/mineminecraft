@@ -29,6 +29,22 @@ public class SyntheticTable {
         return map.keySet().contains(r);
     }
 
+    public static int getRecipeNum(int[] number) {
+        int min = 999999;
+        for (int i = 0; i < 9; i++) {
+            if (number[i] == 0) {
+                continue;
+            }
+            if (number[i] < min) {
+                min = number[i];
+            }
+        }
+        if (min == 999999) {
+            return 0;
+        }
+        return min;
+    }
+
     public static TableOutput getOutput(Square[] table) {
         Recipe r = new Recipe(table);
         return map.get(r);
