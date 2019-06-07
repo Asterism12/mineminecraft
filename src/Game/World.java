@@ -12,8 +12,12 @@ import Thing.Otherthing.TreeLeaves;
 import Thing.Ore.*;
 
 import javax.swing.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.net.MalformedURLException;
 
 public class World {
     private static int seed = 0;
@@ -366,7 +370,6 @@ public class World {
 
         });
     }
-
     static Rectangle checkBorder() {//判断哪些区块需要载入
         Point.Double playerLocation = player.getLocation();
         Rectangle rectangle = new Rectangle();
@@ -399,12 +402,13 @@ public class World {
         playerUpdater();
         worldUpdater();
         SyntheticTable.initSyntheticTable();
+        MusicThreadExecutor.initMusicControler();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);
         player.getToolbar().pickUp(new Earth(), 52);
         player.getToolbar().pickUp(new DimondShoes());
-        player.getToolbar().pickUp(new Dimond(),30);
+        player.getToolbar().pickUp(new Dimond(), 30);
     }
 
     private static void calibrator(Point p) {//用于校准组件和屏幕的相对位置
