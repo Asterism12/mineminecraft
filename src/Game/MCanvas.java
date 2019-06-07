@@ -6,9 +6,7 @@ import Thing.Square;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.crypto.dsig.Transform;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
