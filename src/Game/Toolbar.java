@@ -89,6 +89,9 @@ public class Toolbar {
         if (SyntheticTable.isRecipe(curTable)) {
             TableOutput to = SyntheticTable.getOutput(curTable);
             addSquare(to.getOutput(), 63, to.getNum());
+        } else {
+            squares[63] = null;
+            number[63] = 0;
         }
     }
 

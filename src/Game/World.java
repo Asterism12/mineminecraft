@@ -322,6 +322,9 @@ public class World {
                         if (grid == 63 && square != null) {
                             player.getToolbar().tableClear();
                         }
+                        if (grid < 63 && grid >= 53) {
+                            player.getToolbar().checkRecipe();
+                        }
                     } else {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
