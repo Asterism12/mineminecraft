@@ -75,10 +75,8 @@ public class Toolbar {
                 int square1number = this.number[i];
                 squares[i] = square;
                 this.number[i] = number;
-                System.out.println(squares[0] + " " + this.number[0]);
                 pickUp(square1, square1number);
 
-                System.out.println(squares[0] + " " + this.number[0]);
             }
         }
     }
@@ -98,7 +96,6 @@ public class Toolbar {
     //将Table中内容清空
     synchronized void tableClear() {
         for (int i = 53; i < 62; i++) {
-            System.out.println("Cleared!");
             squares[i] = null;
         }
     }
