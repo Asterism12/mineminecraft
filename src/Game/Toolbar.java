@@ -83,6 +83,8 @@ public class Toolbar {
     //检查当前Table中搭配是否可以合成，如果可以将结果放在输出格子中
     synchronized void checkRecipe() {
         Square[] curTable = new Square[9];
+        squares[63] = null;
+        number[63] = 0;
         int[] curNum = new int[9];
         for (int i = 0; i < 9; i++) {
             curTable[i] = squares[54 + i];
