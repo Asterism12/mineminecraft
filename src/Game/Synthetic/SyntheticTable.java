@@ -1,10 +1,7 @@
 package Game.Synthetic;
 
 import Thing.*;
-import Thing.Armor.IronChest;
-import Thing.Armor.IronHelmet;
-import Thing.Armor.IronPants;
-import Thing.Armor.IronShoes;
+import Thing.Armor.*;
 import Thing.Otherthing.Charcoal;
 import Thing.Tool.*;
 
@@ -63,10 +60,10 @@ public class SyntheticTable {
         map.put(new Recipe(new int[]{21, 21, 21, 21, 0, 21, 21, 0, 21}), new TableOutput(new IronPants(), 1));//9
         map.put(new Recipe(new int[]{0, 0, 0, 21, 0, 21, 21, 0, 21}), new TableOutput(new IronShoes(), 1));//10
 
-        map.put(new Recipe(new int[]{40, 40, 40, 40, 0, 40, 0, 0, 0}), new TableOutput(new IronHelmet(), 1));//7-d
-        map.put(new Recipe(new int[]{40, 0, 40, 40, 40, 40, 40, 40, 40}), new TableOutput(new IronChest(), 1));//8-d
-        map.put(new Recipe(new int[]{40, 40, 40, 40, 0, 40, 40, 0, 40}), new TableOutput(new IronPants(), 1));//9-d
-        map.put(new Recipe(new int[]{0, 0, 0, 40, 0, 40, 40, 0, 40}), new TableOutput(new IronShoes(), 1));//10-d
+        map.put(new Recipe(new int[]{40, 40, 40, 40, 0, 40, 0, 0, 0}), new TableOutput(new DiamondHelmet(), 1));//7-d
+        map.put(new Recipe(new int[]{40, 0, 40, 40, 40, 40, 40, 40, 40}), new TableOutput(new DiamondChest(), 1));//8-d
+        map.put(new Recipe(new int[]{40, 40, 40, 40, 0, 40, 40, 0, 40}), new TableOutput(new DiamondPants(), 1));//9-d
+        map.put(new Recipe(new int[]{0, 0, 0, 40, 0, 40, 40, 0, 40}), new TableOutput(new DiamondShoes(), 1));//10-d
 
         map.put(new Recipe(new int[]{0, 0, 0, 7, 0, 0, 0, 0, 0}), new TableOutput(new Charcoal(), 1));//11
 
