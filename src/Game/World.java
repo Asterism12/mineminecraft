@@ -402,7 +402,7 @@ public class World {
         playerUpdater();
         worldUpdater();
         SyntheticTable.initSyntheticTable();
-        MusicThreadExecutor.initMusicControler();
+        MusicThreadExecutor.initMusiccontroller();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);
