@@ -28,16 +28,7 @@ public class Chicken extends Animal {
     {
         this.setHP(10);
         this.setAnimalName("Chicken");
-        try {
-            this.setImage(image);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+            this.setImage1(image);
+
     }
 }

@@ -1,5 +1,7 @@
 package Interact;
 
+import Component.AnimalState.AnimalState;
+import Component.Animals.Cow;
 import Game.Player;
 import Game.World;
 
@@ -17,7 +19,8 @@ public class Mainframe {
     static private JPanel setPanel;
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
-        World.worldCreator();
+        AnimalState.getAnimalList().add(new Cow());
+        World.main(null);
         mainFrame = new JFrame("Minecraft 2D version");
         setFrame = new JFrame("Minecraft 2D version");
         mainPanel = new JPanel();

@@ -1,5 +1,7 @@
 package Game;
 
+import Component.AnimalState.AnimalState;
+import Component.Animals.Animal;
 import Thing.Square;
 
 import javax.imageio.ImageIO;
@@ -9,10 +11,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MCanvas extends JPanel {
     private Image bg;//背景图片
+    private Timer imgTimer = new Timer();
+    private BufferedImage image;
 
     @Override
     public void paint(Graphics g) {
@@ -21,6 +29,7 @@ public class MCanvas extends JPanel {
         printWorld(g);
         printPlayer(g);
         printToolbar(g);
+        printAnimal(g);
         if (World.player.isOpenBag)
             printBag(g);
         printLocation(g);
@@ -216,6 +225,33 @@ public class MCanvas extends JPanel {
         String s = String.format("[%.2f,%.2f]", World.player.getLocation().x, World.player.getLocation().y);
         g.setColor(Color.BLACK);
         g.drawString(s, 20, 20);
+    }
+
+    private void printAnimal(Graphics g)
+    {
+        ArrayList<Animal> animals = AnimalState.getAnimalList();
+        for(int i = 0;i < animals.size();i++)
+        {
+            Animal animal = animals.get(i);
+            image = animal.getImage1();
+            Point.Double location = animal.getLocation();
+
+            imgTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    if(image.equals(animal.getImage1())) {
+                        image = null;
+                        image = animal.getImage2();
+                    }
+                }
+            },0,World.FPS/10);
+
+            int xbias, ybias;//人物相对于脚下物块的位置像素偏移量
+            xbias = (int) ((location.x - (int) World.player.getLocation().x));
+            ybias = (int) ((location.y - (int) World.player.getLocation().y));
+            if(Math.abs(xbias) <= 500 && Math.abs(ybias) <= 400)
+                g.drawImage(image,xbias,ybias,null);
+        }
     }
 
     private boolean checkClikcBorder(Point p) {//在可触碰范围内

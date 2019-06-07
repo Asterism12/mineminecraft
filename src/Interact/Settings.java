@@ -16,7 +16,7 @@ public class Settings {
     private static JPanel setPanel;
     private ChangeListener listener;
     private JColorChooser colorChooser;
-    public static Color color = null;
+    private static Color color = null;
     String buttonName;
 
     Settings() { }
@@ -77,7 +77,7 @@ public class Settings {
         setPanel.setLayout(null);
 
         setTitle();
-        setVolume();
+        setInitHP();
         setColor(World.player);
 
         setPanel.setBackground(new Color(11,180,227));
@@ -92,7 +92,7 @@ public class Settings {
         jLabel.setFont(new Font("Deeko Comic Regular",Font.BOLD,30));
         jLabel.setBounds(500,50,300,100);
     }
-    public void setVolume()
+    public void setInitHP()
     {
         listener = new ChangeListener() {
             @Override
@@ -101,25 +101,32 @@ public class Settings {
             }
         };
 
-        JSlider slider = new JSlider(0,100,30);
-        slider.setMajorTickSpacing(10);
-        slider.setMinorTickSpacing(5);
+        JSlider slider = new JSlider(0,10,0);
+        slider.setMajorTickSpacing(2);
+        slider.setMinorTickSpacing(1);
 
         slider.setPaintLabels(true);
         slider.setPaintTicks(true);
         slider.setPaintTrack(true);
 
         Hashtable<Integer,JComponent> hashtable = new Hashtable<>();
-        hashtable.put(0,new JLabel("Low"));
-        hashtable.put(100,new JLabel("High"));
+        hashtable.put(0,new JLabel("10"));
+        hashtable.put(10,new JLabel("20"));
         slider.setLabelTable(hashtable);
 
         slider.setBackground(new Color(11,180,227));
         slider.setBounds(510,200,300,100);
 
-        JLabel label = new JLabel("Volume");
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                World.player.setHp(10+slider.getValue());
+            }
+        });
+
+        JLabel label = new JLabel("Initial HP");
         setPanel.add(label);
-        label.setBounds(390,190,130,100);
+        label.setBounds(300,190,150,100);
         label.setFont(new Font("Deeko Comic Regular",Font.BOLD,20));
         label.setBackground(new Color(11,180,227));
         label.setVisible(true);
@@ -131,6 +138,7 @@ public class Settings {
         label2.setBackground(new Color(11,180,227));
         label2.setVisible(true);
         setPanel.add(slider);
+
     }
 
     public void setColor(Player player)

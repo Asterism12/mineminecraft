@@ -29,16 +29,6 @@ public class Zombie extends OffensiveAnimal {
         this.setHP(100);
         this.setAttackForce(10);
         this.setAnimalName("Zombie");
-        try {
-            this.setImage(image);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+            this.setImage1(image);
     }
 }
