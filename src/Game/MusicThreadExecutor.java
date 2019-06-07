@@ -42,16 +42,16 @@ public class MusicThreadExecutor {
             step= Applet.newAudioClip(new File("music/step.wav").toURI().toURL());
             stone= Applet.newAudioClip(new File("music/stone.wav").toURI().toURL());
 
-            clips[0]= Applet.newAudioClip(new File("music/c418 - alpha.wav").toURI().toURL());
+            clips[0]= Applet.newAudioClip(new File("music/alpha.wav").toURI().toURL());
             musicTime[0]=10*60+3;
 
-            clips[1]= Applet.newAudioClip(new File("music/c418 - blind spots.wav").toURI().toURL());
+            clips[1]= Applet.newAudioClip(new File("music/blind spots.wav").toURI().toURL());
             musicTime[1]=5*60+32;
 
-            clips[2]= Applet.newAudioClip(new File("music/c418 - dead voxel.wav").toURI().toURL());
+            clips[2]= Applet.newAudioClip(new File("music/dead voxel.wav").toURI().toURL());
             musicTime[2]=4*60+56;
 
-            clips[3]= Applet.newAudioClip(new File("music/c418 - ki.wav").toURI().toURL());
+            clips[3]= Applet.newAudioClip(new File("music/ki.wav").toURI().toURL());
             musicTime[3]=60+32;
 
             musicController();
