@@ -266,6 +266,9 @@ public class World {
                     case 81:
                         player.throwOutSquare();
                         break;
+                    case 77:
+                        MusicThreadExecutor.musicController();
+                        break;
                     default:
                         if (e.getKeyCode() >= 49 && e.getKeyCode() <= 58)
                             player.setHandSquare(e.getKeyCode() - 49);
