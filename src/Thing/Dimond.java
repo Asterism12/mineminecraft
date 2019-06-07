@@ -22,11 +22,11 @@ public class Dimond extends Square{
 		}
 	}
 	public Dimond(){
-		id=31;
+		id=40;
 		breakLevel=4;
 		weight=false;
 		liquid=false;
-		pile=false;
+		pile=true;
 		food=false;
 		takeUp=true;
 		through=false;

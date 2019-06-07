@@ -15,15 +15,9 @@ public class Recipe {
         }
     }
 
-    Recipe(Square[][] curTable) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (curTable[j][i] == null) {
-                    table[3 * i + j] = -1;
-                } else {
-                    table[3 * i + j] = curTable[j][i].id;
-                }
-            }
+    Recipe(int[] curTable){
+        for(int i=0;i<9;i++){
+            table[i]=curTable[i];
         }
     }
 
