@@ -83,6 +83,26 @@ public class Toolbar {
         }
     }
 
+    //检查当前Table中搭配是否可以合成，如果可以将结果放在输出格子中
+    synchronized void checkRecipe() {
+        Square[] curTable = new Square[9];
+        for (int i = 0; i < 9; i++) {
+            curTable[i] = squares[53 + i];
+        }
+        if (SyntheticTable.isRecipe(curTable)) {
+            TableOutput to = SyntheticTable.getOutput(curTable);
+            addSquare(to.getOutput(), 63, to.getNum());
+        }
+    }
+
+    //将Table中内容清空
+    synchronized void tableClear() {
+        for (int i = 53; i < 62; i++) {
+            System.out.println("Cleared!");
+            squares[i] = null;
+        }
+    }
+
     Toolbar() {
         for (int i = 0; i < 64; i++) {
             number[i] = 0;

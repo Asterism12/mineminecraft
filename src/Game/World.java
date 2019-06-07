@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Synthetic.SyntheticTable;
 import Thing.*;
 
 import Thing.Armor.Armor;
@@ -33,10 +34,10 @@ public class World {
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
     public static final int FPS = 1000 / 30;//定时器触发间隔
 
-    public static void setFrame()
-    {
+    public static void setFrame() {
         frame.setVisible(true);
     }
+
     private static void UIinit() {//UI初始化
         frame = new JFrame();
         //frame.setSize(1300,1000);
@@ -58,7 +59,7 @@ public class World {
         //生成土壤同时随机生成树，山
         int groundLine = 136;
         int stoneLine = groundLine + 8, treePoint = 6, changePoint = 16, minePoint = 32;
-        double judgex=2048,judgey=127.99;
+        double judgex = 2048, judgey = 127.99;
         for (i = 0; i <= 4000; i++) {
             int earthChange = (int) (Math.random() * 81) + 1;
             if (earthChange == 4) {
@@ -115,6 +116,7 @@ public class World {
         while (j <= 240) worldSquare[0][j++] = new BedRock();
         while (i > 0) worldSquare[--i][240] = new BedRock();
         while (j > 0) worldSquare[4000][--j] = new BedRock();
+        SyntheticTable.initSyntheticTable();
     }
 
     private static void createTree(int x, int y, int high, Square[][] worldSquare) {//生成树
@@ -135,8 +137,13 @@ public class World {
         int high = length / 2, groundLine = y, stoneLine = y + 8;
         int i, j;
         for (i = 0; i <= length; i++) {
-            if (i < length / 4) {groundLine -= highAdd; stoneLine -= highAdd;}
-            else if (i > length * 3 / 4) {groundLine += highAdd; stoneLine += highAdd;}
+            if (i < length / 4) {
+                groundLine -= highAdd;
+                stoneLine -= highAdd;
+            } else if (i > length * 3 / 4) {
+                groundLine += highAdd;
+                stoneLine += highAdd;
+            }
             if (i + x == treePoint) {
                 World.createTree(i + x, groundLine, (int) (Math.random() * 3) + 3, worldSquare);
                 treePoint += (int) (Math.random() * 8) + 8;
@@ -308,6 +315,11 @@ public class World {
                         if (square != null)
                             frame.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
                                     square.getPic(), new Point(0, 0), "myCursor"));
+
+                        if (grid == 63 && square != null) {
+                            player.getToolbar().tableClear();
+                            System.out.println("cleared!");
+                        }
                     } else {
                         if (grid >= 50 && grid <= 53 && !(player.getChosenSquare() instanceof Armor))
                             return;
@@ -320,6 +332,11 @@ public class World {
                         player.setChosenSquare(null);
                         player.setChosenNumber(0);
                         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
+
+                    }
+                    if (grid < 63 && grid >= 53) {
+                        System.out.println("checked!");
+                        player.getToolbar().checkRecipe();
                     }
                 } else {
                     Point squareLocation = mCanvas.getClickSquare(p);
@@ -373,14 +390,15 @@ public class World {
 
     public static void worldCreator() {//世界创造器
         worldSquareCreator();
-        int judgex=2048,judgey=150;
-        while(worldSquare[judgex][judgey]!=null)judgey--;
+        int judgex = 2048, judgey = 150;
+        while (worldSquare[judgex][judgey] != null) judgey--;
         startLocation = new Point.Double(judgex, judgey);
         player = new Player();
         mThreadExecutor = new MThreadExecutor();
         UIinit();
         playerUpdater();
         worldUpdater();
+        SyntheticTable.initSyntheticTable();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);

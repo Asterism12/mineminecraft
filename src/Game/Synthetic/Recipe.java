@@ -7,7 +7,23 @@ public class Recipe {
 
     Recipe(Square[] curTable) {
         for (int i = 0; i < 9; i++) {
-            table[i] = curTable[i].id;
+            if (curTable[i] == null) {
+                table[i] = 0;
+            } else {
+                table[i] = curTable[i].id;
+            }
+        }
+    }
+
+    Recipe(Square[][] curTable) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (curTable[j][i] == null) {
+                    table[3 * i + j] = -1;
+                } else {
+                    table[3 * i + j] = curTable[j][i].id;
+                }
+            }
         }
     }
 
@@ -30,6 +46,7 @@ public class Recipe {
                 return false;
             }
         }
-        return false;
+
+        return true;
     }
 }

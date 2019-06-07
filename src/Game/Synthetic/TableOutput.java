@@ -3,8 +3,8 @@ package Game.Synthetic;
 import Thing.Square;
 
 public class TableOutput {
-    private Square output;
-    private int num;
+    Square output;
+    int num;
 
     public Square getOutput() {
         return output;
