@@ -75,8 +75,10 @@ public class Toolbar {
                 int square1number = this.number[i];
                 squares[i] = square;
                 this.number[i] = number;
+                System.out.println(squares[0] + " " + this.number[0]);
                 pickUp(square1, square1number);
 
+                System.out.println(squares[0] + " " + this.number[0]);
             }
         }
     }
@@ -85,7 +87,7 @@ public class Toolbar {
     synchronized void checkRecipe() {
         Square[] curTable = new Square[9];
         for (int i = 0; i < 9; i++) {
-            curTable[i] = squares[53 + i];
+            curTable[i] = squares[54 + i];
         }
         if (SyntheticTable.isRecipe(curTable)) {
             TableOutput to = SyntheticTable.getOutput(curTable);
@@ -95,8 +97,10 @@ public class Toolbar {
 
     //将Table中内容清空
     synchronized void tableClear() {
-        for (int i = 53; i < 62; i++) {
+        for (int i = 54; i <= 62; i++) {
+            System.out.println("Cleared!");
             squares[i] = null;
+            number[i] = 0;
         }
     }
 
