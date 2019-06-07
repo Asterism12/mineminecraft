@@ -22,9 +22,6 @@ public class Animal
     private Point.Double location;  //the coordinates of the animal
     private boolean dir;  //true stands for left, false stands for right
     private boolean standing;
-//    protected static Random random = new Random(System.currentTimeMillis());
-//    protected static Timer moveTimer = new Timer();
-//    protected static Timer dirTimer = new Timer();
 
     public Animal() {}
 
@@ -121,9 +118,4 @@ public class Animal
         else
             return image2;
     }
-//ImageIO.read(new FileInputStream(imagePath));
-//    public static void main(String args[])
-//    {
-//        System.out.println("test123");
-//    }
 }
