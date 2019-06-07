@@ -107,19 +107,19 @@ public class Player {
         }
     }
 
-    public synchronized void setHeadColor(Color color) {
+    public void setHeadColor(Color color) {
         head = color;
     }
 
-    public synchronized void setBodyColor(Color color) {
+    public void setBodyColor(Color color) {
         body = color;
     }
 
-    public synchronized void setArmColor(Color color) {
+    public void setArmColor(Color color) {
         arm = color;
     }
 
-    public synchronized void setLegColor(Color color) {
+    public void setLegColor(Color color) {
         leg = color;
     }
 

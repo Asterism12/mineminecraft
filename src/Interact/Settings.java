@@ -11,21 +11,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-class Settings {
+public class Settings {
     private static JFrame setFrame;
     private static JPanel setPanel;
-
     private ChangeListener listener;
-    private static Color color = new Color(0,0,0);
+    private JColorChooser colorChooser;
+    public static Color color = null;
+    String buttonName;
 
     Settings() { }
 
+    class ColorListener implements  ActionListener{
+        @Override
+        public synchronized  void actionPerformed(ActionEvent e){
+            color = colorChooser.getColor();
+            if (color == null) {
+                return;
+            }
+            if (buttonName.equals("HEAD"))
+                World.player.setHeadColor(color);
+            if (buttonName.equals("ARM"))
+                World.player.setArmColor(color);
+            if (buttonName.equals("BODY"))
+                World.player.setBodyColor(color);
+            if (buttonName.equals("LEG"))
+                World.player.setLegColor(color);
+        }
+    }
+
     class SimpleListener implements ActionListener{ //get the action
+
         @Override
         public synchronized void actionPerformed(ActionEvent e){
+
             if(e == null)
                 return;
-            String buttonName = e.getActionCommand();
+            buttonName = e.getActionCommand();
             if(buttonName == null)
                 return;
             else if (buttonName.equals("BACK")) {
@@ -34,26 +55,10 @@ class Settings {
             }
             else {
 
-                JColorChooser colorChooser = new JColorChooser();
+                colorChooser = new JColorChooser();
                 JDialog dialog = JColorChooser.createDialog(setPanel, "选择颜色", false,
-                        colorChooser, new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                color = colorChooser.getColor();
-                            }
-                        }, null);
+                        colorChooser, new ColorListener(), null);
                 dialog.setVisible(true);
-                if (color == null) {
-                    return;
-                }
-                if (buttonName.equals("HEAD"))
-                    World.player.setHeadColor(color);
-                if (buttonName.equals("ARM"))
-                    World.player.setArmColor(color);
-                if (buttonName.equals("BODY"))
-                    World.player.setBodyColor(color);
-                if (buttonName.equals("LEG"))
-                    World.player.setLegColor(color);
             }
         }
     }
@@ -130,8 +135,6 @@ class Settings {
 
     public void setColor(Player player)
     {
-
-
         SimpleListener listener = new SimpleListener();
         addButton(listener,510,400,"HEAD",new Color(11,180,227));
         addButton(listener,750,400,"ARM",new Color(11,180,227));
