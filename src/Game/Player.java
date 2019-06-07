@@ -3,7 +3,6 @@ package Game;
 import Thing.Square;
 
 import java.awt.*;
-import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -125,62 +124,58 @@ public class Player {
 
     public Player() {
         location = World.startLocation;
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //walk
-                int walk = walkRight - walkLeft;
-                if (walk == -1) {
-                    double targetX = location.x - walkSpeed;
-                    Square square = World.worldSquare[(int) targetX][(int) location.y];
-                    if (square == null)
-                        location.x = targetX;
-                    else {
-                        if (!square.through)
-                            location.x = Math.ceil(targetX);
-                        else
-                            location.x = targetX;
-                    }
-                } else if (walk == 1) {
-                    double targetX = location.x + walkSpeed;
-                    Square square = World.worldSquare[(int) targetX][(int) location.y];
-                    if (square == null)
-                        location.x = targetX;
-                    else {
-                        if (!square.through)
-                            location.x = (int) targetX - 0.01;//防止被卡在墙里
-                        else
-                            location.x = targetX;
-                    }
-                }
-                if (walk != 0 || getLegSwing() != 0) {
-                    setLegSwing();
-                }
-                if(getLegSwing()==1&&isLegSwing&&World.worldSquare[(int) location.x][(int) (location.y+0.02)]!=null){
-                    MusicThreadExecutor.playWalkSong();
-                }
+    }
 
-
-                //jump
-                if (isJumping && verticalSpeed == 0) {//准备起跳
-                    verticalSpeed = -jumpSpeed;
-                } else if (verticalSpeed != 0 || World.worldSquare[(int) location.x][(int) (location.y)] == null) {
-                    double targetY = location.y + verticalSpeed;
-                    Square square = World.worldSquare[(int) location.x][(int) (targetY)];
-                    if (verticalSpeed < 0 && square != null && !square.through) {//磕脑袋
-                        location.y = Math.ceil(targetY);
-                        verticalSpeed = 0;
-                    } else if (verticalSpeed > 0 && square != null && !square.through) {//落地
-                        location.y = (int) targetY - 0.01;//防止陷到地里出不来了
-                        verticalSpeed = 0;
-                    } else {
-                        location.y = targetY;
-                        if (verticalSpeed <= 1)
-                            verticalSpeed += World.gravity;
-                    }
-                }
+    public void updatePlayer(){
+        int walk = walkRight - walkLeft;
+        if (walk == -1) {
+            double targetX = location.x - walkSpeed;
+            Square square = World.worldSquare[(int) targetX][(int) location.y];
+            if (square == null)
+                location.x = targetX;
+            else {
+                if (!square.through)
+                    location.x = Math.ceil(targetX);
+                else
+                    location.x = targetX;
             }
-        }, 0, World.FPS);
+        } else if (walk == 1) {
+            double targetX = location.x + walkSpeed;
+            Square square = World.worldSquare[(int) targetX][(int) location.y];
+            if (square == null)
+                location.x = targetX;
+            else {
+                if (!square.through)
+                    location.x = (int) targetX - 0.01;//防止被卡在墙里
+                else
+                    location.x = targetX;
+            }
+        }
+        if (walk != 0 || getLegSwing() != 0) {
+            setLegSwing();
+        }
+        if(getLegSwing()==1&&isLegSwing&&World.worldSquare[(int) location.x][(int) (location.y+0.02)]!=null){
+            MusicThreadExecutor.playWalkSong();
+        }
+
+
+        //jump
+        if (isJumping && verticalSpeed == 0) {//准备起跳
+            verticalSpeed = -jumpSpeed;
+        } else if (verticalSpeed != 0 || World.worldSquare[(int) location.x][(int) (location.y)] == null) {
+            double targetY = location.y + verticalSpeed;
+            Square square = World.worldSquare[(int) location.x][(int) (targetY)];
+            if (verticalSpeed < 0 && square != null && !square.through) {//磕脑袋
+                location.y = Math.ceil(targetY);
+                verticalSpeed = 0;
+            } else if (verticalSpeed > 0 && square != null && !square.through) {//落地
+                location.y = (int) targetY - 0.01;//防止陷到地里出不来了
+                verticalSpeed = 0;
+            } else {
+                location.y = targetY;
+                if (verticalSpeed <= 1)
+                    verticalSpeed += World.gravity;
+            }
+        }
     }
 }
