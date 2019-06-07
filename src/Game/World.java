@@ -12,12 +12,8 @@ import Thing.Otherthing.TreeLeaves;
 import Thing.Ore.*;
 
 import javax.swing.*;
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.net.MalformedURLException;
 
 public class World {
     private static int seed = 0;
@@ -392,6 +388,8 @@ public class World {
     }
 
     public static void worldCreator() {//世界创造器
+        SyntheticTable.initSyntheticTable();
+        MusicThreadExecutor.initMusicController();
         worldSquareCreator();
         int judgex = 2048, judgey = 150;
         while (worldSquare[judgex][judgey] != null) judgey--;
@@ -401,8 +399,6 @@ public class World {
         UIinit();
         playerUpdater();
         worldUpdater();
-        SyntheticTable.initSyntheticTable();
-        MusicThreadExecutor.initMusiccontroller();
 
         //test
         player.getToolbar().pickUp(new Earth(), 32);

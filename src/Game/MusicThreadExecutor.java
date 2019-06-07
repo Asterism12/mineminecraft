@@ -10,18 +10,38 @@ import java.util.concurrent.TimeUnit;
 
 public class MusicThreadExecutor {
     private static ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+    private ScheduledExecutorService walkService = Executors.newSingleThreadScheduledExecutor();
+    private static AudioClip step;
+    private static AudioClip stone;
     private static AudioClip[] clips=new AudioClip[4];
     private static int[] musicTime=new int[4];
     private static int currentMusic;
-    static void musiccontroller(){
+
+    static void playWalkSong(){
+        step.play();
+    }
+
+    static void loopStoneSound(){
+        stone.loop();
+    }
+
+    static void stopStoneSound(){
+        stone.stop();
+    }
+
+    static void musicController(){
         clips[currentMusic].stop();
         int i= (int)(4*Math.random());
         currentMusic=i;
         clips[i].play();
         executorService.schedule(new switchSong(),musicTime[i], TimeUnit.SECONDS);
     }
-    static void initMusiccontroller(){
+
+    static void initMusicController(){
         try{
+            step= Applet.newAudioClip(new File("music/step.wav").toURI().toURL());
+            stone= Applet.newAudioClip(new File("music/stone.wav").toURI().toURL());
+
             clips[0]= Applet.newAudioClip(new File("music/c418 - alpha.wav").toURI().toURL());
             musicTime[0]=10*60+3;
 
@@ -34,7 +54,7 @@ public class MusicThreadExecutor {
             clips[3]= Applet.newAudioClip(new File("music/c418 - ki.wav").toURI().toURL());
             musicTime[3]=60+32;
 
-            musiccontroller();
+            musicController();
         }catch (MalformedURLException e){
             e.printStackTrace();
         }
@@ -43,6 +63,6 @@ public class MusicThreadExecutor {
 class switchSong implements Runnable{
     @Override
     public void run() {
-        MusicThreadExecutor.musiccontroller();
+        MusicThreadExecutor.musicController();
     }
 }
