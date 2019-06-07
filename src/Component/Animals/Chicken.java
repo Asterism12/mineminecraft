@@ -28,7 +28,7 @@ public class Chicken extends Animal {
     {
         this.setHP(10);
         this.setAnimalName("Chicken");
-            this.setImage1(image);
+           // this.setImage1(image);
 
     }
 }

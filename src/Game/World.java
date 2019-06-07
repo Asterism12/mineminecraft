@@ -238,6 +238,7 @@ public class World {
             @Override
             public void run() {
                 player.updatePlayer();
+                AnimalState.updateAnimalLocation();
             }
         },0,World.FPS);
 
@@ -245,9 +246,9 @@ public class World {
             @Override
             public void run() {
                 //do some thing
-                AnimalState.updateAnimalList();
+                AnimalState.updateDir();
             }
-        },0,5000);
+        },0,600);
 
         ActionListener update = new ActionListener() {//刷新世界
             @Override

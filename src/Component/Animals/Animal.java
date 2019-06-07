@@ -3,14 +3,9 @@ package Component.Animals;
 import Game.World;
 import Thing.Square;
 
+import javax.xml.stream.Location;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Animal
 {
@@ -18,7 +13,7 @@ public class Animal
     private int hp = 0;
     private double velocity;
     private double fallVelocity = 0.0;
-    private BufferedImage image1,image2,image;
+    private BufferedImage image1Left,image2Left,image1Right,image2Right;
     private Point.Double location;  //the coordinates of the animal
     private boolean dir;  //true stands for left, false stands for right
     private boolean standing;
@@ -27,8 +22,10 @@ public class Animal
 
     public Animal(double volocity)
     {
-        location = World.startLocation;
+        location = new Point.Double(World.startLocation.x,World.startLocation.y-50);
         this.velocity = volocity;
+        this.setDir(true);
+        this.setStanding(true);
     }
     //The get and set methods for each attribute
     public String getAnimalName()
@@ -51,24 +48,39 @@ public class Animal
         this.hp = HP;
     }
 
-    public void setImage1(BufferedImage image)
+    public void setImage(boolean dir,int seq,BufferedImage image)
     {
-        this.image1 = image;
+        if(dir == true)
+        {
+            if(seq == 1)
+                this.image1Left = image;
+            if(seq == 2)
+                this.image2Left = image;
+        }
+        else
+        {
+            if(seq == 1)
+                this.image1Right = image;
+            if(seq == 2)
+                this.image2Right = image;
+        }
     }
 
-    public BufferedImage getImage1()
+    public BufferedImage getImage()
     {
-        return image1;
-    }
-
-    public void setImage2(BufferedImage image)
-    {
-        this.image2 = image;
-    }
-
-    public BufferedImage getImage2()
-    {
-        return image2;
+        if(standing) {
+            if(dir == true)
+                return image1Left;
+            else if(dir == false)
+                return image1Right;
+        }
+        else if(!standing) {
+            if(dir == true)
+                return image2Left;
+            else if(dir == false)
+                return image2Right;
+        }
+        return null;
     }
 
     public Point.Double getLocation()
@@ -111,11 +123,4 @@ public class Animal
         return standing;
     }
 
-    public BufferedImage getImage()
-    {
-        if(standing)
-            return image1;
-        else
-            return image2;
-    }
 }

@@ -29,7 +29,7 @@ public class Spider extends OffensiveAnimal {
         this.setHP(20);
         this.setAttackForce(3);
         this.setAnimalName("Spider");
-        this.setImage1(image);
+        //this.setImage1(image);
 
     }
 }

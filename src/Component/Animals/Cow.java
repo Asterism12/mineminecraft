@@ -11,12 +11,14 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 public class Cow extends Animal{
-    private static BufferedImage image1,image2;
+    private static BufferedImage image1Left,image1Right,image2Left,image2Right;
     private static java.util.Timer imgTimer = new java.util.Timer();
     static{
         try {
-            image1 = ImageIO.read(new FileInputStream("image/cow.png"));
-            image2 = ImageIO.read(new FileInputStream("image/cow2.png"));
+            image1Left = ImageIO.read(new FileInputStream("image/cowLeft.png"));
+            image1Right = ImageIO.read(new FileInputStream("image/cowRight.png"));
+            image2Left = ImageIO.read(new FileInputStream("image/cow2Left.png"));
+            image2Right = ImageIO.read(new FileInputStream("image/cow2Right.png"));
         }
         catch (FileNotFoundException e)
         {
@@ -31,10 +33,13 @@ public class Cow extends Animal{
     public Cow()
     {
 
-        super(16 / (double) (World.FPS));
+        super( 8.5/(double) (World.FPS));
         this.setHP(24);
         this.setAnimalName("Cow");
-        this.setImage1(image1);
-        this.setImage2(image2);
+
+        this.setImage(true,1,image1Left);
+        this.setImage(false,1,image1Right);
+        this.setImage(true,2,image2Left);
+        this.setImage(false,2,image2Right);
     }
 }

@@ -28,6 +28,6 @@ public class Pig extends Animal {
     {
         this.setHP(24);
         this.setAnimalName("Pig");
-        this.setImage1(image);
+        //this.setImage1(image);
     }
 }
