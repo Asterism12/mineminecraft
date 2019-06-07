@@ -15,7 +15,8 @@ public class Animal
 {
     private String animalName = "";
     private int hp = 0;
-    private int velocity;
+    private double velocity;
+    private double fallVelocity = 0.0;
     private BufferedImage image;
     private Point.Double location;  //the coordinates of the animal
     private boolean dir;  //true stands for left, false stands for right
@@ -27,6 +28,7 @@ public class Animal
 
     public Animal(int volocity)
     {
+        location = World.startLocation;
         this.velocity = volocity;
         dirTimer.schedule(new TimerTask() {
             @Override
@@ -41,6 +43,7 @@ public class Animal
         moveTimer.schedule(new TimerTask() {
             @Override
             public void run() {
+
                 if(dir == true)
                 {
                     double targetX = location.x - volocity;
@@ -64,6 +67,24 @@ public class Animal
                         location.x = (int) targetX - 0.01;
                     else
                         location.x = targetX;
+                }
+
+                if(World.worldSquare[(int)location.x][(int)location.y] == null)
+                {
+                    fallVelocity = 0.5;
+                    double taretY = location.y + fallVelocity;
+                    Square square = World.worldSquare[(int)location.x][(int)taretY];
+                    if(fallVelocity > 0.0 && square != null && !square.through)
+                    {
+                        location.y = (int)taretY - 0.01; //avoid getting stuck in the dirt
+                        fallVelocity = 0.0;
+                    }
+                    else
+                    {
+                        location.y = taretY;
+                        if(fallVelocity <= 1)
+                            fallVelocity += World.gravity;
+                    }
                 }
             }
         },0,World.FPS);
@@ -91,6 +112,16 @@ public class Animal
 
     public void setImage(BufferedImage img) throws FileNotFoundException, IOException
     { this.image = img;}
+
+    public BufferedImage getImage()
+    {
+        return this.image;
+    }
+
+    public Point.Double getLocation()
+    {
+        return location;
+    }
 
 //ImageIO.read(new FileInputStream(imagePath));
 //    public static void main(String args[])

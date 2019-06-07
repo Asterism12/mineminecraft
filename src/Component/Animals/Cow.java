@@ -1,18 +1,16 @@
 package Component.Animals;
 
-import Component.Animals.OffensiveAnimal;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Skeleton extends OffensiveAnimal {
+public class Cow extends Animal{
     private static BufferedImage image;
     static{
         try {
-            image = ImageIO.read(new FileInputStream("image/skeleton.png"));
+            image = ImageIO.read(new FileInputStream("image/cow.png"));
         }
         catch (FileNotFoundException e)
         {
@@ -24,11 +22,11 @@ public class Skeleton extends OffensiveAnimal {
         }
     }
 
-    public Skeleton()
+    public Cow()
     {
-        this.setHP(80);
-        this.setAttackForce(16);
-        this.setAnimalName("Skeleton");
+        super();
+        this.setHP(24);
+        this.setAnimalName("Cow");
         try {
             this.setImage(image);
         }
