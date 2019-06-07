@@ -200,7 +200,9 @@ public class MCanvas extends JPanel {
                             margins + 250 + j * sideLength + 3, 325 + i * sideLength + 3, null);
             }
         }
+
         g.drawRect(margins + 410, 325 + sideLength, sideLength, sideLength);
+        g.setColor(Color.WHITE);
         if (squares[63] != null) {
             g.drawImage(squares[63].getToolBarPic(),
                     margins + 410 + 3, 325 + sideLength + 3, null);

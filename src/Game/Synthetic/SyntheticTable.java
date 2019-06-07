@@ -36,7 +36,7 @@ public class SyntheticTable {
 
     public static void initSyntheticTable() {
         map.put(new Recipe(new int[]{0, 0, 0, 0, 7, 0, 0, 0, 0}), new TableOutput(new WoodPanel(), 4));//1
-        map.put(new Recipe(new int[]{0, 0, 0, 0, 6, 0, 0, 6, 0}), new TableOutput(new WoodStick(), 1));//2
+        map.put(new Recipe(new int[]{0, 0, 0, 0, 6, 0, 0, 6, 0}), new TableOutput(new WoodStick(), 2));//2
 
         map.put(new Recipe(new int[]{6, 6, 0, 6, 1, 0, 0, 1, 0}), new TableOutput(new WoodAxe(), 1));//3
         map.put(new Recipe(new int[]{6, 6, 6, 0, 1, 0, 0, 1, 0}), new TableOutput(new WoodPick(), 1));//4
