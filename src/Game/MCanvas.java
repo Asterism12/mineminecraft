@@ -21,6 +21,7 @@ public class MCanvas extends JPanel {
     private Image bg;//背景图片
     private Timer imgTimer = new Timer();
     private BufferedImage image;
+    private boolean standing;
 
     @Override
     public void paint(Graphics g) {
@@ -233,24 +234,31 @@ public class MCanvas extends JPanel {
         for(int i = 0;i < animals.size();i++)
         {
             Animal animal = animals.get(i);
-            image = animal.getImage1();
+            standing = true;
             Point.Double location = animal.getLocation();
 
             imgTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    if(image.equals(animal.getImage1())) {
-                        image = null;
-                        image = animal.getImage2();
+                    int xbias, ybias;//人物相对于脚下物块的位置像素偏移量
+                    xbias = (int) ((location.x - (int) World.player.getLocation().x));
+                    ybias = (int) ((location.y - (int) World.player.getLocation().y));
+
+                    if(Math.abs(xbias) <= 500 && Math.abs(ybias) <= 400) {
+                        if(standing) {
+                            g.drawImage(animal.getImage1(),xbias,ybias,null);
+                            standing = false;
+                        }
+                        else
+                        {
+                            g.drawImage(animal.getImage2(),xbias,ybias,null);
+                            standing = true;
+                        }
                     }
                 }
-            },0,World.FPS/10);
+            },0,5*World.FPS);
 
-            int xbias, ybias;//人物相对于脚下物块的位置像素偏移量
-            xbias = (int) ((location.x - (int) World.player.getLocation().x));
-            ybias = (int) ((location.y - (int) World.player.getLocation().y));
-            if(Math.abs(xbias) <= 500 && Math.abs(ybias) <= 400)
-                g.drawImage(image,xbias,ybias,null);
+
         }
     }
 
