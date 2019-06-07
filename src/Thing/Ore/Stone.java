@@ -23,7 +23,7 @@ public class Stone extends Square{
 	}
 	public Stone(){
 		id=10;
-		breakLevel=2;
+		breakLevel=1;
 		weight=false;
 		liquid=false;
 		pile=true;
@@ -31,6 +31,7 @@ public class Stone extends Square{
 		takeUp=true;
 		through=false;
 		putDown=true;
+		digType = 1;
 		this.pic = material;
 		this.toolBarPic = toolBarPicMaterial;
 	}

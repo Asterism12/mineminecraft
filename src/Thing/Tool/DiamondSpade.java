@@ -1,19 +1,18 @@
-package Thing.Weapon;
+package Thing.Tool;
 
 import Game.World;
-import Thing.Square;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class WoodSpade extends Square {
+public class DiamondSpade extends Spade {
 	private static Image material;
 	private static Image toolBarPicMaterial;
 	static {
 		try {
-			material = ImageIO.read(new File("image/WoodSpade.png"))
+			material = ImageIO.read(new File("image/DiamondSpade.png"))
 					.getScaledInstance(World.PICSIZE, World.PICSIZE, Image.SCALE_DEFAULT);
 			toolBarPicMaterial = material.getScaledInstance(
 					World.TOOLBARSPICIZE, World.TOOLBARSPICIZE, Image.SCALE_DEFAULT);
@@ -21,17 +20,13 @@ public class WoodSpade extends Square {
 			e.printStackTrace();
 		}
 	}
-	public WoodSpade(){
-		id=4;
-		breakLevel=1;
-		weight=false;
-		liquid=false;
-		pile=false;
-		food=false;
-		takeUp=true;
-		through=false;
-		putDown=false;
-		this.pic = material;
-		this.toolBarPic = toolBarPicMaterial;
+	public DiamondSpade(){
+		super();
+		id=34;
+		durability = 4;
+		animalAtk = 4;
+		digSpeed = 4;
+		pic = material;
+		toolBarPic = toolBarPicMaterial;
 	}
 }
