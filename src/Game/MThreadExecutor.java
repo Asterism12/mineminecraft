@@ -33,7 +33,7 @@ public class MThreadExecutor {
             } else {
                 delay = 1000 + square.breakLevel * 200;
             }
-            System.out.println("delay:"+delay);
+            //System.out.println("delay:"+delay);
             oldFuture = executorService.schedule(new Destroy(), delay, TimeUnit.MILLISECONDS);
         }
     }
