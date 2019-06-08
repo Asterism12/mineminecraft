@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Skeleton extends OffensiveAnimal {
-    private static BufferedImage image1Left,image1Right,image2Left,image2Right;
+    private static BufferedImage image1Left; //pic of standing to the left
+    private static BufferedImage image1Right;   //pic of standing to the righr
+    private static BufferedImage image2Left;    //pic of walking to the left
+    private static BufferedImage image2Right;   //pic of walking to the right
 
     static{
         try {//load the pics

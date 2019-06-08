@@ -15,12 +15,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Mainframe {
-    static JFrame mainFrame;
-    static JFrame setFrame;
-    static JFrame infoFrame;
-    static private JPanel mainPanel;
-    static private JPanel setPanel;
-    static private JPanel infoPanel;
+    static JFrame mainFrame;    //frame of the mainmenu
+    static JFrame setFrame;     //frame of the settings
+    static JFrame infoFrame;    //frame of the "more information"
+    static private JPanel mainPanel;    //panel of the mainmenu
+    static private JPanel setPanel;     //panel of the settings
+    static private JPanel infoPanel;    //panel of the "more information"
 
     public static JFrame getMainFrame()
     {

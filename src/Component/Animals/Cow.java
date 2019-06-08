@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 public class Cow extends Animal{
-    private static BufferedImage image1Left,image1Right,image2Left,image2Right;
+    private static BufferedImage image1Left; //pic of standing to the left
+    private static BufferedImage image1Right;   //pic of standing to the righr
+    private static BufferedImage image2Left;    //pic of walking to the left
+    private static BufferedImage image2Right;   //pic of walking to the right
 
     static{
         try { //load the pics

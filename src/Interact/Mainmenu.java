@@ -13,9 +13,12 @@ import java.io.IOException;
 
 class Mainmenu extends JPanel{
 
-    private JPanel myPanel;
-    private JButton myButton1,myButton2,myButton3,myButton4;
-    private Image image;
+    private JPanel myPanel;     //the panel of the main menu
+    private JButton myButton1;  //the entrance of begin
+    private JButton myButton2;  //the entrance of settings
+    private JButton myButton3;  //the entrance of more information
+    private JButton myButton4;  //the button for exiting
+    private Image image;    //the background image of the main menu
 
     private class SimpleListener implements ActionListener{ //get the action
         @Override

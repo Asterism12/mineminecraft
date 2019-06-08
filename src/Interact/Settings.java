@@ -16,9 +16,11 @@ public class Settings {
     private static JPanel setPanel;
     private ChangeListener listener;
     private JColorChooser colorChooser;
+
+    //respectively stands for the color of the color saver and the head, arm, body, leg of the character
     private static Color color,headColor = Color.WHITE, armColor = Color.WHITE, bodyColor = Color.WHITE, legColor = Color.WHITE;
-    private static int initHp;
-    String buttonName;
+    private static int initHp;  //the initial hp of the character
+    String buttonName;  //used for saving the name of the button clicked
 
     Settings() { }
 
