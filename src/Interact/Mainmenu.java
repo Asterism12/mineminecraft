@@ -104,7 +104,6 @@ class Mainmenu extends JPanel{
 //            } else {
 //                System.out.println("注册字体失败");
 //            }
-
         }
         catch (FontFormatException e){
             e.printStackTrace();

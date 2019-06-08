@@ -13,6 +13,7 @@ import Thing.Otherthing.Earth;
 import Thing.Otherthing.Ground;
 import Thing.Otherthing.TreeLeaves;
 import Thing.Ore.*;
+import com.sun.corba.se.spi.orb.Operation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,6 +53,7 @@ public class World {
         mCanvas.setFocusable(true);
         frame.add(mCanvas);
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
@@ -266,7 +268,6 @@ public class World {
                 super.keyPressed(e);
                 switch (e.getKeyCode()) {
                     case 27:
-
                         World.setFrame(false);
                         Mainframe.getMainFrame().setVisible(true);
                         break;
@@ -434,6 +435,8 @@ public class World {
         player.setBodyColor(Settings.getBodyColor());
         player.setArmColor(Settings.getArmColor());
         player.setLegColor(Settings.getLegColor());
+        player.setHp(Settings.getInitHp());
+        System.out.println(player.getHp());
 
         mThreadExecutor = new MThreadExecutor();
         UIinit();

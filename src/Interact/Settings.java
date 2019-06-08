@@ -17,6 +17,7 @@ public class Settings {
     private ChangeListener listener;
     private JColorChooser colorChooser;
     private static Color color,headColor = Color.WHITE, armColor = Color.WHITE, bodyColor = Color.WHITE, legColor = Color.WHITE;
+    private static int initHp;
     String buttonName;
 
     Settings() { }
@@ -120,7 +121,7 @@ public class Settings {
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                World.player.setHp(10+slider.getValue());
+                initHp = 10+slider.getValue();
             }
         });
 
@@ -180,6 +181,8 @@ public class Settings {
     {
         return legColor;
     }
+
+    public static int getInitHp() {return initHp; };
 
     JPanel getSetPanel() {
         return setPanel;
