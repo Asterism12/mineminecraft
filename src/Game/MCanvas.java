@@ -238,8 +238,6 @@ public class MCanvas extends JPanel {
             if (rectangle.contains(animal.getLocation())) {
                 double i = animal.getLocation().x - rectangle.x;
                 double j = animal.getLocation().y - rectangle.y;
-                //System.out.println(animal.getLocation());
-                //System.out.println(i+" "+j+" "+ rectangle.y);
                 g.drawImage(animal.getImage(),
                         (int) i * World.PICSIZE - xbias, (int) (j-animal.getLift()) * World.PICSIZE - ybias, null);
             }

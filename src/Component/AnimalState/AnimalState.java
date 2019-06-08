@@ -70,7 +70,7 @@ public class AnimalState {
             }
             else
             {
-                if(dir == true)
+                if(dir)
                 {
                     double targetX = animal.getLocation().x - animal.getVelocity();
                     Square square = World.worldSquare[(int) targetX][(int) animal.getLocation().y];
@@ -82,7 +82,7 @@ public class AnimalState {
                     else
                         animal.setLocationx(targetX);
                 }
-                else if(dir == false)
+                else
                 {
                     double targetX = animal.getLocation().x + animal.getVelocity();
                     Square square = World.worldSquare[(int)targetX][(int) animal.getLocation().y];
