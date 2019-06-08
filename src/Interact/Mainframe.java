@@ -17,8 +17,10 @@ import java.io.IOException;
 public class Mainframe {
     static JFrame mainFrame;
     static JFrame setFrame;
+    static JFrame infoFrame;
     static private JPanel mainPanel;
     static private JPanel setPanel;
+    static private JPanel infoPanel;
 
     public static JFrame getMainFrame()
     {
@@ -45,8 +47,10 @@ public class Mainframe {
         //draw the mainframe of the mainmenu and the setFrame of the settings
         mainFrame = new JFrame("Minecraft 2D version"); //set the frame of the mainMenu
         setFrame = new JFrame("Minecraft 2D version");  //set the frame of the settings
+        infoFrame = new JFrame("Minecraft 2D version");
         mainPanel = new JPanel();
         setPanel = new JPanel();
+        infoPanel = new JPanel();
 
         //load the background pictures
         Image image = ImageIO.read(new FileInputStream("image/Mainmenu.png"));
@@ -76,6 +80,20 @@ public class Mainframe {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(1200,800);
         mainFrame.setLocation(200,100);
-        mainFrame.setVisible(true);}
+        mainFrame.setVisible(true);
+
+        //draw the panel of the infoMenu
+        MoreInfo infoMenu = new MoreInfo();
+        infoMenu.paintPanel(image.getGraphics());
+
+        infoPanel = infoMenu.getInfoPanel();
+        infoFrame.add(infoPanel);
+        infoPanel.setVisible(true);
+
+        infoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        infoFrame.setSize(1200,800);
+        infoFrame.setLocation(200,100);
+        infoFrame.setVisible(false);
+    }
 
 }

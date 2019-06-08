@@ -33,7 +33,10 @@ class Mainmenu extends JPanel{
                 Mainframe.setFrame.setVisible(true);
             }
             if(buttonName.equals("MoreInfo"))
-                System.out.println("More Info");
+            {
+                Mainframe.mainFrame.setVisible(false);
+                Mainframe.infoFrame.setVisible(true);
+            }
             if(buttonName.equals("Exit")) {
                 System.exit(0);
             }
