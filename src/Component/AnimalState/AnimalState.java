@@ -25,6 +25,7 @@ public class AnimalState {
         for (int i = 0; i < animals.size(); i++) {
             Animal animal = animals.get(i);
 
+            //if cnt == 0, walk to the left, 4: walk to the right, others: stay still
             int cnt = (random.nextInt(40) + 1) % 8;
             if (cnt == 0) {
                 animal.setWalking(true);
@@ -50,11 +51,12 @@ public class AnimalState {
         for (int i = 0; i < animals.size(); i++) {
             Animal animal = animals.get(i);
 
-            //determine the direction and make movement
+            //get the direction and make movement
             boolean dir = animal.getDir();
             boolean walking = animal.getWalking();
             int x = (int) animal.getLocation().x;
             int y = (int) animal.getLocation().y;
+            //if the present square is null, the animal will fall
             if (World.worldSquare[x][y] == null || fallVelocity != 0) {
                 double targetY = animal.getLocation().y + fallVelocity;
                 Square square = World.worldSquare[x][(int) targetY];
@@ -68,6 +70,7 @@ public class AnimalState {
                 }
             }
 
+            //make movement
             if(walking)
             {
                 if (dir) {
@@ -97,6 +100,7 @@ public class AnimalState {
 
     public static void adjustBorn()
     {
+        //adjust the place where the animals are born
         for(Animal animal : animals)
         {
             int x,y;
