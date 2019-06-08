@@ -60,7 +60,7 @@ public class AnimalState {
                 Square square = World.worldSquare[x][(int) targetY];
                 if (fallVelocity > 0 && square != null && !square.through) {
                     animal.setLocationy((int) (targetY) - 0.01); //avoid getting stuck in the dirt
-                    fallVelocity = 0;
+                    fallVelocity = 0.2;
                 } else {
                     animal.setLocationy(targetY);
                     if (fallVelocity <= 1)
@@ -110,11 +110,18 @@ public class AnimalState {
     public static void init()
     {
         //initial the animallist -- create some creatures
-        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,200)));
-        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,200)));
-        AnimalState.getAnimalList().add(new Pig(new Point.Double(2034,200)));
-        AnimalState.getAnimalList().add(new Skeleton(new Point.Double(2050,200)));
-        AnimalState.getAnimalList().add(new Zombie(new Point.Double(2060,200)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,240)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,240)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(1800,240)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(500,240)));
+        AnimalState.getAnimalList().add(new Pig(new Point.Double(2034,240)));
+        AnimalState.getAnimalList().add(new Pig(new Point.Double(2010,240)));
+        AnimalState.getAnimalList().add(new Pig(new Point.Double(1624,240)));
+        AnimalState.getAnimalList().add(new Skeleton(new Point.Double(2050,240)));
+        AnimalState.getAnimalList().add(new Skeleton(new Point.Double(400,240)));
+        AnimalState.getAnimalList().add(new Zombie(new Point.Double(2060,240)));
+        AnimalState.getAnimalList().add(new Zombie(new Point.Double(300,240)));
+
     }
 }
 
