@@ -33,9 +33,6 @@ public class Mainframe {
         AnimalState.getAnimalList().add(new Skeleton(new Point.Double(2050,127.99-30)));
         AnimalState.getAnimalList().add(new Zombie(new Point.Double(2060,127.99-30)));
 
-        // as soon as u open the game, the world would be initially loaded
-        World.main(null);
-
         //draw the mainframe of the mainmenu and the setFrame of the settings
         mainFrame = new JFrame("Minecraft 2D version"); //set the frame of the mainMenu
         setFrame = new JFrame("Minecraft 2D version");  //set the frame of the settings

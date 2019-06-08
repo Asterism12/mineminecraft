@@ -3,6 +3,7 @@ package Game;
 import Component.AnimalState.AnimalState;
 import Game.Synthetic.SyntheticTable;
 import Interact.Mainframe;
+import Interact.Settings;
 import Thing.*;
 
 import Thing.Armor.Armor;
@@ -53,7 +54,7 @@ public class World {
         mCanvas.setFocusable(true);
         frame.add(mCanvas);
         frame.setCursor(Cursor.CROSSHAIR_CURSOR);
-        frame.setVisible(false);
+        frame.setVisible(true);
     }
 
     //用种子生成一个世界地形，种子默认为0
@@ -427,7 +428,13 @@ public class World {
         int judgex = 2048, judgey = 150;
         while (worldSquare[judgex][judgey] != null) judgey--;
         startLocation = new Point.Double(judgex, judgey);
+
         player = new Player();
+        player.setHeadColor(Settings.getHeadColor());
+        player.setBodyColor(Settings.getBodyColor());
+        player.setArmColor(Settings.getArmColor());
+        player.setLegColor(Settings.getLegColor());
+
         mThreadExecutor = new MThreadExecutor();
         UIinit();
         playerUpdater();
@@ -444,9 +451,5 @@ public class World {
         Point mouseOnScreen = MouseInfo.getPointerInfo().getLocation();
         canvasLocation.x = p.x - mouseOnScreen.x;
         canvasLocation.y = p.y - mouseOnScreen.y;
-    }
-
-    public static void main(String[] args) {
-        worldCreator();
     }
 }

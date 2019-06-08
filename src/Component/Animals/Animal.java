@@ -16,6 +16,7 @@ public class Animal
     private Point.Double location = new Point.Double();  //the coordinates of the animal
     private boolean dir;  //true stands for left, false stands for right
     private boolean standing;   //where the animal is standing or not(standing or walking)
+    private boolean walking;
     private double lift; //when drawn on the canvas according to the location, the animal should be lifted about lift*PICSIZE to be properly shown
 
     public Animal() {}
@@ -23,8 +24,9 @@ public class Animal
     public Animal(double volocity)
     {
         this.velocity = volocity;
-        this.setDir(true);
-        this.setStanding(true);
+        dir = true;
+        standing = true;
+        walking = true;
     }
     //The get and set methods for each attribute
     public String getAnimalName()
@@ -120,6 +122,16 @@ public class Animal
     public void setStanding(boolean standing)
     {
         this.standing = standing;
+    }
+
+    public boolean getWalking()
+    {
+        return walking;
+    }
+
+    public void setWalking(boolean walking)
+    {
+        this.walking = walking;
     }
 
     public double getLift()

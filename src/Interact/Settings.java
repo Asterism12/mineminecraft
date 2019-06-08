@@ -16,7 +16,7 @@ public class Settings {
     private static JPanel setPanel;
     private ChangeListener listener;
     private JColorChooser colorChooser;
-    private static Color color = null;
+    private static Color color,headColor = Color.WHITE, armColor = Color.WHITE, bodyColor = Color.WHITE, legColor = Color.WHITE;
     String buttonName;
 
     Settings() { }
@@ -29,13 +29,13 @@ public class Settings {
                 return;
             }
             if (buttonName.equals("HEAD"))
-                World.player.setHeadColor(color);
+                headColor = color;
             if (buttonName.equals("ARM"))
-                World.player.setArmColor(color);
+                armColor = color;
             if (buttonName.equals("BODY"))
-                World.player.setBodyColor(color);
+                bodyColor = color;
             if (buttonName.equals("LEG"))
-                World.player.setLegColor(color);
+                legColor = color;
         }
     }
 
@@ -159,6 +159,26 @@ public class Settings {
         setPanel.add(button);
         button.setBounds(x,y,200,50);
         button.setBackground(color);
+    }
+
+    public static Color getHeadColor()
+    {
+        return headColor;
+    }
+
+    public static Color getArmColor()
+    {
+        return armColor;
+    }
+
+    public static Color getBodyColor()
+    {
+        return bodyColor;
+    }
+
+    public static Color getLegColor()
+    {
+        return legColor;
     }
 
     JPanel getSetPanel() {
