@@ -1,10 +1,10 @@
 package Component.AnimalState;
 
-import Component.Animals.Animal;
-import Component.Animals.Cow;
+import Component.Animals.*;
 import Game.World;
 import Thing.Square;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,12 +25,19 @@ public class AnimalState {
         for (int i = 0; i < animals.size(); i++) {
             Animal animal = animals.get(i);
 
-            int cnt = (random.nextInt(120) + 1) % 6;
-            if (cnt == 0)
+            int cnt = (random.nextInt(40) + 1) % 8;
+            if (cnt == 0) {
+                animal.setWalking(true);
                 animal.setDir(true);
-            else if (cnt == 3)
+            }
+            else if (cnt == 4) {
+                animal.setWalking(true);
                 animal.setDir(false);
-
+            }
+            else {
+                animal.setWalking(false);
+                animal.setStanding(false);
+            }
             //change the pic
             if (animal.getStanding())
                 animal.setStanding(false);
@@ -45,6 +52,7 @@ public class AnimalState {
 
             //determine the direction and make movement
             boolean dir = animal.getDir();
+            boolean walking = animal.getWalking();
             int x = (int) animal.getLocation().x;
             int y = (int) animal.getLocation().y;
             if (World.worldSquare[x][y] == null || fallVelocity != 0) {
@@ -59,43 +67,54 @@ public class AnimalState {
                         fallVelocity += World.gravity;
                 }
             }
-            /*
-            if (World.worldSquare[x][y] == null && (animal.getLocation().y - y) > 0.015) {
-                fallVelocity = 0.5;
-                double targetY = animal.getLocation().y + fallVelocity;
-                Square square = World.worldSquare[x][(int) targetY];
-                if (fallVelocity > 0.0 && square != null && !square.through) {
-                    animal.setLocationy((int) (targetY) - 0.99); //avoid getting stuck in the dirt
-                    //fallVelocity = 0.0;
+
+            if(walking)
+            {
+                if (dir) {
+                    double targetX = animal.getLocation().x - animal.getVelocity();
+                    Square square = World.worldSquare[(int) targetX][(int) animal.getLocation().y];
+
+                    if (square == null)
+                        animal.setLocationx(targetX);
+                    else if (!square.through)
+                        animal.setLocationx(Math.ceil(targetX));
+                    else
+                        animal.setLocationx(targetX);
                 } else {
-                    animal.setLocationy(targetY);
-                    if (fallVelocity <= 1)
-                        fallVelocity += World.gravity;
+                    double targetX = animal.getLocation().x + animal.getVelocity();
+                    Square square = World.worldSquare[(int) targetX][(int) animal.getLocation().y];
+
+                    if (square == null)
+                        animal.setLocationx(targetX);
+                    else if (!square.through)
+                        animal.setLocationx((int) targetX - 0.01);
+                    else
+                        animal.setLocationx(targetX);
                 }
-            } else {
-             */
-            if (dir) {
-                double targetX = animal.getLocation().x - animal.getVelocity();
-                Square square = World.worldSquare[(int) targetX][(int) animal.getLocation().y];
-
-                if (square == null)
-                    animal.setLocationx(targetX);
-                else if (!square.through)
-                    animal.setLocationx(Math.ceil(targetX));
-                else
-                    animal.setLocationx(targetX);
-            } else {
-                double targetX = animal.getLocation().x + animal.getVelocity();
-                Square square = World.worldSquare[(int) targetX][(int) animal.getLocation().y];
-
-                if (square == null)
-                    animal.setLocationx(targetX);
-                else if (!square.through)
-                    animal.setLocationx((int) targetX - 0.01);
-                else
-                    animal.setLocationx(targetX);
             }
         }
+    }
+
+    public static void adjustBorn()
+    {
+        for(Animal animal : animals)
+        {
+            int x,y;
+            x = (int)animal.getLocation().x;
+            y = (int)animal.getLocation().y;
+            while (World.worldSquare[x][y] != null) y--;
+            animal.setLocationy(y);
+        }
+    }
+
+    public static void init()
+    {
+        //initial the animallist -- create some creatures
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,200)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,200)));
+        AnimalState.getAnimalList().add(new Pig(new Point.Double(2034,200)));
+        AnimalState.getAnimalList().add(new Skeleton(new Point.Double(2050,200)));
+        AnimalState.getAnimalList().add(new Zombie(new Point.Double(2060,200)));
     }
 }
 

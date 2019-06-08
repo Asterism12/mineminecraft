@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Mainframe {
@@ -24,15 +25,23 @@ public class Mainframe {
         return mainFrame;
     }
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
-        //initial the animallist -- create some creatures
-        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,127.99-30)));
-        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,127.99-30)));
-        AnimalState.getAnimalList().add(new Pig(new Point.Double(2034,127.99-30)));
-        AnimalState.getAnimalList().add(new Skeleton(new Point.Double(2050,127.99-30)));
-        AnimalState.getAnimalList().add(new Zombie(new Point.Double(2060,127.99-30)));
+        try {
+            init();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
+    public static void init() throws IOException
+    {
         //draw the mainframe of the mainmenu and the setFrame of the settings
         mainFrame = new JFrame("Minecraft 2D version"); //set the frame of the mainMenu
         setFrame = new JFrame("Minecraft 2D version");  //set the frame of the settings
@@ -67,6 +76,6 @@ public class Mainframe {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(1200,800);
         mainFrame.setLocation(200,100);
-        mainFrame.setVisible(true);
-    }
+        mainFrame.setVisible(true);}
+
 }

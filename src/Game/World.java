@@ -426,6 +426,9 @@ public class World {
         while (worldSquare[judgex][judgey] != null) judgey--;
         startLocation = new Point.Double(judgex, judgey);
 
+        AnimalState.init();
+        AnimalState.adjustBorn();
+
         player = new Player();
         player.setHeadColor(Settings.getHeadColor());
         player.setBodyColor(Settings.getBodyColor());

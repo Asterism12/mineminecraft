@@ -36,7 +36,7 @@ public class Skeleton extends OffensiveAnimal {
         this.setHP(80);
         this.setAttackForce(15);
         this.setAnimalName("Skeleton");
-        this.setLift(1.5);
+        this.setLift(2);
         this.setImage(true,1,image1Left);
         this.setImage(false,1,image1Right);
         this.setImage(true,2,image2Left);
