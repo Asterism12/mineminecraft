@@ -27,9 +27,9 @@ public class Mainframe {
 
     public static void main(String[] args) throws IOException
     {
-        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,127.99-10)));
-        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,127.99-10)));
-        AnimalState.getAnimalList().add(new Pig(World.startLocation));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,127.99-30)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,127.99-30)));
+        AnimalState.getAnimalList().add(new Pig(new Point.Double(2034,127.99-30)));
         World.main(null);
         mainFrame = new JFrame("Minecraft 2D version");
         setFrame = new JFrame("Minecraft 2D version");
