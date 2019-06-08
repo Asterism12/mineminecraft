@@ -58,8 +58,8 @@ public class AnimalState {
                 Square square = World.worldSquare[x][(int)targetY];
                 if(fallVelocity > 0.0 && square != null && !square.through)
                 {
-                    animal.setLocationy((int)targetY - 1); //avoid getting stuck in the dirt
-                    fallVelocity = 0.0;
+                    animal.setLocationy((int)(targetY) - 0.99); //avoid getting stuck in the dirt
+                    //fallVelocity = 0.0;
                 }
                 else
                 {

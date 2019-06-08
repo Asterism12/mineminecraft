@@ -2,6 +2,7 @@ package Game;
 
 import Component.AnimalState.AnimalState;
 import Game.Synthetic.SyntheticTable;
+import Interact.Mainframe;
 import Thing.*;
 
 import Thing.Armor.Armor;
@@ -39,8 +40,8 @@ public class World {
     //public static final int FPS=1000;//测试帧率1FPS，在测试监听器时应先采用此帧率测试
     public static final int FPS = 1000 / 30;//定时器触发间隔
 
-    public static void setFrame() {
-        frame.setVisible(true);
+    public static void setFrame(boolean i) {
+        frame.setVisible(i);
     }
 
     private static void UIinit() {//UI初始化
@@ -266,6 +267,11 @@ public class World {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 switch (e.getKeyCode()) {
+                    case 27:
+
+                        World.setFrame(false);
+                        Mainframe.getMainFrame().setVisible(true);
+                        break;
                     case 82:
                         player.isShowBorder = !player.isShowBorder;
                         break;
@@ -382,6 +388,7 @@ public class World {
                     }
                 }
             }
+
 
             @Override
             public void mouseReleased(MouseEvent e) {

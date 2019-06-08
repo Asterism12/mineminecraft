@@ -17,6 +17,12 @@ public class Mainframe {
     static JFrame setFrame;
     static private JPanel mainPanel;
     static private JPanel setPanel;
+
+    public static JFrame getMainFrame()
+    {
+        return mainFrame;
+    }
+
     public static void main(String[] args) throws IOException
     {
         AnimalState.getAnimalList().add(new Cow());

@@ -22,7 +22,7 @@ public class Animal
 
     public Animal(double volocity)
     {
-        location = new Point.Double(World.startLocation.x,World.startLocation.y-50);
+        location = new Point.Double(World.startLocation.x,World.startLocation.y-20);
         this.velocity = volocity;
         this.setDir(true);
         this.setStanding(true);
