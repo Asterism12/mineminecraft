@@ -51,19 +51,19 @@ public class AnimalState {
             boolean dir = animal.getDir();
             int x = (int)animal.getLocation().x;
             int y = (int)animal.getLocation().y;
-            if(World.worldSquare[x][y] == null && (animal.getLocation().y-y) > 0.01)
+            if(World.worldSquare[x][y] == null && (animal.getLocation().y-y) > 0.015)
             {
                 fallVelocity = 0.5;
-                double taretY = animal.getLocation().y + fallVelocity;
-                Square square = World.worldSquare[(int)animal.getLocation().x][(int)taretY];
+                double targetY = animal.getLocation().y + fallVelocity;
+                Square square = World.worldSquare[x][(int)targetY];
                 if(fallVelocity > 0.0 && square != null && !square.through)
                 {
-                    animal.setLocationy((int)taretY - 1); //avoid getting stuck in the dirt
+                    animal.setLocationy((int)targetY - 1); //avoid getting stuck in the dirt
                     fallVelocity = 0.0;
                 }
                 else
                 {
-                    animal.setLocationy(taretY);
+                    animal.setLocationy(targetY);
                     if(fallVelocity <= 1)
                         fallVelocity += World.gravity;
                 }
