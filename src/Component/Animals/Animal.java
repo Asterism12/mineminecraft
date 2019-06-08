@@ -12,10 +12,11 @@ public class Animal
     private String animalName = "";
     private int hp = 0;
     private double velocity;
-    private BufferedImage image1Left,image2Left,image1Right,image2Right;
-    protected Point.Double location = new Point.Double();  //the coordinates of the animal
+    private BufferedImage image1Left,image2Left,image1Right,image2Right;    //the pics of the animal
+    private Point.Double location = new Point.Double();  //the coordinates of the animal
     private boolean dir;  //true stands for left, false stands for right
-    private boolean standing;
+    private boolean standing;   //where the animal is standing or not(standing or walking)
+    private double lift; //when drawn on the canvas according to the location, the animal should be lifted about lift*PICSIZE to be properly shown
 
     public Animal() {}
 
@@ -46,6 +47,23 @@ public class Animal
         this.hp = HP;
     }
 
+    public BufferedImage getImage()
+    {
+        if(standing) {
+            if(dir == true)
+                return image1Left;
+            else if(dir == false)
+                return image1Right;
+        }
+        else if(!standing) {
+            if(dir == true)
+                return image2Left;
+            else if(dir == false)
+                return image2Right;
+        }
+        return null;
+    }
+
     public void setImage(boolean dir,int seq,BufferedImage image)
     {
         if(dir == true)
@@ -64,26 +82,9 @@ public class Animal
         }
     }
 
-    public BufferedImage getImage()
+    public boolean getDir()
     {
-        if(standing) {
-            if(dir == true)
-                return image1Left;
-            else if(dir == false)
-                return image1Right;
-        }
-        else if(!standing) {
-            if(dir == true)
-                return image2Left;
-            else if(dir == false)
-                return image2Right;
-        }
-        return null;
-    }
-
-    public Point.Double getLocation()
-    {
-        return location;
+        return dir;
     }
 
     public void setDir(boolean dir)
@@ -91,14 +92,14 @@ public class Animal
         this.dir = dir;
     }
 
-    public boolean getDir()
-    {
-        return dir;
-    }
-
     public double getVelocity()
     {
         return velocity;
+    }
+
+    public Point.Double getLocation()
+    {
+        return location;
     }
 
     public void setLocationx(double x)
@@ -111,14 +112,24 @@ public class Animal
         this.location.y = y;
     }
 
+    public boolean getStanding()
+    {
+        return standing;
+    }
+
     public void setStanding(boolean standing)
     {
         this.standing = standing;
     }
 
-    public boolean getStanding()
+    public double getLift()
     {
-        return standing;
+        return lift;
+    }
+
+    public void setLift(double lift)
+    {
+        this.lift = lift;
     }
 
 }

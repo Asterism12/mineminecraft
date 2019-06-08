@@ -241,7 +241,7 @@ public class MCanvas extends JPanel {
                 //System.out.println(animal.getLocation());
                 //System.out.println(i+" "+j+" "+ rectangle.y);
                 g.drawImage(animal.getImage(),
-                        (int) i * World.PICSIZE - xbias, (int) (j-1) * World.PICSIZE - ybias, null);
+                        (int) i * World.PICSIZE - xbias, (int) (j-animal.getLift()) * World.PICSIZE - ybias, null);
             }
         }
     }

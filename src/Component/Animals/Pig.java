@@ -33,9 +33,11 @@ public class Pig extends Animal {
     public Pig(Point.Double location)
     {
         super( 7.3/(double) (World.FPS));
-        this.location = location;
+        this.setLocationx(location.x);
+        this.setLocationy(location.y);
         this.setHP(20);
         this.setAnimalName("Pig");
+        this.setLift(1);
         this.setImage(true,1,image1Left);
         this.setImage(false,1,image1Right);
         this.setImage(true,2,image2Left);
