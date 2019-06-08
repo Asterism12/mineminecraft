@@ -1,18 +1,24 @@
 package Component.Animals;
 
 import Component.Animals.Animal;
+import Game.World;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Pig extends Animal {
-    private static BufferedImage image;
+    private static BufferedImage image1Left,image1Right,image2Left,image2Right;
+
     static{
         try {
-            image = ImageIO.read(new FileInputStream("image/pig.png"));
+            image1Left = ImageIO.read(new FileInputStream("image/pigLeft.png"));
+            image1Right = ImageIO.read(new FileInputStream("image/pigRight.png"));
+            image2Left = ImageIO.read(new FileInputStream("image/pig2Left.png"));
+            image2Right = ImageIO.read(new FileInputStream("image/pig2Right.png"));
         }
         catch (FileNotFoundException e)
         {
@@ -24,10 +30,15 @@ public class Pig extends Animal {
         }
     }
 
-    public Pig()
+    public Pig(Point.Double location)
     {
-        this.setHP(24);
+        super( 7.3/(double) (World.FPS));
+        this.location = location;
+        this.setHP(20);
         this.setAnimalName("Pig");
-        //this.setImage1(image);
+        this.setImage(true,1,image1Left);
+        this.setImage(false,1,image1Right);
+        this.setImage(true,2,image2Left);
+        this.setImage(false,2,image2Right);
     }
 }

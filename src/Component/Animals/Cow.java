@@ -4,6 +4,7 @@ import Game.World;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +13,7 @@ import java.util.TimerTask;
 
 public class Cow extends Animal{
     private static BufferedImage image1Left,image1Right,image2Left,image2Right;
-    private static java.util.Timer imgTimer = new java.util.Timer();
+
     static{
         try {
             image1Left = ImageIO.read(new FileInputStream("image/cowLeft.png"));
@@ -30,13 +31,13 @@ public class Cow extends Animal{
         }
     }
 
-    public Cow()
+    public Cow() {}
+    public Cow(Point.Double location)
     {
-
         super( 8.5/(double) (World.FPS));
+        this.location = location;
         this.setHP(24);
         this.setAnimalName("Cow");
-
         this.setImage(true,1,image1Left);
         this.setImage(false,1,image1Right);
         this.setImage(true,2,image2Left);

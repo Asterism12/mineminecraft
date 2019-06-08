@@ -12,9 +12,8 @@ public class Animal
     private String animalName = "";
     private int hp = 0;
     private double velocity;
-    private double fallVelocity = 0.0;
     private BufferedImage image1Left,image2Left,image1Right,image2Right;
-    private Point.Double location;  //the coordinates of the animal
+    protected Point.Double location = new Point.Double();  //the coordinates of the animal
     private boolean dir;  //true stands for left, false stands for right
     private boolean standing;
 
@@ -22,7 +21,6 @@ public class Animal
 
     public Animal(double volocity)
     {
-        location = new Point.Double(World.startLocation.x,World.startLocation.y-20);
         this.velocity = volocity;
         this.setDir(true);
         this.setStanding(true);

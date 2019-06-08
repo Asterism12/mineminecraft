@@ -2,12 +2,14 @@ package Interact;
 
 import Component.AnimalState.AnimalState;
 import Component.Animals.Cow;
+import Component.Animals.Pig;
 import Game.Player;
 import Game.World;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,7 +27,9 @@ public class Mainframe {
 
     public static void main(String[] args) throws IOException
     {
-        AnimalState.getAnimalList().add(new Cow());
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(2020,127.99-10)));
+        AnimalState.getAnimalList().add(new Cow(new Point.Double(1024,127.99-10)));
+        AnimalState.getAnimalList().add(new Pig(World.startLocation));
         World.main(null);
         mainFrame = new JFrame("Minecraft 2D version");
         setFrame = new JFrame("Minecraft 2D version");
