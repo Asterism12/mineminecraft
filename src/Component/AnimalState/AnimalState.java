@@ -21,7 +21,7 @@ public class AnimalState {
         return animals;
     }
 
-    public static void updateDir() {
+    public static void updateState() {
         for (int i = 0; i < animals.size(); i++) {
             Animal animal = animals.get(i);
 

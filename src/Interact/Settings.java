@@ -11,8 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-public class Settings {
-    private static JFrame setFrame;
+public class Settings{
     private static JPanel setPanel;
     private ChangeListener listener;
     private JColorChooser colorChooser;

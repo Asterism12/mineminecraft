@@ -247,7 +247,7 @@ public class World {
         slowTimer.schedule(new java.util.TimerTask(){
             @Override
             public void run() {
-                AnimalState.updateDir();
+                AnimalState.updateState();
             }
         },0,600);
 

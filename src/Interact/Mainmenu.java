@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
-class Mainmenu extends JPanel{
+public class Mainmenu{
 
     private JPanel myPanel;     //the panel of the main menu
     private JButton myButton1;  //the entrance of begin

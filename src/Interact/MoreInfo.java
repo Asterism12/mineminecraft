@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.UnsupportedEncodingException;
 
 public class MoreInfo {
-    private static JFrame infoFrame;
     private static JPanel infoPanel;
 
     public void paintPanel(Graphics g) throws UnsupportedEncodingException
