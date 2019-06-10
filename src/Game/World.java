@@ -268,8 +268,7 @@ public class World {
                 super.keyPressed(e);
                 switch (e.getKeyCode()) {
                     case 27:
-                        World.setFrame(false);
-                        Mainframe.getMainFrame().setVisible(true);
+                        System.exit(0);
                         break;
                     case 82:
                         player.isShowBorder = !player.isShowBorder;
@@ -436,7 +435,6 @@ public class World {
         player.setArmColor(Settings.getArmColor());
         player.setLegColor(Settings.getLegColor());
         player.setHp(Settings.getInitHp());
-        System.out.println(player.getHp());
 
         mThreadExecutor = new MThreadExecutor();
         UIinit();
