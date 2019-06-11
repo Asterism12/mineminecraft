@@ -147,7 +147,7 @@ public class World {
                 else worldSquare[i + x][j] = new Earth();
             }
             if (i + x == minePoint) {
-                int mineLength = stoneLine + 12;
+                int mineLength = stoneLine + 24;
                 for (j = stoneLine; j <= 240; j++) {
                     if (mineLength == j) {
                         int mineSort = (int) (Math.random() * 5);
