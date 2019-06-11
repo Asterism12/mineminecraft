@@ -15,6 +15,12 @@ public class Recipe {
         }
     }
 
+    Recipe(int[] curTable){
+        for(int i=0;i<9;i++){
+            table[i]=curTable[i];
+        }
+    }
+
     @Override
     public int hashCode() {
         int sum = 0;
@@ -34,6 +40,7 @@ public class Recipe {
                 return false;
             }
         }
-        return false;
+
+        return true;
     }
 }

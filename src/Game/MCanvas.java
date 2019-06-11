@@ -1,15 +1,16 @@
 package Game;
 
+import Component.AnimalState.AnimalState;
+import Component.Animals.Animal;
 import Thing.Square;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.xml.crypto.dsig.Transform;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
+import java.util.ArrayList;
 
 public class MCanvas extends JPanel {
     private Image bg;//背景图片
@@ -19,6 +20,7 @@ public class MCanvas extends JPanel {
         super.paint(g);
         printBackGround(g);
         printWorld(g);
+        printAnimal(g);
         printPlayer(g);
         printToolbar(g);
         if (World.player.isOpenBag)
@@ -29,7 +31,7 @@ public class MCanvas extends JPanel {
             printPlayerBorder(g);
     }
 
-    private void printPlayerBorder(Graphics g){
+    private void printPlayerBorder(Graphics g) {
         g.drawRect(getWidth() / 2 - 50, getHeight() / 2 - 70, 100, 100);
     }
 
@@ -90,7 +92,7 @@ public class MCanvas extends JPanel {
         g2d.setTransform(affineTransform);
         g2d.fill(new Rectangle2D.Double(p.x - (int) (3 * size), p.y - (int) (26 * size), (int) (6 * size), (int) (14 * size)));
 
-        //The code is sucks, I know.
+        //The code sucks, I know.
         g2d.setColor(World.player.leg);
         AffineTransform affineTransform1 = new AffineTransform();
         affineTransform1.rotate(10 * World.player.getLegSwing() * Math.PI / 180, legLocation.x, legLocation.y);
@@ -193,17 +195,29 @@ public class MCanvas extends JPanel {
                         325 + i * sideLength, sideLength, sideLength);
             }
         }
+
+        g.setColor(Color.WHITE);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (squares[54 + 3 * i + j] != null)
+                if (squares[54 + 3 * i + j] != null) {
                     g.drawImage(squares[54 + 3 * i + j].getToolBarPic(),
                             margins + 250 + j * sideLength + 3, 325 + i * sideLength + 3, null);
+                    if (number[54 + 3 * i + j] > 1) {
+                        g.drawString(String.valueOf(number[54 + 3 * i + j]), margins + 250 + j * sideLength + 3, 325 + (i + 1) * sideLength - 3);
+                    }
+                }
             }
         }
+
         g.drawRect(margins + 410, 325 + sideLength, sideLength, sideLength);
-        if (squares[63] != null)
+        g.setColor(Color.WHITE);
+        if (squares[63] != null) {
             g.drawImage(squares[63].getToolBarPic(),
                     margins + 410 + 3, 325 + sideLength + 3, null);
+            if (number[63] > 1)
+                g.drawString(String.valueOf(number[63]),
+                        margins + 410, 325 + 2 * sideLength - 3);
+        }
         g.drawString("Input", margins + 235, 310);
         g.drawString("Output", margins + 410, 310 + sideLength);
     }
@@ -214,11 +228,25 @@ public class MCanvas extends JPanel {
         g.drawString(s, 20, 20);
     }
 
-    private boolean checkClikcBorder(Point p) {//在可触碰范围内
-        if (p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&
-                p.y > getHeight() / 2 - 70 && p.y < getHeight() / 2 + 30)
-            return true;
-        return false;
+    private void printAnimal(Graphics g) {
+        Rectangle rectangle = World.checkBorder();
+        Point.Double location = World.player.getLocation();
+        int xbias = (int) ((location.x - (int) location.x) * World.PICSIZE);
+        int ybias = (int) ((location.y - (int) location.y) * World.PICSIZE);
+        ArrayList<Animal> animals = AnimalState.getAnimalList();
+        for (Animal animal : animals) {
+            if (rectangle.contains(animal.getLocation())) {
+                double i = animal.getLocation().x - rectangle.x;
+                double j = animal.getLocation().y - rectangle.y;
+                g.drawImage(animal.getImage(),
+                        (int) i * World.PICSIZE - xbias, (int) (j-animal.getLift()) * World.PICSIZE - ybias, null);
+            }
+        }
+    }
+
+    private boolean checkClickBorder(Point p) {//在可触碰范围内
+        return p.x > getWidth() / 2 - 50 && p.x < getWidth() / 2 + 50 &&
+                p.y > getHeight() / 2 - 70 && p.y < getHeight() / 2 + 30;
     }
 
     int getGrid(Point p) {
@@ -264,7 +292,7 @@ public class MCanvas extends JPanel {
     }
 
     Point getClickSquare(Point p) {
-        if (!checkClikcBorder(p))
+        if (!checkClickBorder(p))
             return null;
 
         Rectangle rectangle = World.checkBorder();

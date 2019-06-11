@@ -1,7 +1,7 @@
 package Game;
 
 import Thing.Square;
-import Thing.Weapon.Weapon;
+import Thing.Tool.Tool;
 
 import java.awt.*;
 import java.util.concurrent.*;
@@ -12,31 +12,45 @@ public class MThreadExecutor {
     private Point squareLocation;
 
     synchronized void destroyThread(Square square, Point location) {
-        int squareAtk = 1;
-        if (World.player.getHandSquare() instanceof Weapon) {
-            Weapon weapon = (Weapon) World.player.getHandSquare();
-            squareAtk = weapon.squareAtk;
+        int squareAtk = 0;
+        Tool tool = null;
+        if (World.player.getHandSquare() instanceof Tool) {
+            tool = (Tool) World.player.getHandSquare();
+            squareAtk = tool.digLevel;
         }
         if (oldFuture != null) {
             oldFuture.cancel(true);
             oldFuture = null;
         }
         if (squareAtk >= square.breakLevel) {
+            MusicThreadExecutor.loopStoneSound();
             squareLocation = location;
-            int breakLevel = square.breakLevel > 0 ? square.breakLevel : 1;
-            long delay = 500 - (int) ((double) (squareAtk - breakLevel) / squareAtk) * 500;
+            //old version
+            //long delay = 1000 - (int) ((double) (squareAtk - breakLevel) / squareAtk) * 200;
+            long delay;
+            if (tool != null && tool.digKind == square.digType) {
+                delay = 1000 - tool.digSpeed * 200;
+            } else {
+                delay = 1000 + square.breakLevel * 200;
+            }
+            if (delay < 0) {
+                delay = 0;
+            }
+            //System.out.println("delay:"+delay);
             oldFuture = executorService.schedule(new Destroy(), delay, TimeUnit.MILLISECONDS);
         }
     }
 
     synchronized void cancelDestroy() {
         if (oldFuture != null) {
+            MusicThreadExecutor.stopStoneSound();
             oldFuture.cancel(true);
             oldFuture = null;
         }
     }
 
     void destroy() {
+        MusicThreadExecutor.stopStoneSound();
         World.player.getToolbar().pickUp(World.worldSquare[squareLocation.x][squareLocation.y]);
         World.worldSquare[squareLocation.x][squareLocation.y] = null;
         oldFuture = null;

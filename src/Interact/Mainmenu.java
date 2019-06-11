@@ -11,11 +11,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
-class Mainmenu extends JPanel{
+public class Mainmenu{
 
-    private JPanel myPanel;
-    private JButton myButton1,myButton2,myButton3,myButton4;
-    private Image image;
+    private JPanel myPanel;     //the panel of the main menu
+    private JButton myButton1;  //the entrance of begin
+    private JButton myButton2;  //the entrance of settings
+    private JButton myButton3;  //the entrance of more information
+    private JButton myButton4;  //the button for exiting
+    private Image image;    //the background image of the main menu
 
     private class SimpleListener implements ActionListener{ //get the action
         @Override
@@ -25,20 +28,25 @@ class Mainmenu extends JPanel{
 
             if(buttonName.equals("Begin")){
                 Mainframe.mainFrame.setVisible(false);
-                World.setFrame();
+                //System.out.println(World.player.getHp());
+                World.worldCreator();
             }
             if(buttonName.equals("Settings")){
                 Mainframe.mainFrame.setVisible(false);
                 Mainframe.setFrame.setVisible(true);
             }
             if(buttonName.equals("MoreInfo"))
-                System.out.println("More Info");
-            if(buttonName.equals("Exit"))
-                System.out.println("Exit");
+            {
+                Mainframe.mainFrame.setVisible(false);
+                Mainframe.infoFrame.setVisible(true);
+            }
+            if(buttonName.equals("Exit")) {
+                System.exit(0);
+            }
         }
     }
 
-    void paintPanel(Graphics g) throws IOException,FileNotFoundException //add the components
+    void paintPanel(Graphics g) throws IOException //add the components
     {
         new Mainmenu().registerCustomeFont("font/Deeko_Comic.ttf");
 
@@ -99,7 +107,6 @@ class Mainmenu extends JPanel{
 //            } else {
 //                System.out.println("注册字体失败");
 //            }
-
         }
         catch (FontFormatException e){
             e.printStackTrace();

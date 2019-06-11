@@ -75,10 +75,7 @@ public class Toolbar {
                 int square1number = this.number[i];
                 squares[i] = square;
                 this.number[i] = number;
-                System.out.println(squares[0] + " " + this.number[0]);
                 pickUp(square1, square1number);
-
-                System.out.println(squares[0] + " " + this.number[0]);
             }
         }
     }
@@ -86,19 +83,39 @@ public class Toolbar {
     //检查当前Table中搭配是否可以合成，如果可以将结果放在输出格子中
     synchronized void checkRecipe() {
         Square[] curTable = new Square[9];
+        squares[63] = null;
+        number[63] = 0;
+        int[] curNum = new int[9];
         for (int i = 0; i < 9; i++) {
-            curTable[i] = squares[53 + i];
+            curTable[i] = squares[54 + i];
+            curNum[i] = number[54 + i];
         }
         if (SyntheticTable.isRecipe(curTable)) {
             TableOutput to = SyntheticTable.getOutput(curTable);
-            addSquare(to.getOutput(), 63, to.getNum());
+            addSquare(to.getOutput(), 63, to.getNum() * SyntheticTable.getRecipeNum(curNum));
+        } else {
+            squares[63] = null;
+            number[63] = 0;
         }
     }
 
     //将Table中内容清空
     synchronized void tableClear() {
+        int[] num = new int[9];
         for (int i = 0; i < 9; i++) {
-            squares[i] = null;
+            num[i] = number[54 + i];
+            //System.out.println(num[i]);
+        }
+        int sub = SyntheticTable.getRecipeNum(num);
+        //System.out.println("sub:" + sub);
+        for (int i = 54; i <= 62; i++) {
+            if (number[i] == 0) {
+                continue;
+            }
+            number[i] -= sub;
+            if (number[i] == 0) {
+                squares[i] = null;
+            }
         }
     }
 

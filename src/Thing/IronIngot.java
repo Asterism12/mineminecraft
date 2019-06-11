@@ -1,8 +1,6 @@
 package Thing;
 
 import Game.World;
-import Thing.Armor.Armor;
-import Thing.Weapon.Weapon;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,7 +22,7 @@ public class IronIngot extends Square{
 	}
 	public IronIngot(){
 		id=21;
-		breakLevel=3;
+		breakLevel=0;
 		weight=false;
 		liquid=false;
 		pile=false;

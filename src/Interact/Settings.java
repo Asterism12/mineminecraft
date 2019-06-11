@@ -11,21 +11,44 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-class Settings {
-    private static JFrame setFrame;
+public class Settings{
     private static JPanel setPanel;
-
     private ChangeListener listener;
-    private static Color color = new Color(0,0,0);
+    private JColorChooser colorChooser;
+
+    //respectively stands for the color of the color saver and the head, arm, body, leg of the character
+    private static Color color,headColor = Color.WHITE, armColor = Color.WHITE, bodyColor = Color.WHITE, legColor = Color.WHITE;
+    private static int initHp;  //the initial hp of the character
+    String buttonName;  //used for saving the name of the button clicked
 
     Settings() { }
 
+    class ColorListener implements  ActionListener{
+        @Override
+        public synchronized  void actionPerformed(ActionEvent e){
+            color = colorChooser.getColor();
+            if (color == null) {
+                return;
+            }
+            if (buttonName.equals("HEAD"))
+                headColor = color;
+            if (buttonName.equals("ARM"))
+                armColor = color;
+            if (buttonName.equals("BODY"))
+                bodyColor = color;
+            if (buttonName.equals("LEG"))
+                legColor = color;
+        }
+    }
+
     class SimpleListener implements ActionListener{ //get the action
+
         @Override
         public synchronized void actionPerformed(ActionEvent e){
+
             if(e == null)
                 return;
-            String buttonName = e.getActionCommand();
+            buttonName = e.getActionCommand();
             if(buttonName == null)
                 return;
             else if (buttonName.equals("BACK")) {
@@ -34,26 +57,10 @@ class Settings {
             }
             else {
 
-                JColorChooser colorChooser = new JColorChooser();
+                colorChooser = new JColorChooser();
                 JDialog dialog = JColorChooser.createDialog(setPanel, "选择颜色", false,
-                        colorChooser, new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                color = colorChooser.getColor();
-                            }
-                        }, null);
+                        colorChooser, new ColorListener(), null);
                 dialog.setVisible(true);
-                if (color == null) {
-                    return;
-                }
-                if (buttonName.equals("HEAD"))
-                    World.player.setHeadColor(color);
-                if (buttonName.equals("ARM"))
-                    World.player.setArmColor(color);
-                if (buttonName.equals("BODY"))
-                    World.player.setBodyColor(color);
-                if (buttonName.equals("LEG"))
-                    World.player.setLegColor(color);
             }
         }
     }
@@ -72,7 +79,7 @@ class Settings {
         setPanel.setLayout(null);
 
         setTitle();
-        setVolume();
+        setInitHP();
         setColor(World.player);
 
         setPanel.setBackground(new Color(11,180,227));
@@ -87,7 +94,7 @@ class Settings {
         jLabel.setFont(new Font("Deeko Comic Regular",Font.BOLD,30));
         jLabel.setBounds(500,50,300,100);
     }
-    public void setVolume()
+    public void setInitHP()
     {
         listener = new ChangeListener() {
             @Override
@@ -96,25 +103,32 @@ class Settings {
             }
         };
 
-        JSlider slider = new JSlider(0,100,30);
-        slider.setMajorTickSpacing(10);
-        slider.setMinorTickSpacing(5);
+        JSlider slider = new JSlider(0,10,0);
+        slider.setMajorTickSpacing(2);
+        slider.setMinorTickSpacing(1);
 
         slider.setPaintLabels(true);
         slider.setPaintTicks(true);
         slider.setPaintTrack(true);
 
         Hashtable<Integer,JComponent> hashtable = new Hashtable<>();
-        hashtable.put(0,new JLabel("Low"));
-        hashtable.put(100,new JLabel("High"));
+        hashtable.put(0,new JLabel("10"));
+        hashtable.put(10,new JLabel("20"));
         slider.setLabelTable(hashtable);
 
         slider.setBackground(new Color(11,180,227));
         slider.setBounds(510,200,300,100);
 
-        JLabel label = new JLabel("Volume");
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                initHp = 10+slider.getValue();
+            }
+        });
+
+        JLabel label = new JLabel("Initial HP");
         setPanel.add(label);
-        label.setBounds(390,190,130,100);
+        label.setBounds(300,190,150,100);
         label.setFont(new Font("Deeko Comic Regular",Font.BOLD,20));
         label.setBackground(new Color(11,180,227));
         label.setVisible(true);
@@ -126,12 +140,11 @@ class Settings {
         label2.setBackground(new Color(11,180,227));
         label2.setVisible(true);
         setPanel.add(slider);
+
     }
 
     public void setColor(Player player)
     {
-
-
         SimpleListener listener = new SimpleListener();
         addButton(listener,510,400,"HEAD",new Color(11,180,227));
         addButton(listener,750,400,"ARM",new Color(11,180,227));
@@ -149,6 +162,28 @@ class Settings {
         button.setBounds(x,y,200,50);
         button.setBackground(color);
     }
+
+    public static Color getHeadColor()
+    {
+        return headColor;
+    }
+
+    public static Color getArmColor()
+    {
+        return armColor;
+    }
+
+    public static Color getBodyColor()
+    {
+        return bodyColor;
+    }
+
+    public static Color getLegColor()
+    {
+        return legColor;
+    }
+
+    public static int getInitHp() {return initHp; };
 
     JPanel getSetPanel() {
         return setPanel;

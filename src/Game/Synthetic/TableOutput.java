@@ -13,4 +13,9 @@ public class TableOutput {
     public int getNum() {
         return num;
     }
+
+    public TableOutput(Square output, int num) {
+        this.output = output;
+        this.num = num;
+    }
 }

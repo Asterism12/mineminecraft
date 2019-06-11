@@ -7,6 +7,10 @@ public class OffensiveAnimal extends Animal {
     private int attackForce = 0;
     public  OffensiveAnimal() { }
 
+    public OffensiveAnimal(double velocity){
+        super(velocity);
+    }
+
     public void setAttackForce(int newAttackForce)
     {
         this.attackForce = newAttackForce;
